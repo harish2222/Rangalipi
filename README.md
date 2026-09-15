@@ -1,6 +1,6 @@
 # Rangalipi
 
-![Theme Preview](https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png)
+![Theme Preview](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
 
 Kanagawa-wave dark bar on floating glass islands with gold borders. Komorebi
 workspaces, system stats, media with full controls, and two suckless pickers:
