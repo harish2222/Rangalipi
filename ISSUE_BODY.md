@@ -12,7 +12,7 @@ https://github.com/harish2222/Rangalipi
 
 ### Image
 
-PREVIEW_PNG_URL
+https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 
 ### Theme Styles
 
@@ -3187,7 +3187,7 @@ widgets:
 
 # Rangalipi
 
-![Theme Preview](PREVIEW_PNG_URL)
+![Theme Preview](https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png)
 
 Kanagawa-wave dark bar on floating glass islands with gold borders. Komorebi
 workspaces, system stats, media with full controls, and two suckless pickers:
