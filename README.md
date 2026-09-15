@@ -2,6 +2,16 @@
 
 ![Theme Preview](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
 
+# ⛔ STOP — INSTALL THESE FONTS FIRST ⛔
+
+# USE JetBrainsMono Nerd Font AND FiraCode Nerd Font Mono (Retina)
+
+Without them every icon renders as tofu boxes. Get both from
+`scoop` (`nerd-fonts/JetBrainsMono-NF`, `nerd-fonts/FiraCode-NF`,
+`nerd-fonts/FiraCode-NF-Mono`) or [nerdfonts.com](https://www.nerdfonts.com),
+then set them as the four `--*-font` vars at the top of `styles.css`
+(preset block included — JetBrainsMono is one uncomment away).
+
 Kanagawa-wave dark bar on floating glass islands with gold borders. Komorebi
 workspaces, system stats, media with full controls, and two suckless pickers:
 one for 82 color palettes, one for installed Nerd Fonts.
