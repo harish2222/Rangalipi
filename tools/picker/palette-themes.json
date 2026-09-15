@@ -1,0 +1,740 @@
+[
+ {
+  "name": "■ ■ ■ Acrylic",
+  "colors": [
+   "#cba6f7",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Adaptive Islands",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Aero Glass",
+  "colors": [
+   "#89b4fa",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Akira",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Aquamarine Dream",
+  "colors": [
+   "#70c4bd",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Aura",
+  "colors": [
+   "#cba6f7",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Aurora dock",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Basic Revamped",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Blime",
+  "colors": [
+   "#a6e3a1",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ blue yasb",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Catppuccin Frappé",
+  "colors": [
+   "#949cbb",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Catppuccin Macchiato",
+  "colors": [
+   "#939ab7",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Catppuccin Mocha",
+  "colors": [
+   "#9399b2",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Catppuccin Mocha Reimagined",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Comfyppuccin",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Comfyppuccin Reimagined",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Cosmic Bar",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Dark Nord",
+  "colors": [
+   "#88c0d0",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Deep Work Control",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Default",
+  "colors": [
+   "#cba6f7",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ dots windows",
+  "colors": [
+   "#49b265",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Dream In Mocha Mauve",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ dwmblocks",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Edgerunners",
+  "colors": [
+   "#f8ef02",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Everforest",
+  "colors": [
+   "#7fbbb3",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Everforest Dark",
+  "colors": [
+   "#d3c6aa",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Everforest Dark Soft",
+  "colors": [
+   "#d3c6aa",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Fluency",
+  "colors": [
+   "#89b4fa",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Fluent Design",
+  "colors": [
+   "#0078d4",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Frosted Glass Revamp",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Glazing Mocha",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Gruvbox Material Dark",
+  "colors": [
+   "#e9b143",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Gruvbox Material Dark Soft",
+  "colors": [
+   "#ddc7a1",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ HexDock",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ i3 WinBars",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ IlyaTheme",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Kanagawa",
+  "colors": [
+   "#c8c093",
+   "#a3d4d5",
+   "#ffa066"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Komo Komo What",
+  "colors": [
+   "#d0bcff8c",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Kosmo",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Mauveyos Mocha",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ minimal but productive",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Minimal Glaze",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ minty green",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Modern Glass",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Monochrome",
+  "colors": [
+   "#b2b2b2",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ MonochromeAccentDark",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Moonlit Harmony",
+  "colors": [
+   "#89b4fa",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Neos",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fe640b"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Nord",
+  "colors": [
+   "#ebcb8b",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Okinami",
+  "colors": [
+   "#c8c093",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Pillbox",
+  "colors": [
+   "#89b4fa",
+   "#89dceb",
+   "#fe640b"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Proto",
+  "colors": [
+   "#89b4fa",
+   "#89dceb",
+   "#fe640b"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Pywal Theme",
+  "colors": [
+   "#c9aa96",
+   "#c9aa96",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Shibumi",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Simple Elegance",
+  "colors": [
+   "#fdff3b",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Simple Floating Widgets",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Simple Widgets",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Sky Theme",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Sleek Windows",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Soft Segment",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Spectrum Symphony",
+  "colors": [
+   "#f38ba8",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Tokyo Night",
+  "colors": [
+   "#9aa5ce",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Warriors Dreams",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Win11 Fluent Onyx",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Windows 11 Theme",
+  "colors": [
+   "#89b4fa",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ WinUI11",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ WinVista",
+  "colors": [
+   "#49b2e9",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Yasb 001",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Yasb 002 Dynamic",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Yasb 003",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Yasb 004",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Yasb 005",
+  "colors": [
+   "#b4befe",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ YASB Catppuccin Mocha",
+  "colors": [
+   "#94e2d5",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Your Lie In April",
+  "colors": [
+   "#657c9f",
+   "#89dceb",
+   "#fab387"
+  ],
+  "section": "dark"
+ },
+ {
+  "name": "■ ■ ■ Catppuccin Latte",
+  "colors": [
+   "#8caaee",
+   "#04a5e5",
+   "#fe640b"
+  ],
+  "section": "light"
+ },
+ {
+  "name": "■ ■ ■ Init Light",
+  "colors": [
+   "#0176a3",
+   "#04a5e5",
+   "#fe640b"
+  ],
+  "section": "light"
+ },
+ {
+  "name": "■ ■ ■ Mono",
+  "colors": [
+   "#7287fd",
+   "#04a5e5",
+   "#fe640b"
+  ],
+  "section": "light"
+ },
+ {
+  "name": "■ ■ ■ Monochrome Light",
+  "colors": [
+   "#2f2f36",
+   "#04a5e5",
+   "#fe640b"
+  ],
+  "section": "light"
+ },
+ {
+  "name": "■ ■ ■ MonochromeAccentLight",
+  "colors": [
+   "#7287fd",
+   "#04a5e5",
+   "#fe640b"
+  ],
+  "section": "light"
+ },
+ {
+  "name": "■ ■ ■ Nord Dynamic",
+  "colors": [
+   "#7287fd",
+   "#04a5e5",
+   "#fe640b"
+  ],
+  "section": "light"
+ },
+ {
+  "name": "■ ■ ■ Sousou no Frieren",
+  "colors": [
+   "#6d9471",
+   "#04a5e5",
+   "#fe640b"
+  ],
+  "section": "light"
+ },
+ {
+  "name": "■ ■ ■ Windows9X NEO",
+  "colors": [
+   "#008080",
+   "#04a5e5",
+   "#fe640b"
+  ],
+  "section": "light"
+ }
+]
