@@ -54,6 +54,12 @@ All runnable from PowerShell (`-ExecutionPolicy Bypass` for `.ps1`):
 - `tools\setup\export-theme.py` — regenerates this submission pack
   (single-theme CSS, clean config, redaction, screenshots).
 
+## Gallery
+
+![Full bar](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
+![Center island](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-2.png)
+![Right island](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-3.png)
+
 ## Author
 
 [![GitHub](https://img.shields.io/badge/GitHub-harish2222-181717?logo=github&style=flat-square)](https://github.com/harish2222)
