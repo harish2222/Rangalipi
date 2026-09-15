@@ -98,8 +98,8 @@ widgets:
       ]
       collapse_options:
         enabled: true
-        expanded_label: "Ω"
-        collapsed_label: "Ω"
+        expanded_label: ""
+        collapsed_label: ""
         label_position: "right"
   clock:
     type: yasb.clock.ClockWidget
@@ -229,13 +229,13 @@ widgets:
       label_alt: "{data}"
       class_name: "home-widget"
       exec_options:
-        run_cmd: "C:\Users\YourName\\.config\\yasb\\tools\\theme\\yasb-theme.exe current"
+        run_cmd: "C:/Users/YourName\\.config\\yasb\\tools\\theme\\yasb-theme.exe current"
         run_interval: 10000
         return_format: "string"
       callbacks:
-        on_left: "exec silent-run C:\Users\YourName\\.config\\yasb\\tools\\picker\\palette-picker.exe"
+        on_left: "exec silent-run C:/Users/YourName\\.config\\yasb\\tools\\picker\\palette-picker.exe"
         on_middle: "toggle_label"
-        on_right: "exec silent-run C:\Users\YourName\\.config\\yasb\\tools\\theme\\yasb-theme.exe next"
+        on_right: "exec silent-run C:/Users/YourName\\.config\\yasb\\tools\\theme\\yasb-theme.exe next"
   beta:
     type: "yasb.custom.CustomWidget"
     options:
@@ -243,13 +243,13 @@ widgets:
       label_alt: "{data}"
       class_name: "home-widget"
       exec_options:
-        run_cmd: "C:\Users\YourName\\.config\\yasb\\tools\\picker\\yasb-font.exe current"
+        run_cmd: "C:/Users/YourName\\.config\\yasb\\tools\\picker\\yasb-font.exe current"
         run_interval: 10000
         return_format: "string"
       callbacks:
-        on_left: "exec silent-run C:\Users\YourName\\.config\\yasb\\tools\\picker\\palette-picker.exe --fonts"
+        on_left: "exec silent-run C:/Users/YourName\\.config\\yasb\\tools\\picker\\palette-picker.exe --fonts"
         on_middle: "toggle_label"
-        on_right: "exec silent-run C:\Users\YourName\\.config\\yasb\\tools\\picker\\yasb-font.exe next"
+        on_right: "exec silent-run C:/Users/YourName\\.config\\yasb\\tools\\picker\\yasb-font.exe next"
   komorebi_control:
     type: "komorebi.control.KomorebiControlWidget"
     options:
@@ -749,7 +749,7 @@ widgets:
   control_center:
     type: "yasb.control_center.ControlCenterWidget"
     options:
-      label: "<span>Θ</span>"
+      label: "<span></span>"
       tooltip: true
       sections_order:
         - "system_controls"

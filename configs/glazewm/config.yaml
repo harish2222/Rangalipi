@@ -155,7 +155,7 @@ keybindings:
   # ── WM control (komorebi; glazewm itself stays up as the key layer) ─────────
   - commands: ["shell-exec silent-run komorebic stop"]
     bindings: ["alt+shift+e"]
-  - commands: ["shell-exec silent-run komorebic replace-configuration C:\Users\YourName\\komorebi.json"]
+  - commands: ["shell-exec silent-run komorebic replace-configuration C:/Users/YourName\\komorebi.json"]
     bindings: ["alt+shift+r"]
   - commands: ["shell-exec silent-run komorebic retile"]
     bindings: ["alt+shift+w"]
@@ -251,7 +251,7 @@ keybindings:
     bindings: ["alt+b"]
   # Browser: Zen (full path, not on PATH)
   # Desktop Zen.lnk points here; direct short path avoids shell entirely
-  - commands: ["shell-exec C:\Users\YourName\\AppData\\Local\\ZENBRO~1\\zen.exe"]
+  - commands: ["shell-exec C:/Users/YourName\\AppData\\Local\\ZENBRO~1\\zen.exe"]
     bindings: ["alt+z"]
   # Editor: Emacs (full path, not on PATH)
   - commands: ["shell-exec C:\\PROGRA~1\\Emacs\\emacs-31.1\\bin\\runemacs.exe"]

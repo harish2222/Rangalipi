@@ -1445,7 +1445,7 @@
 
 .control-center-widget .icon {
     color: var(--subtext1);
-    font-family: var(--icons-font);
+    font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets", var(--icons-font);
     font-size: 18px;
 }
 
@@ -2000,7 +2000,7 @@
 .omega-group .grouper-button {
     font-size: 18px;
     font-weight: 700;
-    font-family: var(--system-font);
+    font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets", var(--system-font);
     color: var(--lavender);
     border: none;
     padding: 0 6px;

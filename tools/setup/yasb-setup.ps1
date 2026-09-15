@@ -1,5 +1,5 @@
 # One-shot setup / replication script for the YASB companion tooling.
-#   powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\YourName\.config\yasb\yasb-setup.ps1
+#   powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/YourName\.config\yasb\yasb-setup.ps1
 # Installs missing toolchains (Rust, Python Qt6 stack), rebuilds every
 # companion binary from source, and verifies the whole chain. Idempotent:
 # safe to re-run any time. Never touches config.yaml / styles.css.

@@ -8,21 +8,15 @@ one for 82 color palettes, one for installed Nerd Fonts.
 
 ## Features
 
-- **Liquid glass**: theme-tinted blur on bar islands and every popup
-- **Palette browser (वर्ण)**: scrollable flexbox switcher for 82 palettes,
-  live search, arrows + Enter, chrome follows the active theme
-- **Font browser (β)**: switch any installed Nerd Font live, names previewed
-  in their own typeface
-- **Komorebi first**: workspaces, active layout, control, stack widgets
-- **Full media**: thumbnail, inline controls, bounce titles, progress line,
-  volume slider, play/pause + open-player mouse actions
-- **System monitors**: CPU, GPU, memory, disk, traffic in one collapsible
-  group with integer readouts and load-status colors
-- **Zero flash**: every launcher routed through a hidden runner process
-- **RDP-proof**: remote windows ignored by class, exe and title so sessions
-  never disturb tiling or focus
-- **Boot-proof**: ordered login chain (Komorebi, GlazeWM keys, bar) with a
-  one-shot setup script that rebuilds and verifies everything
+- **Liquid glass**: theme-tinted blur on islands and all popups
+- **Palette browser (वर्ण)**: flexbox switcher for 82 palettes, live search
+- **Font browser (β)**: any installed Nerd Font, previewed in its own face
+- **Komorebi set**: workspaces, layout, control, stack widgets
+- **Full media**: thumbnail, controls, bounce titles, progress, volume
+- **Monitors**: CPU, GPU, memory, disk, traffic, integer readouts, statuses
+- **Zero flash**: launchers run through a hidden runner process
+- **RDP-proof**: remote windows ignored by class, exe and title
+- **Boot-proof**: ordered login chain plus a verifying one-shot setup script
 
 ## Bar layout
 

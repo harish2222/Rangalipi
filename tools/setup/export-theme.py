@@ -68,7 +68,8 @@ name, desc = 'Rangalipi', ('Rangalipi: Kanagawa dark glass islands, gold borders
                             'palette and font switchers.')
 assert len(name) <= 25 and re.fullmatch(r'[A-Za-z0-9 ]+', name), name
 assert len(desc) <= 100, len(desc)
-IMAGE_URL = 'PREVIEW_PNG_URL'
+IMAGE_URL = ('https://raw.githubusercontent.com/harish2222/Rangalipi'
+             '/main/preview.png')
 readme = f"""# {name}
 
 ![Theme Preview]({IMAGE_URL})
@@ -79,21 +80,15 @@ one for 82 color palettes, one for installed Nerd Fonts.
 
 ## Features
 
-- **Liquid glass**: theme-tinted blur on bar islands and every popup
-- **Palette browser (वर्ण)**: scrollable flexbox switcher for 82 palettes,
-  live search, arrows + Enter, chrome follows the active theme
-- **Font browser (β)**: switch any installed Nerd Font live, names previewed
-  in their own typeface
-- **Komorebi first**: workspaces, active layout, control, stack widgets
-- **Full media**: thumbnail, inline controls, bounce titles, progress line,
-  volume slider, play/pause + open-player mouse actions
-- **System monitors**: CPU, GPU, memory, disk, traffic in one collapsible
-  group with integer readouts and load-status colors
-- **Zero flash**: every launcher routed through a hidden runner process
-- **RDP-proof**: remote windows ignored by class, exe and title so sessions
-  never disturb tiling or focus
-- **Boot-proof**: ordered login chain (Komorebi, GlazeWM keys, bar) with a
-  one-shot setup script that rebuilds and verifies everything
+- **Liquid glass**: theme-tinted blur on islands and all popups
+- **Palette browser (वर्ण)**: flexbox switcher for 82 palettes, live search
+- **Font browser (β)**: any installed Nerd Font, previewed in its own face
+- **Komorebi set**: workspaces, layout, control, stack widgets
+- **Full media**: thumbnail, controls, bounce titles, progress, volume
+- **Monitors**: CPU, GPU, memory, disk, traffic, integer readouts, statuses
+- **Zero flash**: launchers run through a hidden runner process
+- **RDP-proof**: remote windows ignored by class, exe and title
+- **Boot-proof**: ordered login chain plus a verifying one-shot setup script
 
 ## Bar layout
 
@@ -199,7 +194,13 @@ for src, dst in [(os.path.join(YASB, 'tools'), os.path.join(OUT, 'tools')),
             os.makedirs(os.path.dirname(d), exist_ok=True)
             shutil.copy2(s, d)
             total += os.path.getsize(d)
-print(f'companion bundle: {total / 1048576:.1f} MB (exes included, caches excluded)')
+print(f'companion bundle: {total / 1048576:.1f} MB (source only: no exes, no caches)')
+for stale in ('tools/picker/palette-picker.exe', 'tools/picker/yasb-font.exe',
+              'tools/theme/yasb-theme.exe'):
+    p = os.path.join(OUT, *stale.split('/'))
+    if os.path.exists(p):
+        os.remove(p)
+        print('pruned stale binary:', stale)
 
 # ---------- redaction: personal paths -> dummy placeholder ----------
 import shutil as _sh
@@ -216,7 +217,9 @@ for root, dirs, files in os.walk(OUT):
         if f in ('README.md', 'ISSUE_BODY.md'):
             continue  # author identity stays for publishing
         s = open(p, encoding='utf-8', errors='replace').read()
-        s2 = re.sub(r'C:\\+Users\\+haris', r'C:\\Users\\YourName', s)
+        # forward-slash dummy: valid inside YAML/JSON double-quoted strings
+        # (backslashes would form \U-style escape sequences and break parsing)
+        s2 = re.sub(r'C:\\+Users\\+haris', holder, s)
         s2 = re.sub(r'C:/Users/YourName', holder, s2)
         s2 = re.sub(r'~\/\.glzr', '~/.glzr', s2)
         if s2 != s:

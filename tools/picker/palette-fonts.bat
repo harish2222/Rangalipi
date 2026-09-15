@@ -10,4 +10,4 @@ set "PYTHONHOME="
 set "CONDA_PREFIX="
 set "CONDA_SHLVL="
 set "CONDA_PROMPT_MODIFIER="
-start "" "C:\Users\YourName\.config\yasb\tools\picker\palette-picker.exe" --fonts
+start "" "C:/Users/YourName\.config\yasb\tools\picker\palette-picker.exe" --fonts

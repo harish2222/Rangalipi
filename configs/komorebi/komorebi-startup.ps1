@@ -34,7 +34,7 @@ if (-not $NoApps) {
 
     # 4. Workspace 2 (index 1) -> Zen Browser (fullscreen)
     komorebic focus-monitor-workspace 0 1 | Out-Null
-    Start-Process -FilePath "C:\Users\YourName\AppData\Local\Zen Browser\zen.exe"
+    Start-Process -FilePath "C:/Users/YourName\AppData\Local\Zen Browser\zen.exe"
     Start-Sleep -Seconds 3
     komorebic focus-monitor-workspace 0 1 | Out-Null
     komorebic toggle-maximize | Out-Null
