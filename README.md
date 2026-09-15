@@ -56,9 +56,14 @@ All runnable from PowerShell (`-ExecutionPolicy Bypass` for `.ps1`):
 
 ## Gallery
 
-![Full bar](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
-![Center island](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-2.png)
-![Right island](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-3.png)
+![Shot 1](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
+![Shot 2](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-2.png)
+![Shot 3](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-3.png)
+![Shot 4](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-4.png)
+![Shot 5](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-5.png)
+![Shot 6](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-6.png)
+![Shot 7](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-7.png)
+![Shot 8](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-8.png)
 
 ## Author
 
