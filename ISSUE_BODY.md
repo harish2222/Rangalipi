@@ -23,16 +23,27 @@ PREVIEW_PNG_URL
 /* Root Variables */
 :root {
 
-      --icons-font: "Mononoki Nerd Font Propo";
-      --icons-font-fallback: "Mononoki Nerd Font Propo";
-      --system-font: "Mononoki Nerd Font Propo";
-      --specialFont: "Mononoki Nerd Font Propo";
+  /* ==== MANUAL FONT SWITCH (pick one, keep all four lines on the same family) ====
+     1. JetBrainsMono Nerd Font (default Nerd icons + text):
+        --icons-font: "JetBrainsMono Nerd Font"; --icons-font-fallback: "JetBrainsMono Nerd Font"; --system-font: "JetBrainsMono Nerd Font"; --specialFont: "JetBrainsMono Nerd Font";
+     2. FiraCode Nerd Font (Retina weight auto-used by Qt for bold-ish text):
+        --icons-font: "FiraCode Nerd Font"; --icons-font-fallback: "FiraCode Nerd Font"; --system-font: "FiraCode Nerd Font"; --specialFont: "FiraCode Nerd Font";
+     3. Mononoki Nerd Font:
+        --icons-font: "Mononoki Nerd Font"; --icons-font-fallback: "Mononoki Nerd Font"; --system-font: "Mononoki Nerd Font"; --specialFont: "Mononoki Nerd Font";
+     4. Segoe UI (system text) + Segoe Fluent Icons (icons):
+        --icons-font: "Segoe Fluent Icons"; --icons-font-fallback: "Segoe MDL2 Assets"; --system-font: "Segoe UI"; --specialFont: "Segoe UI";
+     Bar auto-reloads on save (watch_stylesheet: true). No restart needed. */
+
+      --icons-font: "FiraCode Nerd Font Mono";
+      --icons-font-fallback: "FiraCode Nerd Font Mono";
+      --system-font: "FiraCode Nerd Font Mono";
+      --specialFont: "FiraCode Nerd Font Mono";
     --border-radius: 14;
     --border-radius2: 4;
     --border-radius3: 10;
     --border-radiusWallpapers: 10;
-    --fontSize: 12px;
-    --iconSize: 16px;
+    --fontSize: 13px;
+    --iconSize: 20px;
     --fontSizeLarge: 16px;
     --fontWeight: 600;
 
@@ -91,14 +102,14 @@ PREVIEW_PNG_URL
 .yasb-bar {
     background-color: transparent;
     border: none;
-    padding: 0 4px;
+    padding: 0;
 }
 .yasb-bar.adaptive {
     background-color: var(--glass);
     border: none;
     -qproperty-railheight: 0;
     -qproperty-islandradius: 12;
-    -qproperty-grouppadding: 8;
+    -qproperty-grouppadding: 6;
     -qproperty-islands: true;
     -qproperty-edgeradius: 0;
     -qproperty-borderwidth: 1;
@@ -108,7 +119,7 @@ PREVIEW_PNG_URL
 .container-center,
 .container-right {
     background-color: transparent;
-    padding: 0 8px;
+    padding: 0 4px;
     margin: 0;
 }
 
@@ -225,10 +236,20 @@ PREVIEW_PNG_URL
     padding-bottom: 2px;
 }
 
+/* Dropdowns / popups / menus: normal weight, never bold */
+.home-menu, .home-menu *,
+.context-menu, .context-menu *,
+[class*="-popup"], [class*="-popup"] *,
+[class*="-menu"] .menu-item, [class*="-menu"] .menu-label,
+.calendar-table, .calendar-table::item,
+.day-label, .month-label, .year-label, .date-label {
+    font-weight: 400;
+}
+
 /* Home Menu */
 .home-widget .icon {
     font-family: var(--system-font);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: var(--lavender);
     padding-bottom: 0.5px;
@@ -694,12 +715,14 @@ PREVIEW_PNG_URL
 .komorebi-workspaces .ws-btn.active {
     padding-left: 8;
     padding-right: 8;
-    background-color: var(--background2);
-    border-radius: var(--border-radius2);
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid var(--accent);
+    border-radius: 0;
     color: var(--accent);
     font-weight: 600;
     padding-top: 3px;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
 } 
 
 
@@ -756,19 +779,7 @@ PREVIEW_PNG_URL
 
 .wallpapers-widget .widget-container {
 }
-.wallpapers-gallery-window {
-    background-color: var(--background);
-    margin: 16px;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border);
-}
-.wallpapers-gallery-image {
-    border: 2px solid var(--border);
-    border-radius: var(--border-radiusWallpapers);
-}
-.wallpapers-gallery-image:hover {
-    border: 1px solid var(--accent);
-}
+
 
 /* Systray - Glazing Mocha semantic */
 .systray {
@@ -791,6 +802,7 @@ PREVIEW_PNG_URL
 .systray .label,
 .systray .icon {
     color: var(--mauve);
+    font-family: var(--icons-font-fallback);
 }
 
 .systray-popup {
@@ -1447,10 +1459,10 @@ PREVIEW_PNG_URL
 }
 
 .alpha-group .grouper-button {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 400;
     font-family: var(--system-font);
-    color: var(--mauve);
+    color: var(--lavender);
     border: none;
     padding: 0 6px;
 }
@@ -1463,9 +1475,10 @@ PREVIEW_PNG_URL
 /* POPUP WINDOW */
 
 .control-center-widget .icon {
-    color: var(--subtext1);
-    font-family: var(--icons-font);
-    font-size: 18px;
+    color: var(--lavender);
+    font-family: var(--system-font);
+    font-weight: 400;
+    font-size: 20px;
 }
 
 .control-center-menu {
@@ -1825,18 +1838,22 @@ PREVIEW_PNG_URL
     background-color: transparent;
     border: none;
     margin: 0 2px;
-    padding: 0 4px;
+    padding: 0 4px 2px 4px;
 }
 .komorebi-stack .window .label {
     font-size: 12px;
     color: var(--subtext);
 }
 .komorebi-stack .window .icon {
-    padding-right: 2px;
+    padding: 0;
+    margin: 0;
 }
 .komorebi-stack .window.active {
-    background-color: var(--background2);
-    border-radius: var(--border-radius2);
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid var(--accent);
+    border-radius: 0;
+    padding-bottom: 2px;
 }
 .komorebi-stack .window.active .label {
     color: var(--text);
@@ -2017,8 +2034,8 @@ PREVIEW_PNG_URL
     background-color: transparent;
 }
 .omega-group .grouper-button {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 400;
     font-family: var(--system-font);
     color: var(--lavender);
     border: none;
@@ -2039,7 +2056,8 @@ PREVIEW_PNG_URL
     background-color: var(--glass);
     border: 1px solid var(--border);
     border-radius: var(--border-radius);
-    min-width: 360px;
+    min-width: 420px;
+    min-height: 340px;
 }
 .wifi-menu .header {
     padding: 10px 12px;
@@ -2051,7 +2069,7 @@ PREVIEW_PNG_URL
     color: var(--text);
 }
 .wifi-menu .wifi-item {
-    padding: 6px 12px;
+    padding: 10px 12px;
     margin: 2px 6px;
     border-radius: var(--border-radius2);
 }
@@ -2068,11 +2086,11 @@ PREVIEW_PNG_URL
 }
 .wifi-menu .wifi-item .name {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--text);
 }
 .wifi-menu .footer {
-    font-size: 12px;
+    font-size: 13px;
     font-family: var(--system-font);
     padding: 8px 12px;
     color: var(--subtext);
@@ -2103,6 +2121,7 @@ PREVIEW_PNG_URL
 /* Bluetooth - state colors */
 .bluetooth-widget .widget-container .icon {
     font-family: "Segoe Fluent Icons";
+    font-size: 16px;
 }
 .bluetooth-widget .icon.bt-off,
 .bluetooth-widget .label.bt-off { color: var(--overlay0); }
@@ -2114,7 +2133,8 @@ PREVIEW_PNG_URL
     background-color: var(--glass);
     border: 1px solid var(--border);
     border-radius: var(--border-radius);
-    min-width: 360px;
+    min-width: 420px;
+    min-height: 340px;
 }
 .bluetooth-menu .header {
     padding: 10px 12px;
@@ -2132,7 +2152,7 @@ PREVIEW_PNG_URL
     padding: 10px 12px 4px 12px;
 }
 .bluetooth-menu .bluetooth-item {
-    padding: 6px 12px;
+    padding: 10px 12px;
     margin: 2px 6px;
     border-radius: var(--border-radius2);
 }
@@ -2149,7 +2169,7 @@ PREVIEW_PNG_URL
 }
 .bluetooth-menu .bluetooth-item .name {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--text);
 }
 .bluetooth-menu .bluetooth-item .status {
@@ -2157,7 +2177,7 @@ PREVIEW_PNG_URL
     color: var(--subtext);
 }
 .bluetooth-menu .footer {
-    font-size: 12px;
+    font-size: 13px;
     font-family: var(--system-font);
     padding: 8px 12px;
     color: var(--subtext);
@@ -2313,6 +2333,67 @@ PREVIEW_PNG_URL
 }
 
 
+.yasb-bar .separator-widget { margin: 0; padding: 0; }
+.yasb-bar .separator-widget .widget-container { padding: 0; margin: 0; }
+.yasb-bar .separator-widget .widget-container .label {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: var(--surface2);
+}
+.yasb-bar .systray-widget .widget-container,
+.yasb-bar .control-center-widget .widget-container,
+.yasb-bar .wallpapers-widget .widget-container,
+.yasb-bar .home-widget .widget-container,
+.yasb-bar .notifications-widget .widget-container { padding: 0 3px; }
+.yasb-bar .komorebi-workspaces .widget-container,
+.yasb-bar .komorebi-active-layout .widget-container,
+.yasb-bar .komorebi-control-widget .widget-container,
+.yasb-bar .clock-widget .widget-container,
+.yasb-bar .cava-widget .widget-container,
+.yasb-bar .cpu-widget .widget-container,
+.yasb-bar .gpu-widget .widget-container,
+.yasb-bar .memory-widget .widget-container,
+.yasb-bar .disk-widget .widget-container,
+.yasb-bar .traffic-widget .widget-container,
+.yasb-bar .wifi-widget .widget-container,
+.yasb-bar .bluetooth-widget .widget-container,
+.yasb-bar .volume-widget .widget-container,
+.yasb-bar .battery-widget .widget-container,
+.yasb-bar .media-widget .widget-container { padding: 0 5px; }
+.yasb-bar .alpha-group .grouper-button,
+.yasb-bar .omega-group .grouper-button { padding: 0 6px; }
+
+/* Expanded grouper rows: single divider line, minimal air */
+.omega-group .container .widget-container,
+.alpha-group .container .widget-container {
+    padding: 0 2px 0 6px;
+    margin-left: 1px;
+}
+
+/* Sys-stat icons: fixed 25px across cpu/gpu/memory/disk/traffic */
+.cpu-widget .widget-container .icon,
+.gpu-widget .widget-container .icon,
+.memory-widget .widget-container .icon,
+.disk-widget .widget-container .icon,
+.traffic-widget .widget-container .icon { font-size: 25px; }
+
+/* Grouper active state: colored while expanded, plain when collapsed */
+.alpha-group .grouper-button:checked,
+.omega-group .grouper-button:checked {
+    color: var(--accent);
+}
+
+/* Alpha + systray: extra-tight (below the standard tiers) */
+.yasb-bar .alpha-group .grouper-button { padding: 0 4px; }
+.yasb-bar .alpha-group .container .widget-container {
+    padding: 0 1px 0 4px;
+    margin-left: 0;
+}
+.yasb-bar .systray-widget { margin: 0; }
+.yasb-bar .systray-widget .widget-container { padding: 0 1px; }
+
+
 ```
 
 ### Theme Config
@@ -2339,7 +2420,7 @@ bars:
       enabled: true
       duration: 300
     blur_effect:
-      enabled: true
+      enabled: false
       round_corners: true
     window_flags:
       always_on_top: false
@@ -2348,20 +2429,18 @@ bars:
       width: 100%
       height: 32
     padding:
-      top: 8
-      left: 12
+      top: 0
+      left: 0
       bottom: 0
-      right: 12
+      right: 0
     widgets:
       left:
       - home
       - lines
       - komorebi_active_layout
-      - komorebi_control
       - lines
       - komorebi_workspaces
       - lines
-      - active_window
       - komorebi_stack
       center:
       - clock
@@ -2407,19 +2486,17 @@ widgets:
       # connectivity (wifi, bluetooth) -> audio (volume) -> power (battery)
       # -> appearance (wallpapers, palette) -> alerts (notifications last)
       widgets: [
-        "wifi",
         "bluetooth",
         "volume",
         "battery",
         "wallpapers",
         "palette",
-        "beta",
         "notifications",
       ]
       collapse_options:
         enabled: true
-        expanded_label: "Ω"
-        collapsed_label: "Ω"
+        expanded_label: "\uf1de"
+        collapsed_label: "\uf1de"
         label_position: "right"
   clock:
     type: yasb.clock.ClockWidget
@@ -2445,11 +2522,11 @@ widgets:
       label_alt: "{level}"
       tooltip: true
       icons:
-        "muted": "\uf026" # Icon for muted
+        "muted": "\uf6a9" # Icon for muted
         "10": "\uf026"  # Icon for 0-10% volume
-        "30": "\uf026"  # Icon for 11-30% volume
-        "60": "\uf026"  # Icon for 31-60% volume
-        "100": "\uf026" # Icon for 61-100% volume
+        "30": "\uf027"  # Icon for 11-30% volume
+        "60": "\uf028"  # Icon for 31-60% volume
+        "100": "\uf028" # Icon for 61-100% volume
       callbacks:
         on_left: toggle_volume_menu
         on_right: toggle_mute
@@ -2522,18 +2599,10 @@ widgets:
       label_alt: '{win[title]}'
       label_no_window: ''
       label_icon: true
-      label_icon_size: 16
+      label_icon_size: 20
       max_length: 32
       max_length_ellipsis: '...'
       monitor_exclusive: true
-  win_button:
-      type: "yasb.custom.CustomWidget"
-      options:
-        label: "家"
-        label_alt: "家"
-        class_name: "system-widget"
-        callbacks:
-          on_left: "exec start_menu"
   lines:
     type: "yasb.custom.CustomWidget"
     options:
@@ -2545,7 +2614,7 @@ widgets:
   palette:
     type: "yasb.custom.CustomWidget"
     options:
-      label: "<span>वर्ण</span>"
+      label: "<span>\uf074</span>"
       label_alt: "{data}"
       class_name: "home-widget"
       exec_options:
@@ -2556,20 +2625,6 @@ widgets:
         on_left: "exec silent-run C:\\Users\\haris\\.config\\yasb\\tools\\picker\\palette-picker.exe"
         on_middle: "toggle_label"
         on_right: "exec silent-run C:\\Users\\haris\\.config\\yasb\\tools\\theme\\yasb-theme.exe next"
-  beta:
-    type: "yasb.custom.CustomWidget"
-    options:
-      label: "<span>β</span>"
-      label_alt: "{data}"
-      class_name: "home-widget"
-      exec_options:
-        run_cmd: "C:\\Users\\haris\\.config\\yasb\\tools\\picker\\yasb-font.exe current"
-        run_interval: 10000
-        return_format: "string"
-      callbacks:
-        on_left: "exec silent-run C:\\Users\\haris\\.config\\yasb\\tools\\picker\\palette-picker.exe --fonts"
-        on_middle: "toggle_label"
-        on_right: "exec silent-run C:\\Users\\haris\\.config\\yasb\\tools\\picker\\yasb-font.exe next"
   komorebi_control:
     type: "komorebi.control.KomorebiControlWidget"
     options:
@@ -2591,15 +2646,15 @@ widgets:
     type: "komorebi.stack.StackWidget"
     options:
       label_offline: ""
-      label_window: "{process}"
-      label_window_active: "{process}"
+      label_window: ""
+      label_window_active: ""
       label_no_window: ""
       show_icons: "always"
       icon_size: 14
       max_length: 10
       max_length_active: 18
       hide_if_offline: true
-      show_only_stack: true
+      show_only_stack: false
       rewrite:
         - pattern: "^(.+?)\\.exe$"
           replacement: "\\1"
@@ -2665,10 +2720,10 @@ widgets:
     type: "yasb.systray.SystrayWidget"
     options:
       class_name: "systray"
-      label_collapsed: "▼"
-      label_expanded: "▶"
+      label_collapsed: "\uf107"
+      label_expanded: "\uf105"
       label_position: "left" # Can be "left" or "right"
-      icon_size: 16 # Can be any integer between 8 and 64
+      icon_size: 20 # Can be any integer between 8 and 64
       pin_click_modifier: "alt" # Can be "ctrl", "alt" or "shift"
       show_unpinned: false
       show_unpinned_button: true
@@ -2697,16 +2752,33 @@ widgets:
       label: "<span>\udb83\udc8d</span>"
       change_automatically: false
     # Example path to folder with images. Can be a single string or a list of strings.
-      image_path: "H:\\8K wallpaper\\8K only" 
+      image_path:
+        - "H:/8K wallpaper/8K only/01 Arch Linux"
+        - "H:/8K wallpaper/8K only/02 ArcoLinux"
+        - "H:/8K wallpaper/8K only/03 BlackArch"
+        - "H:/8K wallpaper/8K only/04 CachyOS"
+        - "H:/8K wallpaper/8K only/05 Debian"
+        - "H:/8K wallpaper/8K only/06 EndeavourOS"
+        - "H:/8K wallpaper/8K only/07 Fedora"
+        - "H:/8K wallpaper/8K only/08 Garuda Linux"
+        - "H:/8K wallpaper/8K only/09 Manjaro"
+        - "H:/8K wallpaper/8K only/10 NixOS"
+        - "H:/8K wallpaper/8K only/11 openSUSE"
+        - "H:/8K wallpaper/8K only/12 Parrot OS"
+        - "H:/8K wallpaper/8K only/13 Pop!_OS"
+        - "H:/8K wallpaper/8K only/14 Red Hat Linux"
+        - "H:/8K wallpaper/8K only/15 Kali Linux"
+      change_automatically: true
+      update_interval: 600
       engine:
         enabled: true
         animation: "slide_top" # circle/slide_top/diamond/split
       gallery:
-        image_width: 520
+        image_width: 220
         image_corner_radius: 6
-        type: "magnified" # default/magnified/strip/slide - see "Gallery types" below
+        type: "magnified" # selected thumbnail grows ~2x, pushes neighbours aside
         orientation: "landscape" # landscape/portrait
-        accent_color: "auto"
+        accent_color: "#E6C384"
       callbacks:
         on_left: "toggle_gallery"
         on_middle: "do_nothing"
@@ -2727,8 +2799,8 @@ widgets:
         on_middle: "toggle_play_pause"
         on_right: "open_media_source"
       max_field_size:
-        label: 45
-        label_alt: 30
+        label: 28
+        label_alt: 20
       show_thumbnail: true
       controls_only: false
       controls_left: true
@@ -2824,8 +2896,8 @@ widgets:
   cpu:
     type: "yasb.cpu.CpuWidget"
     options:
-      label: "<span>\uf085</span> {info[percent][total]}%"
-      label_alt: "<span>\uf085</span> {info[freq][current]} MHz"
+      label: "<span>\uf2db</span> {info[percent][total]}%"
+      label_alt: "<span>\uf2db</span> {info[freq][current]} MHz"
       update_interval: 2000
       hide_decimal: true
       cpu_thresholds:
@@ -2863,8 +2935,8 @@ widgets:
   memory:
     type: "yasb.memory.MemoryWidget"
     options:
-      label: "<span>\uf4bc</span> {virtual_mem_percent}%"
-      label_alt: "<span>\uf4bc</span> {virtual_mem_used}/{virtual_mem_total} SWAP {swap_mem_percent}%"
+      label: "<span>\uefc5</span> {virtual_mem_percent}%"
+      label_alt: "<span>\uefc5</span> {virtual_mem_used}/{virtual_mem_total} SWAP {swap_mem_percent}%"
       update_interval: 5000
       hide_decimal: true
       callbacks:
@@ -2901,8 +2973,8 @@ widgets:
   traffic:
     type: "yasb.traffic.TrafficWidget"
     options:
-      label: "<span>\ueab4</span> {download_speed} <span>\ueab7</span> {upload_speed}"
-      label_alt: "DL {download_speed} UL {upload_speed} | Sess {session_downloaded}/{session_uploaded}"
+      label: "↓{download_speed} ↑{upload_speed}"
+      label_alt: "↓{download_speed} ↑{upload_speed} | {session_downloaded}/{session_uploaded}"
       update_interval: 1000
       interface: "Auto"
       hide_if_offline: false
@@ -2987,8 +3059,8 @@ widgets:
   gpu:
     type: "yasb.gpu.GpuWidget"
     options:
-      label: "<span>\uf2db</span> {info[utilization]}%"
-      label_alt: "<span>\uf2db</span> {info[temp]}°C | {info[mem_used]} / {info[mem_total]}"
+      label: "<span>\U000F0FB2</span> {info[utilization]}%"
+      label_alt: "<span>\U000F0FB2</span> {info[temp]}°C | {info[mem_used]} / {info[mem_total]}"
       update_interval: 2000
       hide_decimal: true
       gpu_thresholds:
@@ -3026,24 +3098,13 @@ widgets:
   disk:
     type: "yasb.disk.DiskWidget"
     options:
-      label: "<span>\uf473</span> C {space[used][percent]}"
-      label_alt: "<span>\uf473</span> C {space[used][gb]} / {space[total][gb]}"
+      label: "<span>\uf473</span> {space[used][percent]}"
+      label_alt: "<span>\uf473</span> {space[used][gb]} / {space[total][gb]}"
       volume_label: "C"
       decimal_display: 0
       update_interval: 60
-      group_label:
-        volume_labels: ["C", "H", "Z"]
-        show_label_name: true
-        blur: true
-        round_corners: true
-        round_corners_type: "normal"
-        border_color: None
-        alignment: "right"
-        direction: "down"
-        offset_top: 6
-        offset_left: 0
       callbacks:
-        on_left: "toggle_group"
+        on_left: "toggle_label"
         on_middle: "toggle_label"
         on_right: "toggle_label"
       disk_thresholds:
@@ -3063,13 +3124,13 @@ widgets:
       ]
       collapse_options:
         enabled: true
-        expanded_label: "α"
-        collapsed_label: "α"
+        expanded_label: "\uf080"
+        collapsed_label: "\uf080"
         label_position: "right"
   control_center:
     type: "yasb.control_center.ControlCenterWidget"
     options:
-      label: "<span>Θ</span>"
+      label: "<span>\uf013</span>"
       tooltip: true
       sections_order:
         - "system_controls"
@@ -3187,17 +3248,35 @@ widgets:
 
 # Rangalipi
 
-![Theme Preview](https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png)
+![Theme Preview](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
+
+# USE JetBrainsMono Nerd Font AND FiraCode Nerd Font Mono (Retina)
+
+Without them every icon renders as tofu boxes. Get both from `scoop`
+(`nerd-fonts/JetBrainsMono-NF`, `nerd-fonts/FiraCode-NF`,
+`nerd-fonts/FiraCode-NF-Mono`) or nerdfonts.com, then set them as the
+four `--*-font` vars at the top of `styles.css` (preset block included).
 
 Kanagawa-wave dark bar on floating glass islands with gold borders. Komorebi
 workspaces, system stats, media with full controls, and two suckless pickers:
 one for 82 color palettes, one for installed Nerd Fonts.
 
+## Gallery
+
+![Shot 1](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
+![Shot 2](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-2.png)
+![Shot 3](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-3.png)
+![Shot 4](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-4.png)
+![Shot 5](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-5.png)
+![Shot 6](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-6.png)
+![Shot 7](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-7.png)
+![Shot 8](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-8.png)
+
 ## Features
 
 - **Liquid glass**: theme-tinted blur on islands and all popups
-- **Palette browser (वर्ण)**: flexbox switcher for 82 palettes, live search
-- **Font browser (β)**: any installed Nerd Font, previewed in its own face
+- **Palette browser**: flexbox switcher for 82 palettes, live search
+- **Font browser**: any installed Nerd Font, previewed in its own face
 - **Komorebi set**: workspaces, layout, control, stack widgets
 - **Full media**: thumbnail, controls, bounce titles, progress, volume
 - **Monitors**: CPU, GPU, memory, disk, traffic, integer readouts, statuses
@@ -3207,22 +3286,22 @@ one for 82 color palettes, one for installed Nerd Fonts.
 
 ## Bar layout
 
-Left: home menu, Komorebi layout + control, workspaces, active-window icon,
-stack. Center: clock, cava spectrum (theme-synced gradient), media. Right:
-systray, system-stats group (α), control group (Ω: network, audio, power,
-wallpapers, palette, fonts, alerts), control center (Θ).
+Left: home menu, Komorebi layout, workspaces, stack. Center: clock, cava
+spectrum (theme-synced gradient), media. Right: systray, system-stats
+group, control group (bluetooth, audio, power, wallpapers, palette,
+alerts), control center.
 
 ## Installation
 
-1. **Fonts**: install `Hack Nerd Font` (or any Nerd Font), `Segoe UI Variable`,
-   `Segoe Fluent Icons`. The bar falls back gracefully without them.
+1. **Fonts**: install `JetBrainsMono Nerd Font` and
+   `FiraCode Nerd Font Mono` (Retina), plus `Segoe Fluent Icons`.
 2. Copy `config.yaml` and `styles.css` into `%USERPROFILE%\.config\yasb`.
    Tested on YASB v2.0.7, Komorebi 0.1.41, GlazeWM 3.10.1.
 3. Companion tools ship as source only (no binaries) under `tools\`
    (theme CLI, palette and font pickers) and `yasb-theme\` (Rust source).
    Build every exe with `tools\setup\yasb-setup.ps1` — Rust, Qt6 and
    PyInstaller are installed automatically when missing. Without them the
-   bar still works; only the वर्ण/β buttons need rebinding. WM configs
+   bar still works; only the palette button needs rebinding. WM configs
    live in `configs\`.
 
 ### Companion scripts

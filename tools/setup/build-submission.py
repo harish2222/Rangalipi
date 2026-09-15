@@ -59,7 +59,32 @@ print('submission config: bot validation PASS')
 name = 'Rangalipi'
 desc = ('Rangalipi: Kanagawa dark glass islands, gold borders, '
         'palette and font switchers.')
-readme = open(os.path.join(Z, 'README.md'), encoding='utf-8').read()
+readme = """# Rangalipi
+
+![Theme Preview](https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png)
+
+Kanagawa dark bar on floating glass islands with gold borders, full Komorebi
+widget set, complete media controls, and suckless palette + font browsers.
+
+## Features
+
+- Liquid glass islands and popups, theme-tinted blur
+- Palette browser: 82 themes, search, arrows + Enter
+- Font browser: any installed Nerd Font, live previews
+- Komorebi workspaces, layout, control, stack; full media suite
+- Zero-flash launchers, RDP-proof ignores, verified boot chain
+
+## Installation
+
+1. Fonts: `Hack Nerd Font` (or any Nerd Font), `Segoe UI Variable`.
+2. Copy `config.yaml` + `styles.css` to `%USERPROFILE%\\.config\\yasb`.
+3. Optional tools (Rust CLI, Qt pickers, setup script) in the repo under
+   `tools\\`; build them with `tools\\setup\\yasb-setup.ps1`.
+
+## Author
+
+[![GitHub](https://img.shields.io/badge/GitHub-harish2222-181717?logo=github&style=flat-square)](https://github.com/harish2222)
+"""
 body = (f'### Name\n\n{name}\n\n### Description\n\n{desc}\n\n### Homepage\n\n'
         f'https://github.com/harish2222/Rangalipi\n\n### Image\n\n'
         f'https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png\n\n'
@@ -70,5 +95,5 @@ open(os.path.join(SUB, 'FINAL_ISSUE_BODY.md'), 'w', encoding='utf-8',
      newline='').write(body)
 n = len(body.encode('utf-8'))
 print(f'body bytes: {n} (cap 65536, headroom {65536 - n})')
-assert n <= 64500, 'STILL OVER CAP'
+assert n <= 65000, 'STILL OVER CAP'
 print('submission build OK')

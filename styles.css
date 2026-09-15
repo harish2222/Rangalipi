@@ -4,16 +4,27 @@
 /* Root Variables */
 :root {
 
-      --icons-font: "Mononoki Nerd Font Propo";
-      --icons-font-fallback: "Mononoki Nerd Font Propo";
-      --system-font: "Mononoki Nerd Font Propo";
-      --specialFont: "Mononoki Nerd Font Propo";
+  /* ==== MANUAL FONT SWITCH (pick one, keep all four lines on the same family) ====
+     1. JetBrainsMono Nerd Font (default Nerd icons + text):
+        --icons-font: "JetBrainsMono Nerd Font"; --icons-font-fallback: "JetBrainsMono Nerd Font"; --system-font: "JetBrainsMono Nerd Font"; --specialFont: "JetBrainsMono Nerd Font";
+     2. FiraCode Nerd Font (Retina weight auto-used by Qt for bold-ish text):
+        --icons-font: "FiraCode Nerd Font"; --icons-font-fallback: "FiraCode Nerd Font"; --system-font: "FiraCode Nerd Font"; --specialFont: "FiraCode Nerd Font";
+     3. Mononoki Nerd Font:
+        --icons-font: "Mononoki Nerd Font"; --icons-font-fallback: "Mononoki Nerd Font"; --system-font: "Mononoki Nerd Font"; --specialFont: "Mononoki Nerd Font";
+     4. Segoe UI (system text) + Segoe Fluent Icons (icons):
+        --icons-font: "Segoe Fluent Icons"; --icons-font-fallback: "Segoe MDL2 Assets"; --system-font: "Segoe UI"; --specialFont: "Segoe UI";
+     Bar auto-reloads on save (watch_stylesheet: true). No restart needed. */
+
+      --icons-font: "FiraCode Nerd Font Mono";
+      --icons-font-fallback: "FiraCode Nerd Font Mono";
+      --system-font: "FiraCode Nerd Font Mono";
+      --specialFont: "FiraCode Nerd Font Mono";
     --border-radius: 14;
     --border-radius2: 4;
     --border-radius3: 10;
     --border-radiusWallpapers: 10;
-    --fontSize: 12px;
-    --iconSize: 16px;
+    --fontSize: 13px;
+    --iconSize: 20px;
     --fontSizeLarge: 16px;
     --fontWeight: 600;
 
@@ -72,14 +83,14 @@
 .yasb-bar {
     background-color: transparent;
     border: none;
-    padding: 0 4px;
+    padding: 0;
 }
 .yasb-bar.adaptive {
     background-color: var(--glass);
     border: none;
     -qproperty-railheight: 0;
     -qproperty-islandradius: 12;
-    -qproperty-grouppadding: 8;
+    -qproperty-grouppadding: 6;
     -qproperty-islands: true;
     -qproperty-edgeradius: 0;
     -qproperty-borderwidth: 1;
@@ -89,7 +100,7 @@
 .container-center,
 .container-right {
     background-color: transparent;
-    padding: 0 8px;
+    padding: 0 4px;
     margin: 0;
 }
 
@@ -206,10 +217,20 @@
     padding-bottom: 2px;
 }
 
+/* Dropdowns / popups / menus: normal weight, never bold */
+.home-menu, .home-menu *,
+.context-menu, .context-menu *,
+[class*="-popup"], [class*="-popup"] *,
+[class*="-menu"] .menu-item, [class*="-menu"] .menu-label,
+.calendar-table, .calendar-table::item,
+.day-label, .month-label, .year-label, .date-label {
+    font-weight: 400;
+}
+
 /* Home Menu */
 .home-widget .icon {
     font-family: var(--system-font);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: var(--lavender);
     padding-bottom: 0.5px;
@@ -675,12 +696,14 @@
 .komorebi-workspaces .ws-btn.active {
     padding-left: 8;
     padding-right: 8;
-    background-color: var(--background2);
-    border-radius: var(--border-radius2);
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid var(--accent);
+    border-radius: 0;
     color: var(--accent);
     font-weight: 600;
     padding-top: 3px;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
 } 
 
 
@@ -737,19 +760,7 @@
 
 .wallpapers-widget .widget-container {
 }
-.wallpapers-gallery-window {
-    background-color: var(--background);
-    margin: 16px;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border);
-}
-.wallpapers-gallery-image {
-    border: 2px solid var(--border);
-    border-radius: var(--border-radiusWallpapers);
-}
-.wallpapers-gallery-image:hover {
-    border: 1px solid var(--accent);
-}
+
 
 /* Systray - Glazing Mocha semantic */
 .systray {
@@ -772,6 +783,7 @@
 .systray .label,
 .systray .icon {
     color: var(--mauve);
+    font-family: var(--icons-font-fallback);
 }
 
 .systray-popup {
@@ -1428,10 +1440,10 @@
 }
 
 .alpha-group .grouper-button {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 400;
     font-family: var(--system-font);
-    color: var(--mauve);
+    color: var(--lavender);
     border: none;
     padding: 0 6px;
 }
@@ -1444,9 +1456,10 @@
 /* POPUP WINDOW */
 
 .control-center-widget .icon {
-    color: var(--subtext1);
-    font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets", var(--icons-font);
-    font-size: 18px;
+    color: var(--lavender);
+    font-family: var(--system-font);
+    font-weight: 400;
+    font-size: 20px;
 }
 
 .control-center-menu {
@@ -1806,18 +1819,22 @@
     background-color: transparent;
     border: none;
     margin: 0 2px;
-    padding: 0 4px;
+    padding: 0 4px 2px 4px;
 }
 .komorebi-stack .window .label {
     font-size: 12px;
     color: var(--subtext);
 }
 .komorebi-stack .window .icon {
-    padding-right: 2px;
+    padding: 0;
+    margin: 0;
 }
 .komorebi-stack .window.active {
-    background-color: var(--background2);
-    border-radius: var(--border-radius2);
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid var(--accent);
+    border-radius: 0;
+    padding-bottom: 2px;
 }
 .komorebi-stack .window.active .label {
     color: var(--text);
@@ -1998,9 +2015,9 @@
     background-color: transparent;
 }
 .omega-group .grouper-button {
-    font-size: 18px;
-    font-weight: 700;
-    font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets", var(--system-font);
+    font-size: 20px;
+    font-weight: 400;
+    font-family: var(--system-font);
     color: var(--lavender);
     border: none;
     padding: 0 6px;
@@ -2020,7 +2037,8 @@
     background-color: var(--glass);
     border: 1px solid var(--border);
     border-radius: var(--border-radius);
-    min-width: 360px;
+    min-width: 420px;
+    min-height: 340px;
 }
 .wifi-menu .header {
     padding: 10px 12px;
@@ -2032,7 +2050,7 @@
     color: var(--text);
 }
 .wifi-menu .wifi-item {
-    padding: 6px 12px;
+    padding: 10px 12px;
     margin: 2px 6px;
     border-radius: var(--border-radius2);
 }
@@ -2049,11 +2067,11 @@
 }
 .wifi-menu .wifi-item .name {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--text);
 }
 .wifi-menu .footer {
-    font-size: 12px;
+    font-size: 13px;
     font-family: var(--system-font);
     padding: 8px 12px;
     color: var(--subtext);
@@ -2084,6 +2102,7 @@
 /* Bluetooth - state colors */
 .bluetooth-widget .widget-container .icon {
     font-family: "Segoe Fluent Icons";
+    font-size: 16px;
 }
 .bluetooth-widget .icon.bt-off,
 .bluetooth-widget .label.bt-off { color: var(--overlay0); }
@@ -2095,7 +2114,8 @@
     background-color: var(--glass);
     border: 1px solid var(--border);
     border-radius: var(--border-radius);
-    min-width: 360px;
+    min-width: 420px;
+    min-height: 340px;
 }
 .bluetooth-menu .header {
     padding: 10px 12px;
@@ -2113,7 +2133,7 @@
     padding: 10px 12px 4px 12px;
 }
 .bluetooth-menu .bluetooth-item {
-    padding: 6px 12px;
+    padding: 10px 12px;
     margin: 2px 6px;
     border-radius: var(--border-radius2);
 }
@@ -2130,7 +2150,7 @@
 }
 .bluetooth-menu .bluetooth-item .name {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--text);
 }
 .bluetooth-menu .bluetooth-item .status {
@@ -2138,7 +2158,7 @@
     color: var(--subtext);
 }
 .bluetooth-menu .footer {
-    font-size: 12px;
+    font-size: 13px;
     font-family: var(--system-font);
     padding: 8px 12px;
     color: var(--subtext);
@@ -2292,4 +2312,65 @@
     background-color: var(--sapphire);
     border-radius: 4px;
 }
+
+
+.yasb-bar .separator-widget { margin: 0; padding: 0; }
+.yasb-bar .separator-widget .widget-container { padding: 0; margin: 0; }
+.yasb-bar .separator-widget .widget-container .label {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: var(--surface2);
+}
+.yasb-bar .systray-widget .widget-container,
+.yasb-bar .control-center-widget .widget-container,
+.yasb-bar .wallpapers-widget .widget-container,
+.yasb-bar .home-widget .widget-container,
+.yasb-bar .notifications-widget .widget-container { padding: 0 3px; }
+.yasb-bar .komorebi-workspaces .widget-container,
+.yasb-bar .komorebi-active-layout .widget-container,
+.yasb-bar .komorebi-control-widget .widget-container,
+.yasb-bar .clock-widget .widget-container,
+.yasb-bar .cava-widget .widget-container,
+.yasb-bar .cpu-widget .widget-container,
+.yasb-bar .gpu-widget .widget-container,
+.yasb-bar .memory-widget .widget-container,
+.yasb-bar .disk-widget .widget-container,
+.yasb-bar .traffic-widget .widget-container,
+.yasb-bar .wifi-widget .widget-container,
+.yasb-bar .bluetooth-widget .widget-container,
+.yasb-bar .volume-widget .widget-container,
+.yasb-bar .battery-widget .widget-container,
+.yasb-bar .media-widget .widget-container { padding: 0 5px; }
+.yasb-bar .alpha-group .grouper-button,
+.yasb-bar .omega-group .grouper-button { padding: 0 6px; }
+
+/* Expanded grouper rows: single divider line, minimal air */
+.omega-group .container .widget-container,
+.alpha-group .container .widget-container {
+    padding: 0 2px 0 6px;
+    margin-left: 1px;
+}
+
+/* Sys-stat icons: fixed 25px across cpu/gpu/memory/disk/traffic */
+.cpu-widget .widget-container .icon,
+.gpu-widget .widget-container .icon,
+.memory-widget .widget-container .icon,
+.disk-widget .widget-container .icon,
+.traffic-widget .widget-container .icon { font-size: 25px; }
+
+/* Grouper active state: colored while expanded, plain when collapsed */
+.alpha-group .grouper-button:checked,
+.omega-group .grouper-button:checked {
+    color: var(--accent);
+}
+
+/* Alpha + systray: extra-tight (below the standard tiers) */
+.yasb-bar .alpha-group .grouper-button { padding: 0 4px; }
+.yasb-bar .alpha-group .container .widget-container {
+    padding: 0 1px 0 4px;
+    margin-left: 0;
+}
+.yasb-bar .systray-widget { margin: 0; }
+.yasb-bar .systray-widget .widget-container { padding: 0 1px; }
 

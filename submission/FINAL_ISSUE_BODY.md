@@ -4,7 +4,7 @@ Rangalipi
 
 ### Description
 
-Rangalipi: Kanagawa dark glass islands, gold borders, palette and font switchers.
+Rangalipi: Kanagawa dark glass islands, gold borders.
 
 ### Homepage
 
@@ -17,11 +17,11 @@ https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 ### Theme Styles
 
 ```css
-@import "yasb_colors.css"; :root {--icons-font: "Mononoki Nerd Font Propo"; --icons-font-fallback: "Mononoki Nerd Font Propo"; --system-font: "Mononoki Nerd Font Propo"; --specialFont: "Mononoki Nerd Font Propo"; --border-radius: 14; --border-radius2: 4; --border-radius3: 10; --border-radiusWallpapers: 10; --fontSize: 12px; --iconSize: 16px; --fontSizeLarge: 16px; --fontWeight: 600; --background: #1F1F28; --background2: #2A2A37; --accent: #C8C093; --text: #DCD7BA; --accentText: #1F1F28; --hover: #363646; --mutedBG: #090618; --border: #E6C384; --redFlash: #C34043; --subtext: #C8C093; --base: #1F1F28; --mantle: #16161D; --crust: #090618; --surface0: #2A2A37; --surface1: #363646; --surface2: #54546D; --overlay0: #727169; --overlay1: #938AA9; --overlay2: #9CABCA; --subtext0: #938AA9; --subtext1: #C8C093; --lavender: #9CABCA; --blue: #7E9CD8; --sapphire: #7FB4CA; --sky: #A3D4D5; --teal: #7AA89F; --green: #98BB6C; --yellow: #E6C384; --peach: #FFA066; --maroon: #E46876; --red: #C34043; --mauve: #957FB8; --pink: #D27E99; --flamingo: #E8C8C8; --rosewater: #DCD7BA; --text-muted: #C8C093; --yasb-icon-fg: #DCD7BA; --glass: rgba(31, 31, 40, 0.8)}
+@import "yasb_colors.css"; :root {--icons-font: "FiraCode Nerd Font Mono"; --icons-font-fallback: "FiraCode Nerd Font Mono"; --system-font: "FiraCode Nerd Font Mono"; --specialFont: "FiraCode Nerd Font Mono"; --border-radius: 14; --border-radius2: 4; --border-radius3: 10; --border-radiusWallpapers: 10; --fontSize: 13px; --iconSize: 20px; --fontSizeLarge: 16px; --fontWeight: 600; --background: #1F1F28; --background2: #2A2A37; --accent: #C8C093; --text: #DCD7BA; --accentText: #1F1F28; --hover: #363646; --mutedBG: #090618; --border: #E6C384; --redFlash: #C34043; --subtext: #C8C093; --base: #1F1F28; --mantle: #16161D; --crust: #090618; --surface0: #2A2A37; --surface1: #363646; --surface2: #54546D; --overlay0: #727169; --overlay1: #938AA9; --overlay2: #9CABCA; --subtext0: #938AA9; --subtext1: #C8C093; --lavender: #9CABCA; --blue: #7E9CD8; --sapphire: #7FB4CA; --sky: #A3D4D5; --teal: #7AA89F; --green: #98BB6C; --yellow: #E6C384; --peach: #FFA066; --maroon: #E46876; --red: #C34043; --mauve: #957FB8; --pink: #D27E99; --flamingo: #E8C8C8; --rosewater: #DCD7BA; --text-muted: #C8C093; --yasb-icon-fg: #DCD7BA; --glass: rgba(31, 31, 40, 0.8)}
 * {font-size: var(--fontSize); font-weight: var(--fontWeight); font-family: var(--system-font); color: var(--text)}
-.yasb-bar {background-color: transparent; border: none; padding: 0 4px}
-.yasb-bar.adaptive {background-color: var(--glass); border: none; -qproperty-railheight: 0; -qproperty-islandradius: 12; -qproperty-grouppadding: 8; -qproperty-islands: true; -qproperty-edgeradius: 0; -qproperty-borderwidth: 1; -qproperty-bordercolor: var(--border)}
-.container-left, .container-center, .container-right {background-color: transparent; padding: 0 8px; margin: 0}
+.yasb-bar {background-color: transparent; border: none; padding: 0}
+.yasb-bar.adaptive {background-color: var(--glass); border: none; -qproperty-railheight: 0; -qproperty-islandradius: 12; -qproperty-grouppadding: 6; -qproperty-islands: true; -qproperty-edgeradius: 0; -qproperty-borderwidth: 1; -qproperty-bordercolor: var(--border)}
+.container-left, .container-center, .container-right {background-color: transparent; padding: 0 4px; margin: 0}
 .tooltip {background-color: var(--background); border-radius: var(--border-radius); color: var(--text); padding: 5px 10px; font-size: var(--fontSize); font-family: var(--system-font); font-weight: var(--fontWeight); margin-top: 4px; border: 1px solid var(--border)}
 .context-menu, .context-menu .menu-checkbox {background-color: var(--background); border-bottom: 1px solid var(--border); padding: 4px 0px; font-family: var(--system-font); font-weight: var(--fontWeight); font-size: var(--fontSize); color: var(--text)}
 .context-menu {border-radius: var(--border-radius); border: 1px solid var(--border)}
@@ -40,7 +40,8 @@ https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 .widget {padding-left: 6px; padding-right: 6px; margin: 0 2px; background-color: transparent; border-radius: 0; border: none}
 .widget .icon {font-size: var(--iconSize); font-weight: var(--fontWeight); color: var(--yasb-icon-fg); font-family: var(--icons-font-fallback)}
 .widget .label {color: var(--text); font-weight: var(--fontWeight); padding-bottom: 2px}
-.home-widget .icon {font-family: var(--system-font); font-size: 18px; font-weight: bold; color: var(--lavender); padding-bottom: 0.5px}
+.home-menu, .home-menu *, .context-menu, .context-menu *, [class*="-popup"], [class*="-popup"] *, [class*="-menu"] .menu-item, [class*="-menu"] .menu-label, .calendar-table, .calendar-table::item, .day-label, .month-label, .year-label, .date-label {font-weight: 400}
+.home-widget .icon {font-family: var(--system-font); font-size: 20px; font-weight: bold; color: var(--lavender); padding-bottom: 0.5px}
 .home-menu {background-color: var(--glass); border: 1px solid var(--border); border-radius: var(--border-radius); margin-top: 3px}
 .home-menu .menu-item {color: var(--text); padding: 10px 48px 10px 16px; font-family: var(--system-font); font-weight: var(--fontWeight); margin-top: 3px}
 .home-menu .menu-item:hover {background-color: var(--hover); color: var(--text); border-radius: var(--border-radius3); margin-left: 4px; margin-right: 4px; margin-top: 7px; margin-bottom: 4px}
@@ -116,7 +117,7 @@ https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 .komorebi-workspaces .widget-container {}
 .komorebi-workspaces .ws-btn {border: none; color: var(--overlay1)}
 .komorebi-workspaces .ws-btn.populated {padding-left: 8; padding-right: 8; background-color: transparent; border-radius: var(--border-radius2); color: var(--subtext1)}
-.komorebi-workspaces .ws-btn.active {padding-left: 8; padding-right: 8; background-color: var(--background2); border-radius: var(--border-radius2); color: var(--accent); font-weight: 600; padding-top: 3px; padding-bottom: 3px}
+.komorebi-workspaces .ws-btn.active {padding-left: 8; padding-right: 8; background-color: transparent; border: none; border-bottom: 3px solid var(--accent); border-radius: 0; color: var(--accent); font-weight: 600; padding-top: 3px; padding-bottom: 2px}
 .komorebi-active-layout {}
 .komorebi-active-layout .widget-container {}
 .komorebi-active-layout .label {font-family: var(--specialFont); padding-top: 1px; color: var(--sapphire)}
@@ -129,13 +130,10 @@ https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 .wallpapers-widget {}
 .wallpapers-widget .icon {color: var(--mauve)}
 .wallpapers-widget .widget-container {}
-.wallpapers-gallery-window {background-color: var(--background); margin: 16px; border-radius: var(--border-radius); border: 1px solid var(--border)}
-.wallpapers-gallery-image {border: 2px solid var(--border); border-radius: var(--border-radiusWallpapers)}
-.wallpapers-gallery-image:hover {border: 1px solid var(--accent)}
 .systray {background: transparent; border: none}
 .systray .pinned-container.drop-target {background: var(--background)}
 .systray .unpinned-visibility-btn {border-radius: 4px; height: 20px; width: 16px; border: none; outline: none}
-.systray .label, .systray .icon {color: var(--mauve)}
+.systray .label, .systray .icon {color: var(--mauve); font-family: var(--icons-font-fallback)}
 .systray-popup {background-color: var(--glass); padding: 4px; border-radius: var(--border-radius); border: 1px solid var(--border)}
 .systray-popup .button {padding: 10px; margin: 0; border: 0; border-radius: 6px}
 .systray-popup .button:hover {background-color: var(--hover); border-radius: var(--border-radius3)}
@@ -264,9 +262,9 @@ https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 .memory-popup .stats .stat-label {font-size: 13px; color: var(--text); font-family: var(--system-font); font-weight: 400; padding: 6px 4px 2px 4px}
 .memory-popup .stats .stat-value {font-size: 20px; font-weight: 700; color: var(--subtext); font-family: var(--system-font); padding: 0 4px 12px 4px}
 .alpha-group .container {background-color: transparent}
-.alpha-group .grouper-button {font-size: 18px; font-weight: 700; font-family: var(--system-font); color: var(--mauve); border: none; padding: 0 6px}
+.alpha-group .grouper-button {font-size: 20px; font-weight: 400; font-family: var(--system-font); color: var(--lavender); border: none; padding: 0 6px}
 .alpha-group .grouper-button:hover {color: var(--text)}
-.control-center-widget .icon {color: var(--subtext1); font-family: var(--icons-font); font-size: 18px}
+.control-center-widget .icon {color: var(--lavender); font-family: var(--system-font); font-weight: 400; font-size: 20px}
 .control-center-menu {background: var(--glass); min-width: 360px; border: 1px solid var(--border); border-radius: var(--border-radius)}
 .control-center-menu .section {background: transparent; margin: 0; padding: 16px 12px; border: none}
 .control-center-menu .section.system-controls {padding: 12px 16px 0 16px}
@@ -326,10 +324,10 @@ https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 .komorebi-control-menu .button:disabled {color: var(--overlay0)}
 .komorebi-control-menu .footer {padding: 8px 12px; border-top: 1px solid var(--border)}
 .komorebi-control-menu .footer .text {font-size: 12px; font-family: var(--system-font); color: var(--subtext)}
-.komorebi-stack .window {background-color: transparent; border: none; margin: 0 2px; padding: 0 4px}
+.komorebi-stack .window {background-color: transparent; border: none; margin: 0 2px; padding: 0 4px 2px 4px}
 .komorebi-stack .window .label {font-size: 12px; color: var(--subtext)}
-.komorebi-stack .window .icon {padding-right: 2px}
-.komorebi-stack .window.active {background-color: var(--background2); border-radius: var(--border-radius2)}
+.komorebi-stack .window .icon {padding: 0; margin: 0}
+.komorebi-stack .window.active {background-color: transparent; border: none; border-bottom: 3px solid var(--accent); border-radius: 0; padding-bottom: 2px}
 .komorebi-stack .window.active .label {color: var(--text); font-weight: 600}
 .yasb-bar .cpu-widget .widget-container .label, .yasb-bar .gpu-widget .widget-container .label, .yasb-bar .memory-widget .widget-container .label, .yasb-bar .disk-widget .widget-container .label, .yasb-bar .traffic-widget .widget-container .label {font-family: var(--icons-font); font-size: 12px; font-weight: 600; padding: 0 3px}
 .traffic-widget {padding-left: 4px; padding-right: 4px}
@@ -360,19 +358,19 @@ https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 .traffic-menu .internet-info.disconnected {background-color: var(--background2); color: var(--redFlash)}
 .traffic-menu .internet-info.checking {background-color: var(--background2); color: var(--subtext)}
 .omega-group .container {background-color: transparent}
-.omega-group .grouper-button {font-size: 18px; font-weight: 700; font-family: var(--system-font); color: var(--lavender); border: none; padding: 0 6px}
+.omega-group .grouper-button {font-size: 20px; font-weight: 400; font-family: var(--system-font); color: var(--lavender); border: none; padding: 0 6px}
 .omega-group .grouper-button:hover {color: var(--text)}
 .wifi-widget .widget-container .icon {color: var(--sky)}
 .wifi-widget .widget-container .label {color: var(--text)}
-.wifi-menu {background-color: var(--glass); border: 1px solid var(--border); border-radius: var(--border-radius); min-width: 360px}
+.wifi-menu {background-color: var(--glass); border: 1px solid var(--border); border-radius: var(--border-radius); min-width: 420px; min-height: 340px}
 .wifi-menu .header {padding: 10px 12px; border-bottom: 1px solid var(--border)}
 .wifi-menu .header .title {font-size: 14px; font-weight: 600; color: var(--text)}
-.wifi-menu .wifi-item {padding: 6px 12px; margin: 2px 6px; border-radius: var(--border-radius2)}
+.wifi-menu .wifi-item {padding: 10px 12px; margin: 2px 6px; border-radius: var(--border-radius2)}
 .wifi-menu .wifi-item:hover {background-color: var(--hover)}
 .wifi-menu .wifi-item[active=true] {background-color: var(--background2)}
 .wifi-menu .wifi-item .icon {font-family: "Segoe Fluent Icons"; font-size: 18px; color: var(--sky)}
-.wifi-menu .wifi-item .name {font-size: 13px; font-weight: 600; color: var(--text)}
-.wifi-menu .footer {font-size: 12px; font-family: var(--system-font); padding: 8px 12px; color: var(--subtext); border-top: 1px solid var(--border)}
+.wifi-menu .wifi-item .name {font-size: 13px; font-weight: 400; color: var(--text)}
+.wifi-menu .footer {font-size: 13px; font-family: var(--system-font); padding: 8px 12px; color: var(--subtext); border-top: 1px solid var(--border)}
 .battery-widget .widget-container .icon {color: var(--green); padding-right: 3px}
 .battery-widget .widget-container .label {color: var(--text)}
 .battery-widget .icon.status-critical, .battery-widget .label.status-critical {color: var(--red)}
@@ -380,21 +378,21 @@ https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 .battery-widget .icon.status-medium, .battery-widget .label.status-medium {color: var(--yellow)}
 .battery-widget .icon.status-high, .battery-widget .label.status-high, .battery-widget .icon.status-full, .battery-widget .label.status-full {color: var(--green)}
 .battery-widget .icon.status-charging, .battery-widget .label.status-charging {color: var(--sky)}
-.bluetooth-widget .widget-container .icon {font-family: "Segoe Fluent Icons"}
+.bluetooth-widget .widget-container .icon {font-family: "Segoe Fluent Icons"; font-size: 16px}
 .bluetooth-widget .icon.bt-off, .bluetooth-widget .label.bt-off {color: var(--overlay0)}
 .bluetooth-widget .icon.bt-on, .bluetooth-widget .label.bt-on {color: var(--sky)}
 .bluetooth-widget .icon.bt-connected, .bluetooth-widget .label.bt-connected {color: var(--green)}
-.bluetooth-menu {background-color: var(--glass); border: 1px solid var(--border); border-radius: var(--border-radius); min-width: 360px}
+.bluetooth-menu {background-color: var(--glass); border: 1px solid var(--border); border-radius: var(--border-radius); min-width: 420px; min-height: 340px}
 .bluetooth-menu .header {padding: 10px 12px; border-bottom: 1px solid var(--border)}
 .bluetooth-menu .header .title {font-size: 14px; font-weight: 600; color: var(--text)}
 .bluetooth-menu .section-title {font-size: 12px; font-weight: 600; color: var(--subtext); padding: 10px 12px 4px 12px}
-.bluetooth-menu .bluetooth-item {padding: 6px 12px; margin: 2px 6px; border-radius: var(--border-radius2)}
+.bluetooth-menu .bluetooth-item {padding: 10px 12px; margin: 2px 6px; border-radius: var(--border-radius2)}
 .bluetooth-menu .bluetooth-item:hover {background-color: var(--hover)}
 .bluetooth-menu .bluetooth-item.active {background-color: var(--background2)}
 .bluetooth-menu .bluetooth-item .icon {font-family: "Segoe Fluent Icons"; font-size: 18px; color: var(--sky)}
-.bluetooth-menu .bluetooth-item .name {font-size: 13px; font-weight: 600; color: var(--text)}
+.bluetooth-menu .bluetooth-item .name {font-size: 13px; font-weight: 400; color: var(--text)}
 .bluetooth-menu .bluetooth-item .status {font-size: 12px; color: var(--subtext)}
-.bluetooth-menu .footer {font-size: 12px; font-family: var(--system-font); padding: 8px 12px; color: var(--subtext); border-top: 1px solid var(--border)}
+.bluetooth-menu .footer {font-size: 13px; font-family: var(--system-font); padding: 8px 12px; color: var(--subtext); border-top: 1px solid var(--border)}
 .gpu-widget .widget-container .icon {color: var(--pink); padding-bottom: 1px}
 .gpu-widget .widget-container .label {color: var(--text)}
 .gpu-widget .label.status-low {color: var(--green)}
@@ -431,6 +429,19 @@ https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png
 .disk-group-label-size {font-size: 11px; color: var(--subtext); font-family: var(--system-font)}
 .disk-group-label-bar {max-height: 8px; border: none; background-color: var(--background2); border-radius: 4px}
 .disk-group-label-bar::chunk {background-color: var(--sapphire); border-radius: 4px}
+.yasb-bar .separator-widget {margin: 0; padding: 0}
+.yasb-bar .separator-widget .widget-container {padding: 0; margin: 0}
+.yasb-bar .separator-widget .widget-container .label {margin: 0; padding: 0; font-size: 16px; color: var(--surface2)}
+.yasb-bar .systray-widget .widget-container, .yasb-bar .control-center-widget .widget-container, .yasb-bar .wallpapers-widget .widget-container, .yasb-bar .home-widget .widget-container, .yasb-bar .notifications-widget .widget-container {padding: 0 3px}
+.yasb-bar .komorebi-workspaces .widget-container, .yasb-bar .komorebi-active-layout .widget-container, .yasb-bar .komorebi-control-widget .widget-container, .yasb-bar .clock-widget .widget-container, .yasb-bar .cava-widget .widget-container, .yasb-bar .cpu-widget .widget-container, .yasb-bar .gpu-widget .widget-container, .yasb-bar .memory-widget .widget-container, .yasb-bar .disk-widget .widget-container, .yasb-bar .traffic-widget .widget-container, .yasb-bar .wifi-widget .widget-container, .yasb-bar .bluetooth-widget .widget-container, .yasb-bar .volume-widget .widget-container, .yasb-bar .battery-widget .widget-container, .yasb-bar .media-widget .widget-container {padding: 0 5px}
+.yasb-bar .alpha-group .grouper-button, .yasb-bar .omega-group .grouper-button {padding: 0 6px}
+.omega-group .container .widget-container, .alpha-group .container .widget-container {padding: 0 2px 0 6px; margin-left: 1px}
+.cpu-widget .widget-container .icon, .gpu-widget .widget-container .icon, .memory-widget .widget-container .icon, .disk-widget .widget-container .icon, .traffic-widget .widget-container .icon {font-size: 25px}
+.alpha-group .grouper-button:checked, .omega-group .grouper-button:checked {color: var(--accent)}
+.yasb-bar .alpha-group .grouper-button {padding: 0 4px}
+.yasb-bar .alpha-group .container .widget-container {padding: 0 1px 0 4px; margin-left: 0}
+.yasb-bar .systray-widget {margin: 0}
+.yasb-bar .systray-widget .widget-container {padding: 0 1px}
 ```
 
 ### Theme Config
@@ -455,7 +466,7 @@ bars:
       enabled: true
       duration: 300
     blur_effect:
-      enabled: true
+      enabled: false
       round_corners: true
     window_flags:
       always_on_top: false
@@ -464,20 +475,18 @@ bars:
       width: 100%
       height: 32
     padding:
-      top: 8
-      left: 12
+      top: 0
+      left: 0
       bottom: 0
-      right: 12
+      right: 0
     widgets:
       left:
       - home
       - lines
       - komorebi_active_layout
-      - komorebi_control
       - lines
       - komorebi_workspaces
       - lines
-      - active_window
       - komorebi_stack
       center:
       - clock
@@ -516,18 +525,16 @@ widgets:
     options:
       class_name: omega-group
       widgets:
-      - wifi
       - bluetooth
       - volume
       - battery
       - wallpapers
       - palette
-      - beta
       - notifications
       collapse_options:
         enabled: true
-        expanded_label: Ω
-        collapsed_label: Ω
+        expanded_label: 
+        collapsed_label: 
   clock:
     type: yasb.clock.ClockWidget
     options:
@@ -543,11 +550,11 @@ widgets:
       label: <span>{icon}</span> {level}
       label_alt: '{level}'
       icons:
-        muted: 
+        muted: 
         '10': 
-        '30': 
-        '60': 
-        '100': 
+        '30': 
+        '60': 
+        '100': 
       audio_menu:
         border_color: None
         show_apps: true
@@ -601,15 +608,8 @@ widgets:
       label: ''
       label_alt: '{win[title]}'
       label_no_window: ''
+      label_icon_size: 20
       max_length: 32
-  win_button:
-    type: yasb.custom.CustomWidget
-    options:
-      label: 家
-      label_alt: 家
-      class_name: system-widget
-      callbacks:
-        on_left: exec start_menu
   lines:
     type: yasb.custom.CustomWidget
     options:
@@ -621,7 +621,7 @@ widgets:
   palette:
     type: yasb.custom.CustomWidget
     options:
-      label: <span>वर्ण</span>
+      label: <span></span>
       label_alt: '{data}'
       class_name: home-widget
       exec_options:
@@ -632,20 +632,6 @@ widgets:
         on_left: exec silent-run C:/Users/YourName\.config\yasb\tools\picker\palette-picker.exe
         on_middle: toggle_label
         on_right: exec silent-run C:/Users/YourName\.config\yasb\tools\theme\yasb-theme.exe next
-  beta:
-    type: yasb.custom.CustomWidget
-    options:
-      label: <span>β</span>
-      label_alt: '{data}'
-      class_name: home-widget
-      exec_options:
-        run_cmd: C:/Users/YourName\.config\yasb\tools\picker\yasb-font.exe current
-        run_interval: 10000
-        return_format: string
-      callbacks:
-        on_left: exec silent-run C:/Users/YourName\.config\yasb\tools\picker\palette-picker.exe --fonts
-        on_middle: toggle_label
-        on_right: exec silent-run C:/Users/YourName\.config\yasb\tools\picker\yasb-font.exe next
   komorebi_control:
     type: komorebi.control.KomorebiControlWidget
     options:
@@ -657,14 +643,13 @@ widgets:
     type: komorebi.stack.StackWidget
     options:
       label_offline: ''
-      label_window: '{process}'
-      label_window_active: '{process}'
+      label_window: ''
+      label_window_active: ''
       show_icons: always
       icon_size: 14
       max_length: 10
       max_length_active: 18
       hide_if_offline: true
-      show_only_stack: true
       rewrite:
       - pattern: ^(.+?)\.exe$
         replacement: \1
@@ -712,6 +697,9 @@ widgets:
   systray:
     type: yasb.systray.SystrayWidget
     options:
+      label_collapsed: 
+      label_expanded: 
+      icon_size: 20
       show_unpinned: false
       show_in_popup: true
       icons_per_row: 3
@@ -722,14 +710,32 @@ widgets:
     type: yasb.wallpapers.WallpapersWidget
     options:
       label: "<span>\uDB83\uDC8D</span>"
-      image_path: H:\8K wallpaper\8K only
+      change_automatically: true
+      image_path:
+      - H:/8K wallpaper/8K only/01 Arch Linux
+      - H:/8K wallpaper/8K only/02 ArcoLinux
+      - H:/8K wallpaper/8K only/03 BlackArch
+      - H:/8K wallpaper/8K only/04 CachyOS
+      - H:/8K wallpaper/8K only/05 Debian
+      - H:/8K wallpaper/8K only/06 EndeavourOS
+      - H:/8K wallpaper/8K only/07 Fedora
+      - H:/8K wallpaper/8K only/08 Garuda Linux
+      - H:/8K wallpaper/8K only/09 Manjaro
+      - H:/8K wallpaper/8K only/10 NixOS
+      - H:/8K wallpaper/8K only/11 openSUSE
+      - H:/8K wallpaper/8K only/12 Parrot OS
+      - H:/8K wallpaper/8K only/13 Pop!_OS
+      - H:/8K wallpaper/8K only/14 Red Hat Linux
+      - H:/8K wallpaper/8K only/15 Kali Linux
+      update_interval: 600
       engine:
         enabled: true
         animation: slide_top
       gallery:
-        image_width: 520
+        image_width: 220
         image_corner_radius: 6
         type: magnified
+        accent_color: '#E6C384'
       keybindings:
       - keys: ctrl+alt+w
         action: toggle_gallery
@@ -745,7 +751,8 @@ widgets:
         on_middle: toggle_play_pause
         on_right: open_media_source
       max_field_size:
-        label: 45
+        label: 28
+        label_alt: 20
       thumbnail_alpha: 80
       thumbnail_corner_radius: 16
       icons:
@@ -799,8 +806,8 @@ widgets:
   cpu:
     type: yasb.cpu.CpuWidget
     options:
-      label: <span></span> {info[percent][total]}%
-      label_alt: <span></span> {info[freq][current]} MHz
+      label: <span></span> {info[percent][total]}%
+      label_alt: <span></span> {info[freq][current]} MHz
       update_interval: 2000
       hide_decimal: true
       histogram_num_columns: 8
@@ -815,8 +822,8 @@ widgets:
   memory:
     type: yasb.memory.MemoryWidget
     options:
-      label: <span></span> {virtual_mem_percent}%
-      label_alt: <span></span> {virtual_mem_used}/{virtual_mem_total} SWAP {swap_mem_percent}%
+      label: <span></span> {virtual_mem_percent}%
+      label_alt: <span></span> {virtual_mem_used}/{virtual_mem_total} SWAP {swap_mem_percent}%
       hide_decimal: true
       callbacks:
         on_left: toggle_menu
@@ -829,8 +836,8 @@ widgets:
   traffic:
     type: yasb.traffic.TrafficWidget
     options:
-      label: <span></span> {download_speed} <span></span> {upload_speed}
-      label_alt: DL {download_speed} UL {upload_speed} | Sess {session_downloaded}/{session_uploaded}
+      label: ↓{download_speed} ↑{upload_speed}
+      label_alt: ↓{download_speed} ↑{upload_speed} | {session_downloaded}/{session_uploaded}
       interface: Auto
       speed_unit: bytes
       hide_decimal: true
@@ -878,8 +885,8 @@ widgets:
   gpu:
     type: yasb.gpu.GpuWidget
     options:
-      label: <span></span> {info[utilization]}%
-      label_alt: <span></span> {info[temp]}°C | {info[mem_used]} / {info[mem_total]}
+      label: <span>󰾲</span> {info[utilization]}%
+      label_alt: <span>󰾲</span> {info[temp]}°C | {info[mem_used]} / {info[mem_total]}
       hide_decimal: true
       gpu_thresholds:
         low: 25
@@ -896,17 +903,10 @@ widgets:
   disk:
     type: yasb.disk.DiskWidget
     options:
-      label: <span></span> C {space[used][percent]}
-      label_alt: <span></span> C {space[used][gb]} / {space[total][gb]}
+      label: <span></span> {space[used][percent]}
+      label_alt: <span></span> {space[used][gb]} / {space[total][gb]}
       decimal_display: 0
-      group_label:
-        volume_labels:
-        - C
-        - H
-        - Z
-        border_color: None
       callbacks:
-        on_left: toggle_group
         on_middle: toggle_label
         on_right: toggle_label
   alpha:
@@ -921,12 +921,12 @@ widgets:
       - traffic
       collapse_options:
         enabled: true
-        expanded_label: α
-        collapsed_label: α
+        expanded_label: 
+        collapsed_label: 
   control_center:
     type: yasb.control_center.ControlCenterWidget
     options:
-      label: <span>Θ</span>
+      label: <span></span>
       tooltip: true
       popup:
         border_color: none
@@ -1006,16 +1006,11 @@ widget set, complete media controls, and suckless palette + font browsers.
 - Liquid glass islands and popups, theme-tinted blur
 - Palette browser: 82 themes, search, arrows + Enter
 - Font browser: any installed Nerd Font, live previews
-- Komorebi workspaces, layout, control, stack; full media suite
-- Zero-flash launchers, RDP-proof ignores, verified boot chain
+- Komorebi + media, zero-flash launchers
 
 ## Installation
 
-1. Fonts: `Hack Nerd Font` (or any Nerd Font), `Segoe UI Variable`.
+1. Fonts: `JetBrainsMono Nerd Font` and `FiraCode Nerd Font Mono`.
 2. Copy `config.yaml` + `styles.css` to `%USERPROFILE%\.config\yasb`.
-3. Optional tools (Rust CLI, Qt pickers, setup script) in the repo under
-   `tools\`; build them with `tools\setup\yasb-setup.ps1`.
 
-## Author
-
-[![GitHub](https://img.shields.io/badge/GitHub-harish2222-181717?logo=github&style=flat-square)](https://github.com/harish2222)
+## Author: harish2222

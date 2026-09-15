@@ -17,7 +17,7 @@ bars:
       enabled: true
       duration: 300
     blur_effect:
-      enabled: true
+      enabled: false
       round_corners: true
     window_flags:
       always_on_top: false
@@ -26,20 +26,18 @@ bars:
       width: 100%
       height: 32
     padding:
-      top: 8
-      left: 12
+      top: 0
+      left: 0
       bottom: 0
-      right: 12
+      right: 0
     widgets:
       left:
       - home
       - lines
       - komorebi_active_layout
-      - komorebi_control
       - lines
       - komorebi_workspaces
       - lines
-      - active_window
       - komorebi_stack
       center:
       - clock
@@ -78,18 +76,16 @@ widgets:
     options:
       class_name: omega-group
       widgets:
-      - wifi
       - bluetooth
       - volume
       - battery
       - wallpapers
       - palette
-      - beta
       - notifications
       collapse_options:
         enabled: true
-        expanded_label: Ω
-        collapsed_label: Ω
+        expanded_label: 
+        collapsed_label: 
   clock:
     type: yasb.clock.ClockWidget
     options:
@@ -105,11 +101,11 @@ widgets:
       label: <span>{icon}</span> {level}
       label_alt: '{level}'
       icons:
-        muted: 
+        muted: 
         '10': 
-        '30': 
-        '60': 
-        '100': 
+        '30': 
+        '60': 
+        '100': 
       audio_menu:
         border_color: None
         show_apps: true
@@ -163,15 +159,8 @@ widgets:
       label: ''
       label_alt: '{win[title]}'
       label_no_window: ''
+      label_icon_size: 20
       max_length: 32
-  win_button:
-    type: yasb.custom.CustomWidget
-    options:
-      label: 家
-      label_alt: 家
-      class_name: system-widget
-      callbacks:
-        on_left: exec start_menu
   lines:
     type: yasb.custom.CustomWidget
     options:
@@ -183,7 +172,7 @@ widgets:
   palette:
     type: yasb.custom.CustomWidget
     options:
-      label: <span>वर्ण</span>
+      label: <span></span>
       label_alt: '{data}'
       class_name: home-widget
       exec_options:
@@ -194,20 +183,6 @@ widgets:
         on_left: exec silent-run C:/Users/YourName\.config\yasb\tools\picker\palette-picker.exe
         on_middle: toggle_label
         on_right: exec silent-run C:/Users/YourName\.config\yasb\tools\theme\yasb-theme.exe next
-  beta:
-    type: yasb.custom.CustomWidget
-    options:
-      label: <span>β</span>
-      label_alt: '{data}'
-      class_name: home-widget
-      exec_options:
-        run_cmd: C:/Users/YourName\.config\yasb\tools\picker\yasb-font.exe current
-        run_interval: 10000
-        return_format: string
-      callbacks:
-        on_left: exec silent-run C:/Users/YourName\.config\yasb\tools\picker\palette-picker.exe --fonts
-        on_middle: toggle_label
-        on_right: exec silent-run C:/Users/YourName\.config\yasb\tools\picker\yasb-font.exe next
   komorebi_control:
     type: komorebi.control.KomorebiControlWidget
     options:
@@ -219,14 +194,13 @@ widgets:
     type: komorebi.stack.StackWidget
     options:
       label_offline: ''
-      label_window: '{process}'
-      label_window_active: '{process}'
+      label_window: ''
+      label_window_active: ''
       show_icons: always
       icon_size: 14
       max_length: 10
       max_length_active: 18
       hide_if_offline: true
-      show_only_stack: true
       rewrite:
       - pattern: ^(.+?)\.exe$
         replacement: \1
@@ -274,6 +248,9 @@ widgets:
   systray:
     type: yasb.systray.SystrayWidget
     options:
+      label_collapsed: 
+      label_expanded: 
+      icon_size: 20
       show_unpinned: false
       show_in_popup: true
       icons_per_row: 3
@@ -284,14 +261,32 @@ widgets:
     type: yasb.wallpapers.WallpapersWidget
     options:
       label: "<span>\uDB83\uDC8D</span>"
-      image_path: H:\8K wallpaper\8K only
+      change_automatically: true
+      image_path:
+      - H:/8K wallpaper/8K only/01 Arch Linux
+      - H:/8K wallpaper/8K only/02 ArcoLinux
+      - H:/8K wallpaper/8K only/03 BlackArch
+      - H:/8K wallpaper/8K only/04 CachyOS
+      - H:/8K wallpaper/8K only/05 Debian
+      - H:/8K wallpaper/8K only/06 EndeavourOS
+      - H:/8K wallpaper/8K only/07 Fedora
+      - H:/8K wallpaper/8K only/08 Garuda Linux
+      - H:/8K wallpaper/8K only/09 Manjaro
+      - H:/8K wallpaper/8K only/10 NixOS
+      - H:/8K wallpaper/8K only/11 openSUSE
+      - H:/8K wallpaper/8K only/12 Parrot OS
+      - H:/8K wallpaper/8K only/13 Pop!_OS
+      - H:/8K wallpaper/8K only/14 Red Hat Linux
+      - H:/8K wallpaper/8K only/15 Kali Linux
+      update_interval: 600
       engine:
         enabled: true
         animation: slide_top
       gallery:
-        image_width: 520
+        image_width: 220
         image_corner_radius: 6
         type: magnified
+        accent_color: '#E6C384'
       keybindings:
       - keys: ctrl+alt+w
         action: toggle_gallery
@@ -307,7 +302,8 @@ widgets:
         on_middle: toggle_play_pause
         on_right: open_media_source
       max_field_size:
-        label: 45
+        label: 28
+        label_alt: 20
       thumbnail_alpha: 80
       thumbnail_corner_radius: 16
       icons:
@@ -361,8 +357,8 @@ widgets:
   cpu:
     type: yasb.cpu.CpuWidget
     options:
-      label: <span></span> {info[percent][total]}%
-      label_alt: <span></span> {info[freq][current]} MHz
+      label: <span></span> {info[percent][total]}%
+      label_alt: <span></span> {info[freq][current]} MHz
       update_interval: 2000
       hide_decimal: true
       histogram_num_columns: 8
@@ -377,8 +373,8 @@ widgets:
   memory:
     type: yasb.memory.MemoryWidget
     options:
-      label: <span></span> {virtual_mem_percent}%
-      label_alt: <span></span> {virtual_mem_used}/{virtual_mem_total} SWAP {swap_mem_percent}%
+      label: <span></span> {virtual_mem_percent}%
+      label_alt: <span></span> {virtual_mem_used}/{virtual_mem_total} SWAP {swap_mem_percent}%
       hide_decimal: true
       callbacks:
         on_left: toggle_menu
@@ -391,8 +387,8 @@ widgets:
   traffic:
     type: yasb.traffic.TrafficWidget
     options:
-      label: <span></span> {download_speed} <span></span> {upload_speed}
-      label_alt: DL {download_speed} UL {upload_speed} | Sess {session_downloaded}/{session_uploaded}
+      label: ↓{download_speed} ↑{upload_speed}
+      label_alt: ↓{download_speed} ↑{upload_speed} | {session_downloaded}/{session_uploaded}
       interface: Auto
       speed_unit: bytes
       hide_decimal: true
@@ -440,8 +436,8 @@ widgets:
   gpu:
     type: yasb.gpu.GpuWidget
     options:
-      label: <span></span> {info[utilization]}%
-      label_alt: <span></span> {info[temp]}°C | {info[mem_used]} / {info[mem_total]}
+      label: <span>󰾲</span> {info[utilization]}%
+      label_alt: <span>󰾲</span> {info[temp]}°C | {info[mem_used]} / {info[mem_total]}
       hide_decimal: true
       gpu_thresholds:
         low: 25
@@ -458,17 +454,10 @@ widgets:
   disk:
     type: yasb.disk.DiskWidget
     options:
-      label: <span></span> C {space[used][percent]}
-      label_alt: <span></span> C {space[used][gb]} / {space[total][gb]}
+      label: <span></span> {space[used][percent]}
+      label_alt: <span></span> {space[used][gb]} / {space[total][gb]}
       decimal_display: 0
-      group_label:
-        volume_labels:
-        - C
-        - H
-        - Z
-        border_color: None
       callbacks:
-        on_left: toggle_group
         on_middle: toggle_label
         on_right: toggle_label
   alpha:
@@ -483,12 +472,12 @@ widgets:
       - traffic
       collapse_options:
         enabled: true
-        expanded_label: α
-        collapsed_label: α
+        expanded_label: 
+        collapsed_label: 
   control_center:
     type: yasb.control_center.ControlCenterWidget
     options:
-      label: <span>Θ</span>
+      label: <span></span>
       tooltip: true
       popup:
         border_color: none
