@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Export the Kanagawa Gold submission pack for yasb-themes.
+"""Export the Rangalipi submission pack for yasb-themes.
 
-Reads the live bar files, emits a gallery-compliant pack into Z:\\Kanagawa-Gold:
+Reads the live bar files, emits a gallery-compliant pack into Z:\\Rangalipi:
   styles.css   single-theme stylesheet (no commented-out theme blocks)
   config.yaml  blank-line-free config (validated)
   README.md    gallery-style readme (preview link filled after imgur upload)
@@ -17,10 +17,10 @@ import yaml
 
 YASB = os.path.join(os.path.expanduser('~'), '.config', 'yasb')
 OUT = r'Z:\Rangalipi'
-THEME = 'Kanagawa'
+THEME = 'Rangalipi'
 os.makedirs(OUT, exist_ok=True)
 
-# ---------- styles.css : preamble + Kanagawa + components ----------
+# ---------- styles.css : preamble + Rangalipi + components ----------
 lines = open(os.path.join(YASB, 'styles.css'), encoding='utf-8').read().split('\n')
 heads = []
 for i, l in enumerate(lines):
@@ -37,7 +37,7 @@ k_idx = next(i for i, (n, a, _) in enumerate(heads) if n == THEME)
 _, _, kh = heads[k_idx]
 k_end = heads[k_idx + 1][2] if k_idx + 1 < len(heads) else len(lines)
 k_body = [l for l in lines[kh + 1:k_end] if l.strip()]
-assert any('--background' in l for l in k_body), 'kanagawa vars missing'
+assert any('--background' in l for l in k_body), 'theme vars missing'
 # :root close = first column-0 } after the last theme section
 root_close = next(i for i in range(heads[-1][2], len(lines))
                   if re.match(r'^\}', lines[i]))
@@ -48,7 +48,7 @@ def strip_big_comments(css):
     return re.sub(r'/\*(?:[^*]|\*(?!/)){120,}?\*/', '', css)
 
 
-out_css = ('/* Rangalipi for YASB - Kanagawa dark islands, gold borders, liquid glass */\n'
+out_css = ('/* Rangalipi for YASB - original folk palette, glass islands */\n'
            + '\n'.join(preamble) + '\n'
            + '\n'.join(k_body) + '\n'
            + '}\n'
@@ -64,8 +64,8 @@ open(os.path.join(OUT, 'config.yaml'), 'w', encoding='utf-8', newline='').write(
     '\n'.join(cfg_lines))
 
 # ---------- README.md ----------
-name, desc = 'Rangalipi', ('Rangalipi: Kanagawa dark glass islands, gold borders, '
-                            'palette and font switchers.')
+name, desc = 'Rangalipi', ('Rangalipi: 11 original folk themes, glass islands, '
+                            'motif art, switchers.')
 assert len(name) <= 25 and re.fullmatch(r'[A-Za-z0-9 ]+', name), name
 assert len(desc) <= 100, len(desc)
 IMAGE_URL = ('https://raw.githubusercontent.com/harish2222/Rangalipi'
@@ -81,25 +81,33 @@ Without them every icon renders as tofu boxes. Get both from `scoop`
 `nerd-fonts/FiraCode-NF-Mono`) or nerdfonts.com, then set them as the
 four `--*-font` vars at the top of `styles.css` (preset block included).
 
-Kanagawa-wave dark bar on floating glass islands with gold borders. Komorebi
+Original Rangalipi palette: 11 hand-built themes (base + Ember, Mossfern,
+Wine, Dune, Matcha, Espresso, Noir, Aubergine, Clay, Olive), each with its
+own folk-motif artwork, bar runner, and full hue set. Komorebi
 workspaces, system stats, media with full controls, and two suckless pickers:
-one for 82 color palettes, one for installed Nerd Fonts.
+one for the 11 Rangalipi palettes, one for installed Nerd Fonts.
 
 ## Gallery
 
-![Shot 1](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
-![Shot 2](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-2.png)
-![Shot 3](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-3.png)
-![Shot 4](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-4.png)
-![Shot 5](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-5.png)
-![Shot 6](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-6.png)
-![Shot 7](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-7.png)
-![Shot 8](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-8.png)
+![Bar](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
+![Bar collapsed](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-2.png)
+![Stats expanded](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-3.png)
+
+## Desktop
+
+![Clean](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-clean.png)
+![Stats](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-stats.png)
+![Control center](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-control.png)
+![Media](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-media.png)
+![Home menu](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-home.png)
+![Layout menu](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-layout.png)
+![Wallpaper gallery](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-gallery.png)
+![Crimson](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-crimson.png)
 
 ## Features
 
 - **Liquid glass**: theme-tinted blur on islands and all popups
-- **Palette browser**: flexbox switcher for 82 palettes, live search
+- **Palette browser**: flexbox switcher for the 11 Rangalipi palettes, live search
 - **Font browser**: any installed Nerd Font, previewed in its own face
 - **Komorebi set**: workspaces, layout, control, stack widgets
 - **Full media**: thumbnail, controls, bounce titles, progress, volume
@@ -143,10 +151,6 @@ All runnable from PowerShell (`-ExecutionPolicy Bypass` for `.ps1`):
   (`list|current|set|next|prev` over installed Nerd Fonts).
 - `tools\\setup\\export-theme.py` — regenerates this submission pack
   (single-theme CSS, clean config, redaction, screenshots).
-
-## Author
-
-[![GitHub](https://img.shields.io/badge/GitHub-harish2222-181717?logo=github&style=flat-square)](https://github.com/harish2222)
 """
 open(os.path.join(OUT, 'README.md'), 'w', encoding='utf-8', newline='').write(readme)
 
@@ -219,6 +223,17 @@ for stale in ('tools/picker/palette-picker.exe', 'tools/picker/yasb-font.exe',
     if os.path.exists(p):
         os.remove(p)
         print('pruned stale binary:', stale)
+
+# ---------- folk artwork: per-theme motif + runner SVGs (offline files) ----
+import glob as _glob
+_art = 0
+for _svg in (_glob.glob(os.path.join(YASB, 'motif-*.svg'))
+             + _glob.glob(os.path.join(YASB, 'runner-*.svg'))
+             + [os.path.join(YASB, 'media-rangoli.svg')]):
+    if os.path.exists(_svg):
+        shutil.copy2(_svg, os.path.join(OUT, os.path.basename(_svg)))
+        _art += 1
+print(f'folk artwork: {_art} SVG files')
 
 # ---------- redaction: personal paths -> dummy placeholder ----------
 import shutil as _sh

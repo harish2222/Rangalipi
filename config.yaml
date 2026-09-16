@@ -349,7 +349,6 @@ widgets:
     type: "yasb.wallpapers.WallpapersWidget"
     options:
       label: "<span>\udb83\udc8d</span>"
-      change_automatically: false
     # Example path to folder with images. Can be a single string or a list of strings.
       image_path: "C:/Users/YourName/Pictures/Wallpapers"
       change_automatically: true

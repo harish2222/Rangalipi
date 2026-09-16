@@ -57,33 +57,38 @@ print('submission config: bot validation PASS')
 
 # ---------- assemble body ----------
 name = 'Rangalipi'
-desc = ('Rangalipi: Kanagawa dark glass islands, gold borders, '
-        'palette and font switchers.')
+desc = ('Rangalipi: 11 original folk themes, glass islands, '
+        'motif art, switchers.')
 readme = """# Rangalipi
 
 ![Theme Preview](https://raw.githubusercontent.com/harish2222/Rangalipi/main/preview.png)
 
-Kanagawa dark bar on floating glass islands with gold borders, full Komorebi
-widget set, complete media controls, and suckless palette + font browsers.
+# USE JetBrainsMono Nerd Font AND FiraCode Nerd Font Mono (Retina)
+
+Without them every icon renders as tofu boxes. Get both from `scoop`
+(`nerd-fonts/JetBrainsMono-NF`, `nerd-fonts/FiraCode-NF`,
+`nerd-fonts/FiraCode-NF-Mono`) or nerdfonts.com, then set them as the
+four `--*-font` vars at the top of `styles.css` (preset block included).
+
+Original Rangalipi palette: 11 hand-built themes, glass islands, folk-motif
+artwork, Komorebi widget set, complete media controls, and suckless palette
++ font browsers.
 
 ## Features
 
 - Liquid glass islands and popups, theme-tinted blur
-- Palette browser: 82 themes, search, arrows + Enter
+- Palette browser: 11 Rangalipi themes, search, arrows + Enter
 - Font browser: any installed Nerd Font, live previews
 - Komorebi workspaces, layout, control, stack; full media suite
 - Zero-flash launchers, RDP-proof ignores, verified boot chain
 
 ## Installation
 
-1. Fonts: `Hack Nerd Font` (or any Nerd Font), `Segoe UI Variable`.
+1. Fonts: `JetBrainsMono Nerd Font` AND `FiraCode Nerd Font Mono`
+   (Retina), plus `Segoe Fluent Icons`.
 2. Copy `config.yaml` + `styles.css` to `%USERPROFILE%\\.config\\yasb`.
 3. Optional tools (Rust CLI, Qt pickers, setup script) in the repo under
    `tools\\`; build them with `tools\\setup\\yasb-setup.ps1`.
-
-## Author
-
-[![GitHub](https://img.shields.io/badge/GitHub-harish2222-181717?logo=github&style=flat-square)](https://github.com/harish2222)
 """
 body = (f'### Name\n\n{name}\n\n### Description\n\n{desc}\n\n### Homepage\n\n'
         f'https://github.com/harish2222/Rangalipi\n\n### Image\n\n'

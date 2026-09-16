@@ -21,6 +21,17 @@ one for the 11 Rangalipi palettes, one for installed Nerd Fonts.
 ![Bar collapsed](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-2.png)
 ![Stats expanded](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-3.png)
 
+## Desktop
+
+![Clean](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-clean.png)
+![Stats](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-stats.png)
+![Control center](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-control.png)
+![Media](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-media.png)
+![Home menu](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-home.png)
+![Layout menu](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-layout.png)
+![Wallpaper gallery](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-gallery.png)
+![Crimson](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-crimson.png)
+
 ## Features
 
 - **Liquid glass**: theme-tinted blur on islands and all popups
@@ -41,6 +52,9 @@ group, control group (bluetooth, audio, power, wallpapers, palette,
 alerts), control center.
 
 ## Installation
+
+Full guide with fonts, tools, switching, and troubleshooting:
+[`docs/INSTALL.md`](docs/INSTALL.md)
 
 1. **Fonts**: install `JetBrainsMono Nerd Font` and
    `FiraCode Nerd Font Mono` (Retina), plus `Segoe Fluent Icons`.

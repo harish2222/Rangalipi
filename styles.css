@@ -68,7 +68,7 @@
     --rosewater: #E9D5C8;
     --text-muted: #B8B2A7;
     --yasb-icon-fg: #E7E0D2;
-    --glass: rgba(20, 20, 27, 0.82);
+    --glass: rgba(20, 20, 27, 0.93);
     --hairline: rgba(231, 224, 210, 0.16);
     --text-faint: rgba(231, 224, 210, 0.45);
     --chip: rgba(217, 154, 43, 0.18);
@@ -556,7 +556,6 @@
     padding: 8px 16px;
     margin: 2px;
     background-color: var(--background2);
-    /* border: 3px double var(--border); */
     color: var(--background2);
     border-radius: var(--border-radius2);
 }
