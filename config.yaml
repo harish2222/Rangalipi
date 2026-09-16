@@ -68,7 +68,7 @@ widgets:
       - title: Pictures
         path: ~\Pictures
       - title: Wallpapers
-        path: D:\OneDrive\Pictures\Wallpapers\Themes
+        path: ~\Pictures\Wallpapers
       system_menu: true
       power_menu: false
       blur: true
@@ -351,33 +351,18 @@ widgets:
       label: "<span>\udb83\udc8d</span>"
       change_automatically: false
     # Example path to folder with images. Can be a single string or a list of strings.
-      image_path:
-        - "H:/8K wallpaper/8K only/01 Arch Linux"
-        - "H:/8K wallpaper/8K only/02 ArcoLinux"
-        - "H:/8K wallpaper/8K only/03 BlackArch"
-        - "H:/8K wallpaper/8K only/04 CachyOS"
-        - "H:/8K wallpaper/8K only/05 Debian"
-        - "H:/8K wallpaper/8K only/06 EndeavourOS"
-        - "H:/8K wallpaper/8K only/07 Fedora"
-        - "H:/8K wallpaper/8K only/08 Garuda Linux"
-        - "H:/8K wallpaper/8K only/09 Manjaro"
-        - "H:/8K wallpaper/8K only/10 NixOS"
-        - "H:/8K wallpaper/8K only/11 openSUSE"
-        - "H:/8K wallpaper/8K only/12 Parrot OS"
-        - "H:/8K wallpaper/8K only/13 Pop!_OS"
-        - "H:/8K wallpaper/8K only/14 Red Hat Linux"
-        - "H:/8K wallpaper/8K only/15 Kali Linux"
+      image_path: "C:/Users/YourName/Pictures/Wallpapers"
       change_automatically: true
       update_interval: 600
       engine:
         enabled: true
         animation: "slide_top" # circle/slide_top/diamond/split
       gallery:
-        image_width: 220
-        image_corner_radius: 6
-        type: "magnified" # selected thumbnail grows ~2x, pushes neighbours aside
+        image_width: 480
+        image_corner_radius: 8
+        type: "strip" # leaning diamond-tilted tiles, selected stays bright
         orientation: "landscape" # landscape/portrait
-        accent_color: "#E6C384"
+        accent_color: "#D99A2B"
       callbacks:
         on_left: "toggle_gallery"
         on_middle: "do_nothing"

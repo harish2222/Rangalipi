@@ -9,9 +9,11 @@ Without them every icon renders as tofu boxes. Get both from `scoop`
 `nerd-fonts/FiraCode-NF-Mono`) or nerdfonts.com, then set them as the
 four `--*-font` vars at the top of `styles.css` (preset block included).
 
-Original Rangalipi palette: ink-indigo islands with marigold borders. Komorebi
+Original Rangalipi palette: 11 hand-built themes (base + Ember, Mossfern,
+Wine, Dune, Matcha, Espresso, Noir, Aubergine, Clay, Olive), each with its
+own folk-motif artwork, bar runner, and full hue set. Komorebi
 workspaces, system stats, media with full controls, and two suckless pickers:
-one for 82 color palettes, one for installed Nerd Fonts.
+one for the 11 Rangalipi palettes, one for installed Nerd Fonts.
 
 ## Gallery
 
@@ -27,7 +29,7 @@ one for 82 color palettes, one for installed Nerd Fonts.
 ## Features
 
 - **Liquid glass**: theme-tinted blur on islands and all popups
-- **Palette browser**: flexbox switcher for 82 palettes, live search
+- **Palette browser**: flexbox switcher for the 11 Rangalipi palettes, live search
 - **Font browser**: any installed Nerd Font, previewed in its own face
 - **Komorebi set**: workspaces, layout, control, stack widgets
 - **Full media**: thumbnail, controls, bounce titles, progress, volume
