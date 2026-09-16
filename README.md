@@ -17,14 +17,9 @@ one for the 11 Rangalipi palettes, one for installed Nerd Fonts.
 
 ## Gallery
 
-![Shot 1](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
-![Shot 2](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-2.png)
-![Shot 3](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-3.png)
-![Shot 4](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-4.png)
-![Shot 5](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-5.png)
-![Shot 6](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-6.png)
-![Shot 7](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-7.png)
-![Shot 8](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-8.png)
+![Bar](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
+![Bar collapsed](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-2.png)
+![Stats expanded](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-3.png)
 
 ## Features
 
