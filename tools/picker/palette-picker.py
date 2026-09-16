@@ -426,7 +426,7 @@ def selftest(app, items, current, vars_):
     assert len(cells) == len(items), "cell count mismatch"
     picked = []
     w.apply_item = picked.append
-    probe = "hack" if FONTS_MODE else "nord"
+    probe = "hack" if FONTS_MODE else "rangalipi"
     w.search.setText(probe)
     assert w.filtered, "filter found nothing"
     w._move(1)

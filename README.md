@@ -9,7 +9,7 @@ Without them every icon renders as tofu boxes. Get both from `scoop`
 `nerd-fonts/FiraCode-NF-Mono`) or nerdfonts.com, then set them as the
 four `--*-font` vars at the top of `styles.css` (preset block included).
 
-Kanagawa-wave dark bar on floating glass islands with gold borders. Komorebi
+Original Rangalipi palette: ink-indigo islands with marigold borders. Komorebi
 workspaces, system stats, media with full controls, and two suckless pickers:
 one for 82 color palettes, one for installed Nerd Fonts.
 
@@ -71,7 +71,3 @@ All runnable from PowerShell (`-ExecutionPolicy Bypass` for `.ps1`):
   (`list|current|set|next|prev` over installed Nerd Fonts).
 - `tools\setup\export-theme.py` — regenerates this submission pack
   (single-theme CSS, clean config, redaction, screenshots).
-
-## Author
-
-[![GitHub](https://img.shields.io/badge/GitHub-harish2222-181717?logo=github&style=flat-square)](https://github.com/harish2222)

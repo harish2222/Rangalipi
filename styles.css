@@ -1,4 +1,4 @@
-/* Rangalipi for YASB - Kanagawa dark islands, gold borders, liquid glass */
+/* Rangalipi for YASB - original Rangalipi palette, dark islands, marigold borders, liquid glass */
 @import "yasb_colors.css";
 
 /* Root Variables */
@@ -30,44 +30,51 @@
 
     /*colors*/
 
-    --background: #1F1F28;
-    --background2: #2A2A37;
-    --accent: #C8C093;
-    --text: #DCD7BA;
-    --accentText: #1F1F28;
-    --hover: #363646;
-    --mutedBG: #090618;
-    --border: #E6C384;
-    --redFlash: #C34043;
-    --subtext: #C8C093;
-    --base: #1F1F28;
-    --mantle: #16161D;
-    --crust: #090618;
-    --surface0: #2A2A37;
-    --surface1: #363646;
-    --surface2: #54546D;
-    --overlay0: #727169;
-    --overlay1: #938AA9;
-    --overlay2: #9CABCA;
-    --subtext0: #938AA9;
-    --subtext1: #C8C093;
-    --lavender: #9CABCA;
-    --blue: #7E9CD8;
-    --sapphire: #7FB4CA;
-    --sky: #A3D4D5;
-    --teal: #7AA89F;
-    --green: #98BB6C;
-    --yellow: #E6C384;
-    --peach: #FFA066;
-    --maroon: #E46876;
-    --red: #C34043;
-    --mauve: #957FB8;
-    --pink: #D27E99;
-    --flamingo: #E8C8C8;
-    --rosewater: #DCD7BA;
-    --text-muted: #C8C093;
-    --yasb-icon-fg: #DCD7BA;
-    --glass: rgba(31, 31, 40, 0.8);
+    /* Rangalipi - original palette, Rangalipi team */
+    --background: #14141B;
+    --background2: #1D1D28;
+    --accent: #D99A2B;
+    --text: #E7E0D2;
+    --accentText: #14141B;
+    --hover: #262633;
+    --mutedBG: #0F0F16;
+    --border: #D99A2B;
+    --redFlash: #D95D5D;
+    --subtext: #B8B2A7;
+    --base: #14141B;
+    --mantle: #0F0F16;
+    --crust: #0A0A10;
+    --surface0: #1D1D28;
+    --surface1: #262633;
+    --surface2: #34344A;
+    --overlay0: #6B675F;
+    --overlay1: #8A857B;
+    --overlay2: #A39D90;
+    --subtext0: #8A857B;
+    --subtext1: #B8B2A7;
+    --lavender: #9A8FD0;
+    --blue: #6A8FD4;
+    --sapphire: #5E8FD0;
+    --sky: #6FC3C9;
+    --teal: #4FA3A0;
+    --green: #7FB069;
+    --yellow: #D99A2B;
+    --peach: #E07A4F;
+    --maroon: #C24A5E;
+    --red: #D95D5D;
+    --mauve: #A37AC0;
+    --pink: #C97E9E;
+    --flamingo: #D8A7A0;
+    --rosewater: #E9D5C8;
+    --text-muted: #B8B2A7;
+    --yasb-icon-fg: #E7E0D2;
+    --glass: rgba(20, 20, 27, 0.82);
+    --hairline: rgba(231, 224, 210, 0.16);
+    --text-faint: rgba(231, 224, 210, 0.45);
+    --chip: rgba(217, 154, 43, 0.18);
+    --glow: #23232F;
+    --shade: #0D0D13;
+    --accent-soft: rgba(217, 154, 43, 0.55);
 }
 
 /* Global Defaults */
@@ -79,9 +86,9 @@
 }
 
 
-/* Bar - islands, Glazing Mocha glass */
+/* Bar - islands, Rangalipi glass */
 .yasb-bar {
-    background-color: transparent;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0.35, stop:0 var(--shade), stop:0.5 var(--glow), stop:1 var(--shade));
     border: none;
     padding: 0;
 }
@@ -103,6 +110,10 @@
     padding: 0 4px;
     margin: 0;
 }
+/* Sikku flow: asymmetric light pools wander like kolam strokes, never a grid */
+.container-left { background: qradialgradient(cx:0.12, cy:0.05, radius:1.5, fx:0.12, fy:0.05, stop:0 var(--glow), stop:1 rgba(0, 0, 0, 0)); }
+.container-center { background: qradialgradient(cx:0.55, cy:0, radius:1.3, fx:0.55, fy:0, stop:0 var(--glow), stop:1 rgba(0, 0, 0, 0)); }
+.container-right { background: qradialgradient(cx:0.88, cy:0.08, radius:1.5, fx:0.88, fy:0.08, stop:0 var(--glow), stop:1 rgba(0, 0, 0, 0)); }
 
 /* Tooltip */
 .tooltip {
@@ -114,14 +125,14 @@
     font-family: var(--system-font);
     font-weight: var(--fontWeight);
     margin-top: 4px;
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
 }
 
 /* Context Menu */
 .context-menu,
 .context-menu .menu-checkbox {
     background-color: var(--background);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--hairline);
     padding: 4px 0px;
     font-family: var(--system-font);
     font-weight: var(--fontWeight);
@@ -130,7 +141,7 @@
 }
 .context-menu {
     border-radius: var(--border-radius);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
 }
 .context-menu::right-arrow {
     width: 8px;
@@ -232,13 +243,15 @@
     font-family: var(--system-font);
     font-size: 20px;
     font-weight: bold;
-    color: var(--lavender);
-    padding-bottom: 0.5px;
+    color: var(--accent);
+    border: 3px double var(--teal);
+    border-radius: 11px;
+    padding: 0 6px 0.5px;
 }
 
 .home-menu {
     background-color: var(--glass);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     margin-top: 3px;
 }
@@ -293,7 +306,7 @@
     min-width: 460px;
     background-color: var(--background);
     border-radius: var(--border-radius);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
 }
 .clock-popup.calendar .calendar-table,
 .clock-popup.calendar .calendar-table::item {
@@ -484,7 +497,7 @@
     background-color: var(--background);
     border-radius: var(--border-radius);
     margin-right: 14px;
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
 }
 .power-menu-compact .profile-info {
     padding: 24px 14 24px 0;
@@ -547,7 +560,7 @@
     padding: 8px 16px;
     margin: 2px;
     background-color: var(--background2);
-    /* border: 1px solid var(--border); */
+    /* border: 3px double var(--border); */
     color: var(--background2);
     border-radius: var(--border-radius2);
 }
@@ -582,7 +595,7 @@
 }
 .audio-menu {
     background-color: var(--glass); 
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     min-width: 300px;
     border-radius: var(--border-radius);
 }
@@ -660,7 +673,7 @@
 
 /* Separator_widget */
 .separator-widget .widget-container .label{
-    color: var(--overlay0);
+    color: var(--accent);
     margin-left: -1px;
     margin-right: -1px;
 }
@@ -685,8 +698,8 @@
 
 /*Style for buttons which contain window and are not empty.*/
 .komorebi-workspaces .ws-btn.populated {
-    padding-left: 8;
-    padding-right: 8;
+    padding-left: 8px;
+    padding-right: 8px;
     background-color: transparent;
     border-radius: var(--border-radius2);
     color: var(--subtext1);
@@ -694,8 +707,8 @@
 
 /*Style for the active workspace button.*/
 .komorebi-workspaces .ws-btn.active {
-    padding-left: 8;
-    padding-right: 8;
+    padding-left: 8px;
+    padding-right: 8px;
     background-color: transparent;
     border: none;
     border-bottom: 3px solid var(--accent);
@@ -720,7 +733,7 @@
 .komorebi-layout-menu {
     background-color: var(--glass);
     border-radius: var(--border-radius);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
 }
 .komorebi-layout-menu .menu-item {
     padding: 8px 16px;
@@ -762,7 +775,7 @@
 }
 
 
-/* Systray - Glazing Mocha semantic */
+/* Systray - Rangalipi semantic */
 .systray {
     background: transparent;
     border: none;
@@ -790,7 +803,7 @@
     background-color: var(--glass);
     padding: 4px;
     border-radius: var(--border-radius);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
 }
 .systray-popup .button {
     padding: 10px;
@@ -804,7 +817,7 @@
 }
 
 
-/* notification-widget - Glazing Mocha semantic */
+/* notification-widget - Rangalipi semantic */
 .notification-widget .icon {
     color: var(--overlay2);
 }
@@ -851,7 +864,8 @@
     border-radius: 2px;
 }
 .media-menu .thumbnail {
-    border-radius: 8px;
+    border-radius: 12px;
+    border: 2px solid var(--hairline);
 }
 .media-menu .app-volume-container {
     background-color: var(--background2);
@@ -888,7 +902,10 @@
     min-width: 440px;
     max-width: 440px;
     background-color: var(--glass);
-    border: 1px solid var(--border);
+    background-image: url("C:/Users/haris/.config/yasb/media-rangoli.svg");
+    background-repeat: no-repeat;
+    background-position: top right;
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
 }
 .media-menu .title,
@@ -1067,7 +1084,7 @@
 .language-menu {
     background-color: var(--glass);
     min-width: 300px;
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
 }
 .language-menu .header {
@@ -1134,7 +1151,7 @@
 
 .quick-launch-popup .container {
 	background-color: var(--background);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
 }
 /* Search bar container */
@@ -1197,7 +1214,7 @@
 }
 .quick-launch-popup {
     background-color: var(--glass);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     min-width: 480px;
 }
@@ -1258,7 +1275,7 @@
 .cpu-widget {
     border: none;
 }
-/* Glazing Mocha CPU status colors */
+/* Rangalipi CPU status colors */
 .cpu-widget .label.status-low { color: var(--green); }
 .cpu-widget .label.status-medium { color: var(--yellow); }
 .cpu-widget .label.status-high { color: var(--peach); }
@@ -1267,7 +1284,7 @@
 .cpu-popup {
     background-color: var(--glass);
     min-width: 400px;
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
 }
 
@@ -1318,7 +1335,7 @@
 }
 .cpu-popup .stats .stat-item {
     background-color: var(--background2);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     padding: 8px 12px;
     margin: 8px;
@@ -1354,7 +1371,7 @@
 .memory-widget {
     border: none;
 }
-/* Glazing Mocha memory status colors */
+/* Rangalipi memory status colors */
 .memory-widget .label.status-low { color: var(--green); }
 .memory-widget .label.status-medium { color: var(--yellow); }
 .memory-widget .label.status-high { color: var(--peach); }
@@ -1363,7 +1380,7 @@
 .memory-popup {
     background-color: var(--glass);
     min-width: 400px;
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
 }
 
@@ -1414,7 +1431,7 @@
 }
 .memory-popup .stats .stat-item {
     background-color: var(--background2);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     padding: 8px 12px;
     margin: 8px;
@@ -1434,18 +1451,20 @@
     padding: 0 4px 12px 4px;
 }
 
-/* Alpha stats group - collapsible, Glazing Mocha */
+/* Alpha stats group - collapsible, Rangalipi */
 .alpha-group .container { /* The name of the css class is the name given in the config */
     background-color: transparent;
+    border-bottom: 3px dotted var(--hairline);
 }
 
 .alpha-group .grouper-button {
     font-size: 20px;
     font-weight: 400;
     font-family: var(--system-font);
-    color: var(--lavender);
-    border: none;
-    padding: 0 6px;
+    color: var(--green);
+    border: 3px double var(--pink);
+    border-radius: 10px;
+    padding: 0 5px;
 }
 
 .alpha-group .grouper-button:hover {
@@ -1456,7 +1475,10 @@
 /* POPUP WINDOW */
 
 .control-center-widget .icon {
-    color: var(--lavender);
+    color: var(--mauve);
+    border: 3px double var(--yellow);
+    border-radius: 10px;
+    padding: 0 5px;
     font-family: var(--system-font);
     font-weight: 400;
     font-size: 20px;
@@ -1465,7 +1487,7 @@
 .control-center-menu {
     background: var(--glass);
     min-width: 360px;
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
 }
 
@@ -1621,7 +1643,7 @@
 .control-center-menu .section.power .plan-name,
 .control-center-menu .section.power .mode-name {
     background: var(--accent);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     min-height: 36px;
     margin: 0 4px;
@@ -1752,7 +1774,7 @@
 }
 .control-center-menu .context-menu::separator {
     height: 1px;
-    background-color: var(--border);
+    background-color: var(--hairline);
     margin: 4px 0;
 }
 .control-center-menu .context-menu::indicator:unchecked {
@@ -1783,7 +1805,7 @@
 }
 .komorebi-control-menu {
     background-color: var(--glass);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     min-width: 220px;
 }
@@ -1808,7 +1830,7 @@
 }
 .komorebi-control-menu .footer {
     padding: 8px 12px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--hairline);
 }
 .komorebi-control-menu .footer .text {
     font-size: 12px;
@@ -1884,17 +1906,17 @@
     color: var(--redFlash);
 }
 
-/* Traffic popup menu - matches cpu/memory popup + Kanagawa theme */
+/* Traffic popup menu - matches cpu/memory popup + Rangalipi theme */
 .traffic-menu {
     background-color: var(--glass);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     min-width: 320px;
 }
 .traffic-menu .header {
     background: transparent;
     padding: 12px 16px 8px 16px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--hairline);
 }
 .traffic-menu .header .title {
     font-size: 16px;
@@ -1910,7 +1932,7 @@
     border-radius: var(--border-radius2);
     background-color: var(--background2);
     color: var(--text);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
 }
 .traffic-menu .header .reset-button:hover {
     background-color: var(--hover);
@@ -1926,11 +1948,11 @@
     background-color: transparent;
     padding: 12px 10px 4px 10px;
     margin: 0 12px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--hairline);
 }
 .traffic-menu .speed-separator {
     max-width: 1px;
-    background-color: var(--border);
+    background-color: var(--hairline);
     margin: 24px 0 12px 0;
 }
 .traffic-menu .upload-speed-value,
@@ -1970,7 +1992,7 @@
     margin: 8px 8px 0 8px;
     padding: 0 10px 10px 10px;
     background-color: transparent;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--hairline);
 }
 .traffic-menu .alltime-section {
     border-bottom: none;
@@ -2010,17 +2032,19 @@
     color: var(--subtext);
 }
 
-/* Omega quick-settings group - collapsible, Glazing Mocha */
+/* Omega quick-settings group - collapsible, Rangalipi */
 .omega-group .container {
     background-color: transparent;
+    border-bottom: 3px dotted var(--hairline);
 }
 .omega-group .grouper-button {
     font-size: 20px;
     font-weight: 400;
     font-family: var(--system-font);
-    color: var(--lavender);
-    border: none;
-    padding: 0 6px;
+    color: var(--sky);
+    border: 3px double var(--peach);
+    border-radius: 10px;
+    padding: 0 5px;
 }
 .omega-group .grouper-button:hover {
     color: var(--text);
@@ -2035,14 +2059,14 @@
 }
 .wifi-menu {
     background-color: var(--glass);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     min-width: 420px;
     min-height: 340px;
 }
 .wifi-menu .header {
     padding: 10px 12px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--hairline);
 }
 .wifi-menu .header .title {
     font-size: 14px;
@@ -2075,7 +2099,7 @@
     font-family: var(--system-font);
     padding: 8px 12px;
     color: var(--subtext);
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--hairline);
 }
 
 /* Battery - status colors */
@@ -2112,14 +2136,14 @@
 .bluetooth-widget .label.bt-connected { color: var(--green); }
 .bluetooth-menu {
     background-color: var(--glass);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     min-width: 420px;
     min-height: 340px;
 }
 .bluetooth-menu .header {
     padding: 10px 12px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--hairline);
 }
 .bluetooth-menu .header .title {
     font-size: 14px;
@@ -2162,7 +2186,7 @@
     font-family: var(--system-font);
     padding: 8px 12px;
     color: var(--subtext);
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--hairline);
 }
 
 /* GPU - pink icon, Mocha status colors */
@@ -2179,14 +2203,14 @@
 .gpu-widget .label.status-critical { color: var(--red); }
 .gpu-popup {
     background-color: var(--glass);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     min-width: 400px;
 }
 .gpu-popup .header {
     background: transparent;
     padding: 12px 16px 8px 16px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--hairline);
 }
 .gpu-popup .header .text {
     font-size: 16px;
@@ -2237,7 +2261,7 @@
 }
 .gpu-popup .stats .stat-item {
     background-color: var(--background2);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius2);
     padding: 8px 12px;
     margin: 4px;
@@ -2270,13 +2294,13 @@
 .disk-widget .widget-container .label.status-critical { color: var(--red); }
 .disk-group {
     background-color: var(--background);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     padding: 6px;
 }
 .disk-group {
     background-color: var(--glass);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
     border-radius: var(--border-radius);
     padding: 10px 12px;
 }
@@ -2290,7 +2314,7 @@
 }
 .disk-group-row:hover {
     background-color: var(--hover);
-    border: 1px solid var(--border);
+    border: 3px double var(--border);
 }
 .disk-group-label {
     font-size: 12px;
@@ -2318,9 +2342,9 @@
 .yasb-bar .separator-widget .widget-container { padding: 0; margin: 0; }
 .yasb-bar .separator-widget .widget-container .label {
     margin: 0;
-    padding: 0;
+    padding: 0 2px;
     font-size: 16px;
-    color: var(--surface2);
+    color: var(--accent-soft);
 }
 .yasb-bar .systray-widget .widget-container,
 .yasb-bar .control-center-widget .widget-container,
@@ -2373,4 +2397,10 @@
 }
 .yasb-bar .systray-widget { margin: 0; }
 .yasb-bar .systray-widget .widget-container { padding: 0 1px; }
+
+/* Stat cluster baseline: icons and labels share one baseline */
+.alpha-group .container .widget-container .icon,
+.alpha-group .container .widget-container .label { padding-bottom: 1px; }
+
+/* Frames stay Madhubani double */
 
