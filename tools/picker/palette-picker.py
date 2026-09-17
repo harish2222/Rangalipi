@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Suckless dmenu-style picker for the YASB bar: themes (default) or
-system Nerd Fonts (--fonts). One slim frameless bar: filter line on top,
-flexbox flow below. Type to narrow, arrows to move, Enter to apply.
-Reads themes/fonts catalogs, paints with the ACTIVE theme's vars.
+"""Suckless dmenu-style palette picker for the YASB bar. One slim
+frameless bar: filter line on top, flexbox flow below. Type to narrow,
+arrows to move, Enter to apply. Reads the palette catalog, paints with
+the ACTIVE theme's vars.
 """
 import json
 import os
@@ -27,7 +27,6 @@ from PyQt6.QtWidgets import (
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 FALLBACK = os.path.join(os.path.expanduser("~"), ".config", "yasb")
-FONTS_MODE = "--fonts" in sys.argv
 
 
 def resolve(name):
@@ -46,8 +45,6 @@ def resolve(name):
 DATA_JSON = resolve("palette-themes.json")
 STYLES_CSS = resolve("styles.css")
 EXE = resolve("yasb-theme.exe")
-FONT_SCRIPT = resolve("yasb-font.py")
-FONT_EXE = resolve("yasb-font.exe")
 
 DEFAULT_VARS = {
     "background": "#181825",
@@ -59,46 +56,12 @@ DEFAULT_VARS = {
 }
 
 
-def python_cmd():
-    exe = sys.executable or ""
-    if exe.lower().endswith("python.exe") or exe.lower().endswith("pythonw.exe"):
-        return exe
-    return "python3"
-
-
-def font_bin():
-    if os.path.exists(FONT_EXE):
-        return [FONT_EXE]
-    return [python_cmd(), FONT_SCRIPT]
-
-
 def load_items():
-    if FONTS_MODE:
-        # single source of truth: live discovery inside the font tool
-        try:
-            out = subprocess.run(font_bin() + ["list"], capture_output=True,
-                                 timeout=15)
-            names = []
-            for line in out.stdout.decode("utf-8", "replace").splitlines():
-                s = line.strip()
-                if s.startswith("* "):
-                    s = s[2:]
-                elif s.startswith("  "):
-                    s = s.strip()
-                if s:
-                    names.append(s)
-            return [{"name": n, "colors": [], "section": "all"} for n in names]
-        except Exception:
-            return []
     return json.load(open(DATA_JSON, encoding="utf-8"))
 
 
 def active_name():
     try:
-        if FONTS_MODE:
-            css = open(STYLES_CSS, encoding="utf-8").read()
-            m = re.search(r'--system-font:\s*"([^"]+)"', css)
-            return m.group(1) if m else ""
         out = subprocess.run([EXE, "current"], capture_output=True, timeout=10)
         return out.stdout.decode("utf-8", "replace").strip()
     except Exception:
@@ -213,9 +176,6 @@ class ThemeCell(QFrame):
             lay.addWidget(chip)
         lab = QLabel(theme["name"])
         lab.setProperty("class", "cell-label")
-        if FONTS_MODE:
-            # live preview: render the name in the candidate font itself
-            lab.setStyleSheet(f'font-family: "{theme["name"]}";')
         lay.addWidget(lab, 1)
 
     def set_state(self, state):
@@ -233,8 +193,8 @@ class ThemeCell(QFrame):
 
 
 class Picker(QWidget):
-    SYMBOL = "β" if FONTS_MODE else "वर्ण"
-    KIND = "fonts" if FONTS_MODE else "palette"
+    SYMBOL = "वर्ण"
+    KIND = "palette"
 
     def __init__(self, items, current, vars_):
         super().__init__(
@@ -311,8 +271,6 @@ class Picker(QWidget):
         """
 
     def _sections(self):
-        if FONTS_MODE:
-            return (("all", None),)
         return (("dark", "Dark"), ("light", "Light"))
 
     def _refilter(self):
@@ -400,18 +358,11 @@ class Picker(QWidget):
             self._pick(self.filtered[self.sel]["name"])
 
     def apply_item(self, name):
-        if FONTS_MODE:
-            subprocess.run(
-                font_bin() + ["set", name],
-                capture_output=True,
-                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
-            )
-        else:
-            subprocess.run(
-                [EXE, "set", name],
-                capture_output=True,
-                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
-            )
+        subprocess.run(
+            [EXE, "set", name],
+            capture_output=True,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
 
     def _pick(self, name):
         self.apply_item(name)
@@ -426,7 +377,7 @@ def selftest(app, items, current, vars_):
     assert len(cells) == len(items), "cell count mismatch"
     picked = []
     w.apply_item = picked.append
-    probe = "hack" if FONTS_MODE else "rangalipi"
+    probe = "rangalipi"
     w.search.setText(probe)
     assert w.filtered, "filter found nothing"
     w._move(1)
@@ -447,15 +398,7 @@ def main():
     app = QApplication(sys.argv if not smoke else [sys.argv[0]])
     items = load_items()
     current = active_name()
-    # chrome follows the bar theme: in fonts mode re-resolve via theme tool
-    theme_now = current
-    if FONTS_MODE:
-        try:
-            out = subprocess.run([EXE, "current"], capture_output=True, timeout=10)
-            theme_now = out.stdout.decode("utf-8", "replace").strip()
-        except Exception:
-            theme_now = ""
-    vars_ = theme_vars(theme_now)
+    vars_ = theme_vars(current)
     w = Picker(items, current, vars_)
     if smoke:
         return selftest(app, items, current, vars_)

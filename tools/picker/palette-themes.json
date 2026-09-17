@@ -97,5 +97,14 @@
       "#d4a05e"
     ],
     "section": "dark"
+  },
+  {
+    "name": "Rangalipi Light",
+    "colors": [
+      "#b37a1a",
+      "#4a8a8f",
+      "#b85a35"
+    ],
+    "section": "light"
   }
 ]

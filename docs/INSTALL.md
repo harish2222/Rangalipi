@@ -33,8 +33,8 @@ powershell -ExecutionPolicy Bypass -File tools\setup\yasb-setup.ps1
 ```
 
 This installs missing toolchains (Rust, Python Qt6, PyInstaller) and builds
-`yasb-theme.exe` (11-palette engine), `palette-picker.exe` (visual browser),
-`yasb-font.exe` (font switcher) and `silent-run.exe` (flash-free launcher).
+`yasb-theme.exe` (12-theme engine, incl. Rangalipi Light), `palette-picker.exe`
+(palette browser) and `silent-run.exe` (flash-free launcher).
 Re-running is safe. Folk-motif SVGs (`motif-*.svg`, `runner-*.svg`)
 must sit next to `styles.css` — copy them over too if you use the artwork.
 
