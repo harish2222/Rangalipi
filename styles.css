@@ -68,7 +68,7 @@
     --rosewater: #E9D5C8;
     --text-muted: #B8B2A7;
     --yasb-icon-fg: #E7E0D2;
-    --glass: rgba(20, 20, 27, 1); /* POLICY: fully opaque — readable on light wallpapers. Do not lower alpha; do not enable blur_effect (blurs into island gaps). */
+    --glass: rgba(20, 20, 27, 0.7); /* Per-theme translucent tint; rail gradient below. */
     --hairline: rgba(231, 224, 210, 0.16);
     --text-faint: rgba(231, 224, 210, 0.45);
     --chip: rgba(217, 154, 43, 0.18);
@@ -86,15 +86,15 @@
 }
 
 
-/* Bar - islands, opaque rail (no blur: blur_effect must stay disabled, see config.yaml) */
+/* Bar - islands only (rail height 0, gaps stay clear; blur_effect stays disabled) */
 .yasb-bar {
     background-color: transparent;
     border: none;
     padding: 0;
 }
 .yasb-bar.adaptive {
-    /* POLICY: solid opaque rail via --glass. Do NOT set transparent here. */
-    background-color: var(--glass);
+    /* Islands-only fill: per-theme tint gradient. Do NOT enable blur_effect. */
+    background-color: linear-gradient(to bottom, var(--accent-soft), var(--glass) 55%, var(--shade));
     border: none;
     -qproperty-railheight: 0;
     -qproperty-islandradius: 12;
