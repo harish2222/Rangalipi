@@ -166,7 +166,7 @@ Step 'verify chain' {
     if ($LASTEXITCODE -ne 0) { throw 'yasb-theme current failed' }
     $n = ((& $exe list) | Measure-Object -Line).Lines
     Write-Output ("  theme tool ok: {0} themes, active: {1}" -f $n, $cur)
-    if ($n -lt 12) { throw ("expected 12 themes, got {0}" -f $n) }
+    if ($n -lt 22) { throw ("expected 22 themes, got {0}" -f $n) }
     if (-not (Has-Cmd 'silent-run')) { throw 'silent-run not on PATH' }
     Write-Output '  silent-run on PATH'
     $pj = Join-Path $yasbDir 'tools\picker\palette-themes.json'

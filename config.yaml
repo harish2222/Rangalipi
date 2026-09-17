@@ -71,10 +71,9 @@ widgets:
       - title: Pictures
         path: ~\Pictures
       - title: Wallpapers
-        path: ~\Pictures\Wallpapers
+        path: ~\\Pictures\\Wallpapers
       system_menu: true
       power_menu: false
-      blur: true
       round_corners: true
       round_corners_type: normal
       border_color: None
@@ -107,7 +106,6 @@ widgets:
       label_alt: '{%a, %d %b %H:%M}'
       timezones: []
       calendar:
-        blur: true
         round_corners: true
         alignment: center
         direction: down
@@ -133,7 +131,6 @@ widgets:
         on_left: toggle_volume_menu
         on_right: toggle_mute
       audio_menu:
-        blur: true
         round_corners: true
         round_corners_type: normal
         border_color: None
@@ -157,6 +154,53 @@ widgets:
         on_left: toggle_notification
         on_right: do_nothing
         on_middle: do_nothing
+  power_menu:
+    type: yasb.power_menu.PowerMenuWidget
+    options:
+      label: "<span>\udb80\udc09</span>"
+      uptime: true
+      show_user: true
+      menu_style: popup
+      popup:
+        round_corners: true
+        round_corners_type: normal
+        border_color: None
+        alignment: right
+        offset_left: 12
+      profile_image_size: 64
+      buttons:
+        lock:
+        - "\uDB80\uDF41"
+        - Lock
+        signout:
+        - "\uDB80\uDF43"
+        - Sign out
+        sleep:
+        - "\uDB82\uDD04"
+        - Sleep
+        hibernate:
+        - "\uDB82\uDD01"
+        - Hibernate
+        restart:
+        - "\uDB81\uDC53"
+        - Restart
+        shutdown:
+        - "\uDB82\uDD06"
+        - Shut Down
+        cancel:
+        - ''
+        - Cancel
+  active_window:
+    type: yasb.active_window.ActiveWindowWidget
+    options:
+      label: ''
+      label_alt: '{win[title]}'
+      label_no_window: ''
+      label_icon: true
+      label_icon_size: 20
+      max_length: 32
+      max_length_ellipsis: '...'
+      monitor_exclusive: true
   lines:
     type: "yasb.custom.CustomWidget"
     options:
@@ -172,13 +216,29 @@ widgets:
       label_alt: "{data}"
       class_name: "home-widget"
       exec_options:
-        run_cmd: "C:/Users/YourName\\.config\\yasb\\tools\\theme\\yasb-theme.exe current"
+        run_cmd: "C:\\\\Users\\\\YourName\\.config\\yasb\\tools\\theme\\yasb-theme.exe current"
         run_interval: 10000
         return_format: "string"
       callbacks:
-        on_left: "exec silent-run C:/Users/YourName\\.config\\yasb\\tools\\picker\\palette-picker.exe"
+        on_left: "exec silent-run C:\\\\Users\\\\YourName\\.config\\yasb\\tools\\picker\\palette-picker.exe"
         on_middle: "toggle_label"
-        on_right: "exec silent-run C:/Users/YourName\\.config\\yasb\\tools\\theme\\yasb-theme.exe next"
+        on_right: "exec silent-run C:\\\\Users\\\\YourName\\.config\\yasb\\tools\\theme\\yasb-theme.exe next"
+  komorebi_control:
+    type: "komorebi.control.KomorebiControlWidget"
+    options:
+      label: "<span>\udb80\uddd9</span>"
+      run_ahk: false
+      run_whkd: false
+      run_masir: false
+      show_version: true
+      komorebi_menu:
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: None
+        alignment: "left"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
   komorebi_stack:
     type: "komorebi.stack.StackWidget"
     options:
@@ -244,7 +304,6 @@ widgets:
         on_middle: 'next_layout'
         on_right: 'prev_layout'
       layout_menu:
-        blur: true
         round_corners: true
         round_corners_type: "normal"
         border_color: None
@@ -275,7 +334,6 @@ widgets:
       use_hook: false # Whether to use the new systray hook instead of the legacy systray monitor
       hide_icons: [] # Optional, list of process names to hide (e.g. ["discord"])
       popup:
-        blur: true
         round_corners: true
         round_corners_type: "normal"
         border_color: None
@@ -287,9 +345,9 @@ widgets:
     type: "yasb.wallpapers.WallpapersWidget"
     options:
       label: "<span>\udb83\udc8d</span>"
-    # Example path to folder with images. Can be a single string or a list of strings.
+      change_automatically: false
+    # Point this at a folder with images (single string or list).
       image_path: "C:/Users/YourName/Pictures/Wallpapers"
-      change_automatically: true
       update_interval: 600
       engine:
         enabled: true
@@ -335,7 +393,6 @@ widgets:
         play: "\ue768"
         pause: "\ue769"
       media_menu:
-        blur: true
         round_corners: true
         round_corners_type: "normal"
         border_color: None
@@ -371,6 +428,26 @@ widgets:
       progress_bar:
         enabled: true       # Whether to enable the progress bar on the widget.
         alignment: "bottom"  # The alignment of the progress bar inside the widget container. Can be "top", "bottom", or "center".
+  language:
+    type: "yasb.language.LanguageWidget"
+    options:
+      label: "{lang[language_code]}"
+      label_alt: "{lang[full_name]}"
+      update_interval: 1
+      callbacks:
+        on_left: "toggle_menu"
+        on_middle: "do_nothing"
+        on_right: "toggle_label"
+      language_menu:
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: None
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+        show_layout_icon: true
+        layout_icon: "\udb80\udf0c"
   quick_launch:
     type: "yasb.quick_launch.QuickLaunchWidget"
     options:
@@ -382,7 +459,6 @@ widgets:
       popup:
         width: 650
         height: 400
-        blur: true
         round_corners: true
         round_corners_type: "normal"
         border_color: None
@@ -431,7 +507,6 @@ widgets:
         direction: "down"
         offset_top: 6
         offset_left: 0
-        blur: true
   memory:
     type: "yasb.memory.MemoryWidget"
     options:
@@ -469,7 +544,6 @@ widgets:
         direction: "down"
         offset_top: 6
         offset_left: 0
-        blur: true
   traffic:
     type: "yasb.traffic.TrafficWidget"
     options:
@@ -488,7 +562,6 @@ widgets:
         on_middle: "toggle_label"
         on_right: "toggle_label"
       menu:
-        blur: true
         round_corners: true
         round_corners_type: "normal"
         border_color: None
@@ -498,6 +571,28 @@ widgets:
         offset_left: 0
         show_interface_name: true
         show_internet_info: true
+  wifi:
+    type: "yasb.wifi.WifiWidget"
+    options:
+      label: "<span>{wifi_icon}</span>"
+      label_alt: "<span>{wifi_icon}</span> {wifi_name}"
+      update_interval: 5000
+      ethernet_label: "<span>{wifi_icon}</span>"
+      ethernet_label_alt: "<span>{wifi_icon}</span> {ip_addr}"
+      ethernet_icon: "\ueba9"
+      get_exact_wifi_strength: false
+      callbacks:
+        on_left: "toggle_menu"
+        on_middle: "toggle_label"
+        on_right: "toggle_label"
+      menu_config:
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: None
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
   battery:
     type: "yasb.battery.BatteryWidget"
     options:
@@ -525,7 +620,6 @@ widgets:
         on_middle: "do_nothing"
         on_right: "toggle_label"
       menu_config:
-        blur: true
         round_corners: true
         round_corners_type: "normal"
         border_color: None
@@ -561,7 +655,6 @@ widgets:
         on_right: "toggle_label"
       menu:
         enabled: true
-        blur: true
         round_corners: true
         round_corners_type: "normal"
         border_color: None
@@ -620,7 +713,6 @@ widgets:
         direction: "down"
         border_color: none
         round_corners: false
-        blur: true
         round_corners_type: normal
         offset_top: 9
         offset_left: 5
@@ -710,11 +802,11 @@ widgets:
       waveform: 0
       sleep_timer: 5
       hide_empty: true
-      foreground: "#7AA89F"
+      foreground: "#57A88E"
       gradient: 1
-      gradient_color_1: "#7E9CD8"
-      gradient_color_2: "#957FB8"
-      gradient_color_3: "#FFA066"
+      gradient_color_1: "#5E9BB5"
+      gradient_color_2: "#B083B8"
+      gradient_color_3: "#E08A4E"
       callbacks:
         on_left: "do_nothing"
         on_middle: "do_nothing"

@@ -106,5 +106,95 @@
       "#b85a35"
     ],
     "section": "light"
+  },
+  {
+    "name": "Rangalipi Ember Light",
+    "colors": [
+      "#b45f27",
+      "#4ea88a",
+      "#c47434"
+    ],
+    "section": "light"
+  },
+  {
+    "name": "Rangalipi Mossfern Light",
+    "colors": [
+      "#5f8a3c",
+      "#4e9a78",
+      "#b57f3e"
+    ],
+    "section": "light"
+  },
+  {
+    "name": "Rangalipi Wine Light",
+    "colors": [
+      "#a83e58",
+      "#5a9aa8",
+      "#c47a4e"
+    ],
+    "section": "light"
+  },
+  {
+    "name": "Rangalipi Dune Light",
+    "colors": [
+      "#a8741c",
+      "#57a890",
+      "#c4883e"
+    ],
+    "section": "light"
+  },
+  {
+    "name": "Rangalipi Matcha Light",
+    "colors": [
+      "#7a943c",
+      "#57aa80",
+      "#b8884e"
+    ],
+    "section": "light"
+  },
+  {
+    "name": "Rangalipi Espresso Light",
+    "colors": [
+      "#a8743c",
+      "#57a890",
+      "#c08050"
+    ],
+    "section": "light"
+  },
+  {
+    "name": "Rangalipi Noir Light",
+    "colors": [
+      "#ae3546",
+      "#5a9aa8",
+      "#c4744e"
+    ],
+    "section": "light"
+  },
+  {
+    "name": "Rangalipi Aubergine Light",
+    "colors": [
+      "#8a63b8",
+      "#5e9ac0",
+      "#c08a70"
+    ],
+    "section": "light"
+  },
+  {
+    "name": "Rangalipi Clay Light",
+    "colors": [
+      "#a85630",
+      "#57907e",
+      "#b86a3c"
+    ],
+    "section": "light"
+  },
+  {
+    "name": "Rangalipi Olive Light",
+    "colors": [
+      "#8a8430",
+      "#57a884",
+      "#b88a4e"
+    ],
+    "section": "light"
   }
 ]

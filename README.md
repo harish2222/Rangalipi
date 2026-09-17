@@ -9,11 +9,10 @@ Without them every icon renders as tofu boxes. Get both from `scoop`
 `nerd-fonts/FiraCode-NF-Mono`) or nerdfonts.com, then set them as the
 four `--*-font` vars at the top of `styles.css` (preset block included).
 
-Original Rangalipi palette: 12 hand-built themes (base + Ember, Mossfern,
-Wine, Dune, Matcha, Espresso, Noir, Aubergine, Clay, Olive, Light), each
-with its own folk-motif artwork, bar runner, and full hue set. Komorebi
-workspaces, system stats, media with full controls, and one suckless
-palette picker for all 12 palettes (Light is for bright wallpapers).
+Original Rangalipi palette: 22 hand-built themes (11 dark + 11 light),
+each with its own folk-motif artwork, bar runner, and full hue set.
+Komorebi workspaces, system stats, media with full controls, and one
+suckless palette picker for all 22 palettes (Lights are for bright wallpapers).
 
 ## Gallery
 
@@ -35,7 +34,7 @@ palette picker for all 12 palettes (Light is for bright wallpapers).
 ## Features
 
 - **Opaque islands**: solid theme-tinted bar and popups, readable on light and dark wallpapers (bar blur stays off)
-- **Palette browser**: flexbox switcher for the 12 Rangalipi palettes, live search
+- **Palette browser**: flexbox switcher for the 22 Rangalipi palettes, live search
 - **Komorebi set**: workspaces, layout, control, stack widgets
 - **Full media**: thumbnail, controls, bounce titles, progress, volume
 - **Monitors**: CPU, GPU, memory, disk, traffic, integer readouts, statuses
