@@ -1,4 +1,4 @@
-/* Rangalipi for YASB - original Rangalipi palette, dark islands, marigold borders, liquid glass */
+/* Rangalipi for YASB - original Rangalipi palette, dark islands, marigold borders, opaque rail (no blur) */
 @import "yasb_colors.css";
 
 /* Root Variables */
@@ -68,7 +68,7 @@
     --rosewater: #E9D5C8;
     --text-muted: #B8B2A7;
     --yasb-icon-fg: #E7E0D2;
-    --glass: rgba(20, 20, 27, 0.93);
+    --glass: rgba(20, 20, 27, 1); /* POLICY: fully opaque — readable on light wallpapers. Do not lower alpha; do not enable blur_effect (blurs into island gaps). */
     --hairline: rgba(231, 224, 210, 0.16);
     --text-faint: rgba(231, 224, 210, 0.45);
     --chip: rgba(217, 154, 43, 0.18);
@@ -86,13 +86,14 @@
 }
 
 
-/* Bar - islands, Rangalipi glass */
+/* Bar - islands, opaque rail (no blur: blur_effect must stay disabled, see config.yaml) */
 .yasb-bar {
     background-color: transparent;
     border: none;
     padding: 0;
 }
 .yasb-bar.adaptive {
+    /* POLICY: solid opaque rail via --glass. Do NOT set transparent here. */
     background-color: var(--glass);
     border: none;
     -qproperty-railheight: 0;
@@ -486,101 +487,6 @@
     background-color: var(--hover);
 }
 
-/* Power Menu */
-
-.power-menu-compact {
-    min-width: 260px;
-    background-color: var(--background);
-    border-radius: var(--border-radius);
-    margin-right: 14px;
-    border: 3px double var(--border);
-}
-.power-menu-compact .profile-info {
-    padding: 24px 14 24px 0;
-}
-.power-menu-compact .profile-info .profile-username {
-    font-size: var(--iconSize);
-    font-weight: var(--fontWeight);
-    color: var(--text);
-    font-family: var(--system-font);
-    margin-top: 4px;
-}
-
-.power-menu-widget .icon {
-    color: var(--text);
-}
-
-
-.power-menu-compact .profile-info .profile-account-type {
-    font-size: var(--fontSize);
-    color: var(--accentText);
-    font-weight: var(--fontWeight);
-    margin-top: 8px;
-    font-family: var(--system-font);
-    background-color: var(--accent);
-    padding: 2px 6px 3px 6px;
-    border-radius: var(--border-radius2);
-}
-
-.power-menu-compact .profile-info .profile-email {
-    font-size: var(--fontSize);
-    color: transparent;
-    margin-top: -10px;
-    font-family: var(--system-font);
-}
-
-.power-menu-compact .manage-accounts {
-    font-size: var(--fontSize);
-    background-color: var(--background2);
-    font-family: var(--system-font);
-    font-weight: var(--fontWeight);
-    padding: 3px 12px 4px 12px;
-    color: var(--text);
-    margin-top: 0px;
-    border-radius: 4px;
-    border: 0px solid var(--border);
-}
-
-.power-menu-compact .manage-accounts:hover {
-    background-color: var(--accent);
-    color: var(--accentText);
-}
-
-.power-menu-compact .buttons {
-    margin: 0 26px 12px 12px;
-    border-radius: var(--border-radius);
-    background-color: transparent;
-    border: none;
-}
-.power-menu-compact .button {
-    padding: 8px 16px;
-    margin: 2px;
-    background-color: var(--background2);
-    color: var(--background2);
-    border-radius: var(--border-radius2);
-}
-.power-menu-compact .button.hover {
-    background-color: var(--accent);
-}
-
-.power-menu-compact .button .icon {
-    font-size: var(--iconSize);
-    font-weight: var(--fontWeight);
-    color: var(--text);
-    padding-right: 10px;
-    min-width: 20px;
-}
-.power-menu-compact .button .label {
-    font-size: 13px;
-    font-weight: 500;
-    font-family: var(--system-font);
-    color: var(--text);
-}
-.power-menu-compact .icon.hover,
-.power-menu-compact .label.hover {
-    color: var(--accentText);
-}
-
 /* Volume */
 
 .volume-widget .icon {
@@ -658,14 +564,6 @@
     background-color: var(--hover);
 }
 
-/* Active Windows Title */
-.active-window-widget .icon {
-    padding-right: 4px;
-    padding-bottom: 0;
-    color: var(--overlay1);
-}
-
-
 /* Separator_widget */
 .separator-widget .widget-container .label{
     color: var(--accent);
@@ -716,8 +614,6 @@
 
 
 /* Komorebi-active-layout */
-.komorebi-active-layout {}
-.komorebi-active-layout .widget-container {}
 .komorebi-active-layout .label {
     font-family: var(--specialFont);
     padding-top: 1px;
@@ -759,14 +655,8 @@
 }
 
 /* Wallpapers-Widget */
-.wallpapers-widget {
-}
-
 .wallpapers-widget .icon {
     color: var(--mauve);
-}
-
-.wallpapers-widget .widget-container {
 }
 
 
@@ -1054,7 +944,6 @@
     border-radius: 3px;
 }
 .media-menu .progress-slider::groove {
-    background: transparent;
     height: 2px;
     border-radius: 3px;
     background: var(--background2);
@@ -1070,65 +959,6 @@
     background: var(--accent);
     border-radius: 3px;
     height: 4px;
-}
-
-/* Language-Widget */
-.language-menu {
-    background-color: var(--glass);
-    min-width: 300px;
-    border: 3px double var(--border);
-    border-radius: var(--border-radius);
-}
-.language-menu .header {
-    color: transparent;
-    padding-bottom: -12px;
-}
-.language-menu .footer {
-    color: transparent;
-    padding-top: -12px;
-}
-
-.language-menu .language-item {
-    padding: 6px 12px;
-    margin: 2px 4px;
-    border-radius: var(--border-radius2);
-}
-.language-menu .language-item.active {
-    background-color: var(--background2);
-    border-radius: 4px;
-    color: var(--text);
-    border-radius: var(--border-radius2);
-}
-.language-menu .language-item:hover {
-    background-color: var(--hover);
-    color: var(--text);
-    border-radius: var(--border-radius2);
-}
-.language-menu .language-item.active:hover {
-    background-color: var(--hover);
-    border-radius: 4px;
-    border-radius: var(--border-radius2);
-}
-.language-menu .language-item .code {
-    font-weight: 900;
-    font-size: 14px;
-    min-width: 40px;
-    text-transform: uppercase;
-}
-.language-menu .language-item .icon {
-    font-size: var(--iconSize);
-    margin-right: 8px;
-    color: var(--text);
-}
-.language-menu .language-item .name {
-    font-weight: var(--fontWeight);
-    font-family: var(--system-font);
-    font-size: 14px;
-}
-.language-menu .language-item .layout {
-    font-weight: var(--fontWeight);
-    font-family: var(--system-font);
-    font-size: var(--fontSize);
 }
 
 /* Launcher */
@@ -1789,46 +1619,7 @@
     margin: 0;
     padding-bottom: 1px;
 }
-.cava-widget .widget-container {}
-
-/* Komorebi control + stack - glass menu, quiet buttons, active pill */
-.komorebi-control-widget .widget-container .icon {
-    color: var(--subtext1);
-}
-.komorebi-control-menu {
-    background-color: var(--glass);
-    border: 3px double var(--border);
-    border-radius: var(--border-radius);
-    min-width: 220px;
-}
-.komorebi-control-menu .button {
-    color: var(--subtext);
-    padding: 8px 12px;
-    margin: 2px 6px;
-    font-size: 15px;
-    border-radius: var(--border-radius2);
-    background-color: transparent;
-}
-.komorebi-control-menu .button:hover {
-    background-color: var(--hover);
-    color: var(--text);
-}
-.komorebi-control-menu .button.active {
-    color: var(--accent);
-    background-color: var(--background2);
-}
-.komorebi-control-menu .button:disabled {
-    color: var(--overlay0);
-}
-.komorebi-control-menu .footer {
-    padding: 8px 12px;
-    border-top: 1px solid var(--hairline);
-}
-.komorebi-control-menu .footer .text {
-    font-size: 12px;
-    font-family: var(--system-font);
-    color: var(--subtext);
-}
+/* Komorebi stack - quiet buttons, active pill */
 .komorebi-stack .window {
     background-color: transparent;
     border: none;
@@ -2040,58 +1831,6 @@
 }
 .omega-group .grouper-button:hover {
     color: var(--text);
-}
-
-/* WiFi - sky icon, ethernet handled by same widget */
-.wifi-widget .widget-container .icon {
-    color: var(--sky);
-}
-.wifi-widget .widget-container .label {
-    color: var(--text);
-}
-.wifi-menu {
-    background-color: var(--glass);
-    border: 3px double var(--border);
-    border-radius: var(--border-radius);
-    min-width: 420px;
-    min-height: 340px;
-}
-.wifi-menu .header {
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--hairline);
-}
-.wifi-menu .header .title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-}
-.wifi-menu .wifi-item {
-    padding: 10px 12px;
-    margin: 2px 6px;
-    border-radius: var(--border-radius2);
-}
-.wifi-menu .wifi-item:hover {
-    background-color: var(--hover);
-}
-.wifi-menu .wifi-item[active=true] {
-    background-color: var(--background2);
-}
-.wifi-menu .wifi-item .icon {
-    font-family: "Segoe Fluent Icons";
-    font-size: 18px;
-    color: var(--sky);
-}
-.wifi-menu .wifi-item .name {
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--text);
-}
-.wifi-menu .footer {
-    font-size: 13px;
-    font-family: var(--system-font);
-    padding: 8px 12px;
-    color: var(--subtext);
-    border-top: 1px solid var(--hairline);
 }
 
 /* Battery - status colors */
@@ -2345,7 +2084,6 @@
 .yasb-bar .notifications-widget .widget-container { padding: 0 3px; }
 .yasb-bar .komorebi-workspaces .widget-container,
 .yasb-bar .komorebi-active-layout .widget-container,
-.yasb-bar .komorebi-control-widget .widget-container,
 .yasb-bar .clock-widget .widget-container,
 .yasb-bar .cava-widget .widget-container,
 .yasb-bar .cpu-widget .widget-container,
@@ -2353,7 +2091,6 @@
 .yasb-bar .memory-widget .widget-container,
 .yasb-bar .disk-widget .widget-container,
 .yasb-bar .traffic-widget .widget-container,
-.yasb-bar .wifi-widget .widget-container,
 .yasb-bar .bluetooth-widget .widget-container,
 .yasb-bar .volume-widget .widget-container,
 .yasb-bar .battery-widget .widget-container,

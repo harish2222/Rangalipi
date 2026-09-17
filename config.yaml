@@ -18,6 +18,9 @@ bars:
     animation:
       enabled: true
       duration: 300
+    # POLICY: keep blur_effect disabled. Enabling it blurs wallpaper into the
+    # island gaps (unreserved spaces) and washes out text on light wallpapers.
+    # Readability comes from the opaque --glass rail in styles.css instead.
     blur_effect:
       enabled: false
       round_corners: true
@@ -154,54 +157,6 @@ widgets:
         on_left: toggle_notification
         on_right: do_nothing
         on_middle: do_nothing
-  power_menu:
-    type: yasb.power_menu.PowerMenuWidget
-    options:
-      label: "<span>\udb80\udc09</span>"
-      uptime: true
-      show_user: true
-      menu_style: popup
-      popup:
-        blur: true
-        round_corners: true
-        round_corners_type: normal
-        border_color: None
-        alignment: right
-        offset_left: 12
-      profile_image_size: 64
-      buttons:
-        lock:
-        - "\uDB80\uDF41"
-        - Lock
-        signout:
-        - "\uDB80\uDF43"
-        - Sign out
-        sleep:
-        - "\uDB82\uDD04"
-        - Sleep
-        hibernate:
-        - "\uDB82\uDD01"
-        - Hibernate
-        restart:
-        - "\uDB81\uDC53"
-        - Restart
-        shutdown:
-        - "\uDB82\uDD06"
-        - Shut Down
-        cancel:
-        - ''
-        - Cancel
-  active_window:
-    type: yasb.active_window.ActiveWindowWidget
-    options:
-      label: ''
-      label_alt: '{win[title]}'
-      label_no_window: ''
-      label_icon: true
-      label_icon_size: 20
-      max_length: 32
-      max_length_ellipsis: '...'
-      monitor_exclusive: true
   lines:
     type: "yasb.custom.CustomWidget"
     options:
@@ -224,23 +179,6 @@ widgets:
         on_left: "exec silent-run C:/Users/YourName\\.config\\yasb\\tools\\picker\\palette-picker.exe"
         on_middle: "toggle_label"
         on_right: "exec silent-run C:/Users/YourName\\.config\\yasb\\tools\\theme\\yasb-theme.exe next"
-  komorebi_control:
-    type: "komorebi.control.KomorebiControlWidget"
-    options:
-      label: "<span>\udb80\uddd9</span>"
-      run_ahk: false
-      run_whkd: false
-      run_masir: false
-      show_version: true
-      komorebi_menu:
-        blur: true
-        round_corners: true
-        round_corners_type: "normal"
-        border_color: None
-        alignment: "left"
-        direction: "down"
-        offset_top: 6
-        offset_left: 0
   komorebi_stack:
     type: "komorebi.stack.StackWidget"
     options:
@@ -433,27 +371,6 @@ widgets:
       progress_bar:
         enabled: true       # Whether to enable the progress bar on the widget.
         alignment: "bottom"  # The alignment of the progress bar inside the widget container. Can be "top", "bottom", or "center".
-  language:
-    type: "yasb.language.LanguageWidget"
-    options:
-      label: "{lang[language_code]}"
-      label_alt: "{lang[full_name]}"
-      update_interval: 1
-      callbacks:
-        on_left: "toggle_menu"
-        on_middle: "do_nothing"
-        on_right: "toggle_label"
-      language_menu:
-        blur: true
-        round_corners: true
-        round_corners_type: "normal"
-        border_color: None
-        alignment: "right"
-        direction: "down"
-        offset_top: 6
-        offset_left: 0
-        show_layout_icon: true
-        layout_icon: "\udb80\udf0c"
   quick_launch:
     type: "yasb.quick_launch.QuickLaunchWidget"
     options:
@@ -581,29 +498,6 @@ widgets:
         offset_left: 0
         show_interface_name: true
         show_internet_info: true
-  wifi:
-    type: "yasb.wifi.WifiWidget"
-    options:
-      label: "<span>{wifi_icon}</span>"
-      label_alt: "<span>{wifi_icon}</span> {wifi_name}"
-      update_interval: 5000
-      ethernet_label: "<span>{wifi_icon}</span>"
-      ethernet_label_alt: "<span>{wifi_icon}</span> {ip_addr}"
-      ethernet_icon: "\ueba9"
-      get_exact_wifi_strength: false
-      callbacks:
-        on_left: "toggle_menu"
-        on_middle: "toggle_label"
-        on_right: "toggle_label"
-      menu_config:
-        blur: true
-        round_corners: true
-        round_corners_type: "normal"
-        border_color: None
-        alignment: "right"
-        direction: "down"
-        offset_top: 6
-        offset_left: 0
   battery:
     type: "yasb.battery.BatteryWidget"
     options:
