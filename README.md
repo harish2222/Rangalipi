@@ -1,6 +1,6 @@
 # Rangalipi — Windows Rice & Apple HIG Design System
 
-![Theme Preview](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png)
+![Theme Preview](screenshot/Screenshot%20(62).png)
 
 A bespoke, production-grade Windows desktop environment combining:
 - **Tiling Window Manager**: [Komorebi](https://github.com/LGUG2Z/komorebi) with fluid animations and clean ignore rules
@@ -10,15 +10,66 @@ A bespoke, production-grade Windows desktop environment combining:
 
 ---
 
-## 📸 Gallery
+## 📸 Desktop Showcase & Gallery
 
-| Clean Desktop | Active Bar & Panchangam |
-|---|---|
-| ![Clean](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-clean.png) | ![Bar](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/shot-1.png) |
+The desktop environment adapts across 21 handcrafted Rangalipi themes with theme-synchronized Cava spectrum visuals, dynamic acrylic panels, and media overlays:
 
-| Media & Controls | Control Center |
+| Japanese Demon Scroll (Dark Theme) | Hummingbird Rice (Matcha Light Theme) |
 |---|---|
-| ![Media](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-media.png) | ![Control Center](https://raw.githubusercontent.com/harish2222/Rangalipi/main/gallery/desktop-control.png) |
+| ![Demon Scroll](screenshot/Screenshot%20(62).png) | ![Hummingbird](screenshot/Screenshot%20(63).png) |
+
+| Firewatch Blue Mountain (Night Theme) | Earth Orbit (Cava Spectrum Active) |
+|---|---|
+| ![Firewatch](screenshot/Screenshot%20(64).png) | ![Earth Orbit](screenshot/Screenshot%20(65).png) |
+
+| Media Player Popup (Lyrics & Audio Spectrum) | Demon Scroll with Active Media |
+|---|---|
+| ![Media Player](screenshot/Screenshot%20(72).png) | ![Media Playing](screenshot/Screenshot%20(66).png) |
+
+### Bar Precision Views
+
+| Rangalipi Wine Dark |
+|---|
+| ![Wine Dark Bar](screenshot/yasb_bar_primary-bar_20261025_131423.png) |
+
+| Rangalipi Wine Light (High Contrast) |
+|---|
+| ![Wine Light Bar](screenshot/yasb_bar_primary-bar_20261025_131613.png) |
+
+---
+
+## 📁 Repository & Folder Organization
+
+The repository and deployed bar directory are cleanly structured into dedicated folders:
+
+```
+Rangalipi/
+├── assets/                        # Graphic assets & motifs
+│   ├── mandala/                   # Processed mandala PNGs
+│   ├── motifs/                    # Handcrafted SVG motifs & runners
+│   └── raw-art/                   # Raw vector source files (.ai, .eps, .jpg)
+├── configs/                       # Window manager configurations
+│   ├── glazewm/config.yaml        # GlazeWM global hotkey layer
+│   └── komorebi/                  # Komorebi tiling engine rules & startup
+├── docs/                          # Installation & replication guides
+├── screenshot/                    # High-resolution desktop showcase screenshots
+├── tools/                         # Companion Win32/Rust tools & scripts
+│   ├── chrome/yasb-chrome/        # Shared acrylic canvas & DWM blur library
+│   ├── keybind/                   # Apple HIG cheatsheet menu (Win+K)
+│   ├── komorebi-sync/             # Window manager workspace title synchronizer
+│   ├── picker/palette-picker/     # 21-theme palette switcher
+│   ├── pomodoro/                  # Focus timer state machine
+│   ├── saka/                      # Vedic Panchang astronomical engine
+│   ├── saka-popup/                # Dual hero moons & telescopic night sky panel
+│   ├── screen-shot/               # Layered window screen capture (CAPTUREBLT)
+│   ├── setup/                     # One-shot replication script (yasb-setup.ps1)
+│   └── theme/yasb-theme/          # Theme switcher engine & silent-run shim
+├── config.yaml                    # Active YASB bar configuration
+├── styles.css                     # Active theme stylesheet
+├── DESIGN.md                      # Apple HIG visual design contract
+├── rangalipi-options.css          # Optional widget styling presets
+└── yasb_colors.css                # Color variables reference
+```
 
 ---
 
@@ -40,7 +91,7 @@ All companion tools are built in **pure Rust** (zero Python, zero Qt, zero webvi
 ### 2. 🎨 Apple HIG Palette Switcher (`tools/picker/palette-picker`)
 *Documentation: [`tools/picker/picker.md`](tools/picker/picker.md)*
 - Frameless, topmost Win32 layered acrylic window.
-- Instant access to all **22 Rangalipi themes** (11 dark + 11 light) with real-time fuzzy filter input, swatch previews, and keyboard/mouse navigation.
+- Instant access to all **21 Rangalipi themes** (11 dark + 10 light) with real-time fuzzy filter input, swatch previews, and keyboard/mouse navigation.
 - Switches active themes atomically with zero restart required, synchronizing Cava audio spectrum gradients and Pomodoro colors.
 
 ### 3. ⌨️ Keybindings Cheatsheet Menu (`tools/keybind`)
@@ -60,24 +111,6 @@ All companion tools are built in **pure Rust** (zero Python, zero Qt, zero webvi
 *Documentation: [`configs/README.md`](configs/README.md)*
 - **GlazeWM**: Global hotkey layer (`Alt`-based movement and window focus).
 - **Komorebi**: Tiling engine with smooth animations, custom theme borders, and clean ignore rules.
-
----
-
-## 📦 Companion Tools Directory
-
-| Path | Binary | Language | Role |
-|---|---|---|---|
-| [`tools/saka-popup/`](tools/saka-popup/saka-popup.md) | `saka-popup.exe` | Rust (Win32/GDI) | Panchangam popup with dual hero moons & telescopic night sky |
-| [`tools/saka/`](tools/saka/saka.md) | `saka.exe` | Rust (CLI) | Vedic Panchang astronomical calculation engine |
-| [`tools/picker/palette-picker/`](tools/picker/picker.md) | `palette-picker.exe` | Rust (Win32/GDI) | 22-palette theme browser with live fuzzy search |
-| [`tools/keybind/`](tools/keybind/keybind.md) | `keybind.exe` | Rust (Win32/GDI) | Keybindings cheatsheet menu (`Win+K`) |
-| [`tools/theme/yasb-theme/`](tools/theme/theme.md) | `yasb-theme.exe` | Rust (CLI) | Theme switcher, Cava gradient sync, and motif assigner |
-| [`tools/theme/yasb-theme/src/bin/`](tools/theme/theme.md) | `silent-run.exe` | Rust (Win32) | Zero-flash launcher shim for hotkeys |
-| [`tools/chrome/yasb-chrome/`](tools/chrome/yasb-chrome/README.md) | Library crate | Rust | Shared acrylic canvas, anti-aliasing math & DWM blur |
-| [`tools/pomodoro/`](tools/pomodoro/pomodoro.md) | `pomodoro.exe` | Rust (CLI) | Focus timer state machine |
-| [`tools/komorebi-sync/`](tools/komorebi-sync/README.md) | `komorebi-sync.exe` | Rust (CLI) | Komorebi workspace title synchronizer |
-| [`tools/screen-shot/`](tools/screen-shot/README.md) | `screen-shot.exe` | Rust (CLI) | Layered window screen capture utility (`CAPTUREBLT`) |
-| [`tools/setup/`](tools/setup/setup.md) | `yasb-setup.ps1` | PowerShell | One-shot setup & replication script |
 
 ---
 
@@ -103,7 +136,7 @@ The script automatically:
 - Installs Rust via winget if missing.
 - Builds the entire Rust workspace (`cargo build --workspace --release`).
 - Adapts configuration paths to your current user profile.
-- Deploys the bar, mandala art, GlazeWM hotkey layer, and Komorebi tiling engine.
+- Deploys the bar, assets, GlazeWM hotkey layer, and Komorebi tiling engine.
 - Verifies the full chain with automated smoke tests.
 
 ### 3. Launch
@@ -128,11 +161,3 @@ The script automatically:
 | **Alt + Shift + f** | Toggle monocle layout |
 | **Alt + r** | Resize mode (arrow keys / hjkl to adjust, Escape to exit) |
 | **Alt + Shift + r** | Reload GlazeWM & Komorebi configurations |
-
----
-
-## 🎨 Design Philosophy
-
-See [`DESIGN.md`](DESIGN.md) for the design specification defining the visual contract:
-- **Bar**: Opaque theme-tinted islands with double-line Madhubani borders.
-- **Custom Native Widgets**: Apple HIG WidgetKit styling with real DWM acrylic blur, soft corner radii ($18\text{px}$–$24\text{px}$), dynamic WCAG AA contrast derivation, and ClearType typography.
