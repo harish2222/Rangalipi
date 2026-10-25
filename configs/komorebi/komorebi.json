@@ -1,5 +1,57 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
+  "app_specific_configuration_path": "C:\\Users\\haris\\.config\\komorebi\\applications.json",
+  "animation": {
+    "enabled": true,
+    "fps": 144,
+    "duration": 150,
+    "style": "EaseOutExpo",
+    "ghost_movement": false
+  },
+  "border": true,
+  "border_colours": {
+    "monocle": "#D8A854",
+    "stack": "#BE8FD8",
+    "unfocused": "#4A2E38",
+    "single": "#C04E68",
+    "float": "#D8A854"
+  },
+  "border_implementation": "Windows",
+  "border_offset": 0,
+  "border_style": "System",
+  "border_width": 2,
+  "cross_monitor_move_behaviour": "Insert",
+  "default_container_padding": 0,
+  "default_workspace_padding": 1,
+  "float_override": true,
+  "floating_layer_behaviour": "Float",
+  "float_rule_placement": "Center",
+  "floating_layer_placement": "Center",
+  "global_work_area_offset": {
+    "bottom": 0,
+    "right": 0,
+    "top": 0,
+    "left": 0
+  },
+  "mouse_follows_focus": false,
+  "stackbar": {
+    "height": 0,
+    "mode": "Always",
+    "label": "Process",
+    "tabs": {
+      "background": "#ffffff",
+      "width": 0,
+      "focused_text": "#ffffff",
+      "unfocused_text": "#ffffff",
+      "font_size": 0,
+      "font_family": "Segoe UI"
+    }
+  },
+  "transparency": false,
+  "transparency_alpha": 220,
+  "unmanaged_window_operation_behaviour": "NoOp",
+  "window_container_behaviour": "Create",
+  "window_hiding_behaviour": "Cloak",
   "monitors": [
     {
       "workspaces": [
@@ -42,37 +94,45 @@
     }
   ],
   "ignore_rules": [
-    { "kind": "Exe", "id": "yasb.exe" },
-    { "kind": "Exe", "id": "yasb_bar.exe" },
-    { "kind": "Exe", "id": "glazewm.exe" },
-    { "kind": "Exe", "id": "PowerToys.PowerLauncher" },
-    { "kind": "Exe", "id": "PowerToys.CommandPalette" },
-    { "kind": "Exe", "id": "msrdc.exe" },
-    { "kind": "Exe", "id": "mstsc.exe" },
-    { "kind": "Class", "id": "TscShellContainerClass" },
-    { "kind": "Class", "id": "SnippingToolWindowClass" },
-    { "kind": "Class", "id": "ScreenSketch" },
-    { "kind": "Class", "id": "MS_SnipSketch" },
-    { "kind": "Class", "id": "Windows.UI.Core.CoreWindow" }
-  ],
-  "global_work_area_offset": { "top": 0, "left": 0, "bottom": 0, "right": 0 },
-  "default_container_padding": 0,
-  "default_workspace_padding": 0,
-  "resize_delta": 40,
-  "mouse_follows_focus": true,
-  "border": true,
-  "border_width": 4,
-  "border_colours": {
-    "single": "#cba6f7",
-    "unfocused": "#313244",
-    "stack": "#89b4fa",
-    "float": "#f5c2e7"
-  },
-  "transparency": true,
-  "transparency_alpha": 240,
-  "animations": {
-    "enabled": true,
-    "style": "EaseOutSine",
-    "duration": 250
-  }
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "yasb.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "glazewm.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "glazewm-watcher.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "zebar.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "saka-popup.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "palette-picker.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "keybind.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "komorebi-sync.exe"
+    }
+  ]
 }

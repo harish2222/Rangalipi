@@ -1,0 +1,24 @@
+# Rust build artifacts
+target/
+**/target/
+**/*.rs.bk
+*.pdb
+
+# Executables
+*.exe
+
+# Logs and temporary files
+*.log
+*.log.*
+*.tmp
+*.bak*
+
+# OS artifacts
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Dynamic state files
+saka-state.json
+alarms.json
+pomodoro-state.txt

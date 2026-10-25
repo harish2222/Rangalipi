@@ -1,0 +1,998 @@
+//! Stylesheet parsing shared by the theme switcher and the palette picker.
+//!
+//! The themes are `/* <Name> */` blocks of CSS variables inside `:root` in
+//! styles.css; exactly one is active. See `../theme.md` for the block
+//! contract these invariants depend on.
+
+use std::collections::HashMap;
+use std::fs;
+use std::path::{Path, PathBuf};
+
+/// One `/* Name */` block inside `:root`.
+pub struct Region {
+    pub name: String,
+    /// Line index of the header comment.
+    pub header_idx: usize,
+    /// Whether the header carries the `- active` suffix.
+    pub marked_active: bool,
+    /// Line indices of this region's variable declarations.
+    pub vars: Vec<usize>,
+}
+
+/// The parsed `:root` block: the raw lines plus the theme regions in them.
+pub struct Stylesheet {
+    pub lines: Vec<String>,
+    pub newline: String,
+    pub ends_with_newline: bool,
+    pub regions: Vec<Region>,
+}
+
+/// Recolor the colour values that live in config.yaml and cannot be reached by
+/// CSS, using the active theme block, so those widgets follow the palette too.
+///
+/// Only the listed keys inside the listed sections are touched; everything else
+/// stays byte-identical. Two groups today:
+///
+/// * `cava` — the visualizer's four colours, which YASB reads straight from
+///   the config rather than from the stylesheet.
+/// * `pomodoro` — the ring drawn inside the native widget's popup. The widget
+///   paints that progress circle itself, so a hex in the config is the only
+///   way to theme it.
+pub fn sync_config_colors(config: &Path, sheet: &Stylesheet, theme: &str) -> Result<(), String> {
+    let vars = sheet.theme_vars(theme);
+    let get = |k: &str, fallback: &str| {
+        vars.get(k).cloned().unwrap_or_else(|| fallback.to_string())
+    };
+    let sections: Vec<(&str, Vec<(&str, String)>)> = vec![
+        (
+            "cava",
+            vec![
+                ("foreground:", get("teal", "#89b4fa")),
+                ("gradient_color_1:", get("blue", "#89b4fa")),
+                ("gradient_color_2:", get("mauve", "#cba6f7")),
+                ("gradient_color_3:", get("peach", "#fab387")),
+            ],
+        ),
+        (
+            "pomodoro",
+            vec![
+                ("circle_work_progress_color:", get("mauve", "#a6e3a1")),
+                ("circle_break_progress_color:", get("teal", "#89b4fa")),
+            ],
+        ),
+    ];
+    let raw = fs::read(config).map_err(|e| format!("cannot read {}: {e}", config.display()))?;
+    let text =
+        String::from_utf8(raw).map_err(|e| format!("{} is not valid UTF-8: {e}", config.display()))?;
+    let newline = if text.contains("\r\n") { "\r\n" } else { "\n" }.to_string();
+    let ends_with_newline = text.ends_with('\n');
+    let mut lines: Vec<String> = text.lines().map(str::to_string).collect();
+
+    for (section, targets) in &sections {
+        let Some(start) = lines.iter().position(|l| l.trim() == format!("{section}:")) else {
+            continue; // widget not configured; nothing to do
+        };
+        // The section runs until the next line at the same indent level.
+        let mut end = lines.len();
+        for (j, line) in lines.iter().enumerate().skip(start + 1) {
+            let t = line.trim_start();
+            if t.is_empty() {
+                continue;
+            }
+            if !line.starts_with(' ') && !line.starts_with('\t') {
+                end = j;
+                break;
+            }
+            if line.starts_with("  ") && !line.starts_with("   ") {
+                end = j;
+                break;
+            }
+        }
+        for line in &mut lines[start + 1..end] {
+            let t = line.trim_start().to_string();
+            for (key, val) in targets {
+                if t.starts_with(key) {
+                    if let Some(q1) = t.find('"') {
+                        if let Some(q2) = t[q1 + 1..].find('"') {
+                            let indent = &line[..line.len() - line.trim_start().len()];
+                            *line = format!("{indent}{key} \"{val}\"{}", &t[q1 + 1 + q2 + 1..]);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    let mut out = lines.join(&newline);
+    if ends_with_newline {
+        out.push_str(&newline);
+    }
+    write_atomic(config, out.as_bytes())
+}
+
+/// The eight gradient stops cava paints, bass (1) to treble (8), and the flat
+/// `foreground` used when the gradient is off.
+///
+/// Bass leads with the theme's own frame colour so the bottom of the spectrum
+/// matches the bar's accent, then sweeps the palette warm-to-cool. The order is
+/// fixed across themes on purpose: a visualiser whose colours reshuffle *and*
+/// reorder on every theme switch is unreadable as a level meter, because you
+/// learn the mapping by position.
+const CAVA_STOPS: [(&str, &str); 8] = [
+    ("frame", "#c04e68"),
+    ("red", "#d84e4e"),
+    ("peach", "#e4935e"),
+    ("yellow", "#d8a854"),
+    ("green", "#92b060"),
+    ("teal", "#5ca89b"),
+    ("sapphire", "#62a3b5"),
+    ("sky", "#8ac9d2"),
+];
+
+/// `foreground`, paired with its fallback for themes that omit `--frame`.
+const CAVA_FOREGROUND: (&str, &str) = ("frame", "#c04e68");
+
+/// Rewrites the standalone cava app's `[color]` section so the visualiser
+/// follows the palette.
+///
+/// This is a different file from the `cava` block in YASB's own config.yaml —
+/// that one is the bar widget, and [`sync_config_colors`] already handles it.
+/// This is `~/.config/cava/config`, the app itself, which is what actually runs
+/// here (the YASB widget is not on the bar). It has `live-config = 1`, so the
+/// rewrite is picked up without restarting cava.
+///
+/// Deliberately separate from [`sync_config_colors`] because the formats are
+/// unrelated: that one edits double-quoted YAML inside a widget's `options:`
+/// block, this one edits single-quoted INI inside `[color]`. Sharing the line
+/// surgery between them would mean a parser that handles both badly.
+///
+/// A missing file is not an error — plenty of installs have no cava at all, and
+/// a theme switch must not start failing because of a program that isn't there.
+pub fn sync_cava_colors(cava: &Path, sheet: &Stylesheet, theme: &str) -> Result<(), String> {
+    if !cava.is_file() {
+        return Ok(());
+    }
+    let vars = sheet.theme_vars(theme);
+    let raw = fs::read(cava).map_err(|e| format!("cannot read {}: {e}", cava.display()))?;
+    let text =
+        String::from_utf8(raw).map_err(|e| format!("{} is not valid UTF-8: {e}", cava.display()))?;
+    let newline = if text.contains("\r\n") { "\r\n" } else { "\n" }.to_string();
+    let ends_with_newline = text.ends_with('\n');
+    let mut lines: Vec<String> = text.lines().map(str::to_string).collect();
+
+    let start = match lines.iter().position(|l| l.trim() == "[color]") {
+        Some(i) => i,
+        // No [color] section means the user has deliberately configured cava
+        // some other way. Leave it alone rather than invent a section.
+        None => return Ok(()),
+    };
+    // The section runs until the next `[header]`.
+    let mut end = lines.len();
+    for (j, line) in lines.iter().enumerate().skip(start + 1) {
+        if line.trim_start().starts_with('[') {
+            end = j;
+            break;
+        }
+    }
+
+    let mut changed = false;
+    for line in lines.iter_mut().take(end).skip(start + 1) {
+        if let Some(new) = recolour_line(line, &vars) {
+            if new != *line {
+                *line = new;
+                changed = true;
+            }
+        }
+    }
+
+    if !changed {
+        return Ok(());
+    }
+    let mut out = lines.join(&newline);
+    if ends_with_newline {
+        out.push_str(&newline);
+    }
+    write_atomic(cava, out.as_bytes())
+}
+
+/// Recompute one `key = value` line's colour, or `None` to leave it alone.
+///
+/// Pure and allocation-returning on purpose: the caller iterates a `&mut
+/// [&str]` over the same buffer it is writing into, so a function that took
+/// `&mut String` could not also read the line it was replacing.
+///
+/// Only the value is swapped. The indentation, the quote character and any
+/// trailing comment survive, because rewriting the whole assignment would
+/// silently reformat a hand-edited config on every single theme switch — the
+/// kind of drift that makes someone stop trusting the tool.
+fn recolour_line(line: &str, vars: &HashMap<String, String>) -> Option<String> {
+    let body = line.trim_start();
+    if body.is_empty() || body.starts_with('#') || body.starts_with(';') {
+        return None;
+    }
+    let indent = &line[..line.len() - body.len()];
+    let eq = body.find('=')?;
+    // Everything up to and including the `=` is reproduced verbatim.
+    let prefix = &body[..=eq];
+    let key = body[..eq].trim();
+    if key.is_empty() || !key.chars().all(|c| c.is_ascii_alphanumeric() || c == '_') {
+        return None;
+    }
+    let value = match key {
+        "foreground" => vars
+            .get(CAVA_FOREGROUND.0)
+            .map(String::as_str)
+            .unwrap_or(CAVA_FOREGROUND.1),
+        k => {
+            let n = k.strip_prefix("gradient_color_")?.parse::<usize>().ok()?;
+            if !(1..=CAVA_STOPS.len()).contains(&n) {
+                return None;
+            }
+            let (token, fallback) = CAVA_STOPS[n - 1];
+            // Falling back matters: a theme that omits a token would otherwise
+            // leave that stop holding the *previous* theme's colour, so a
+            // gradient would only half-change on the switch.
+            vars.get(token).map(String::as_str).unwrap_or(fallback)
+        }
+    };
+
+    let rest = &body[eq + 1..];
+    let trimmed = rest.trim_start();
+    let lead = &rest[..rest.len() - trimmed.len()];
+    // Only `'` and `"` open a quoted value; anything else (including a hex
+    // `#`) is an unquoted value and takes the comment-splitting path below.
+    let quote = trimmed
+        .chars()
+        .next()
+        .filter(|c| matches!(c, '\'' | '"'))
+        .unwrap_or('\0');
+    let after = if quote == '\0' { trimmed } else { &trimmed[1..] };
+    // The value runs to the closing quote, or to an inline comment if
+    // unquoted. `tail` keeps the closing quote when there is one, so it is
+    // appended verbatim rather than having a quote added to it.
+    let (old, tail) = if quote == '\0' {
+        match after.find('#') {
+            Some(i) => (&after[..i], &after[i..]),
+            None => (after, ""),
+        }
+    } else {
+        {
+            let i = after.find(quote)?;
+            (&after[..i], &after[i..])
+        }
+    };
+    if old.trim() == value {
+        return None;
+    }
+    let open = if quote == '\0' { String::new() } else { quote.to_string() };
+    Some(format!("{indent}{prefix}{lead}{open}{value}{tail}"))
+}
+
+pub fn read_styles(path: &Path) -> Result<String, String> {
+    let bytes = fs::read(path).map_err(|e| format!("cannot read {}: {e}", path.display()))?;
+    String::from_utf8(bytes).map_err(|e| format!("{} is not valid UTF-8: {e}", path.display()))
+}
+
+/// Write via temp file + rename so a concurrent reader (YASB's
+/// watch_stylesheet reload, the palette's 10s `current` poll, another switch
+/// click) never sees a truncated or half-written file: an in-place
+/// `fs::write` fires the change event on truncate, so YASB could reload an
+/// empty stylesheet mid-switch and drop every theme variable. Rename is one
+/// event with complete content; retries cover a destination briefly held open
+/// by the reader.
+pub fn write_atomic(path: &Path, bytes: &[u8]) -> Result<(), String> {
+    let mut tmp_name = path.as_os_str().to_owned();
+    tmp_name.push(".tmp");
+    let tmp = PathBuf::from(tmp_name);
+    let mut last_err = String::from("unknown error");
+    for attempt in 0..5u64 {
+        match fs::write(&tmp, bytes) {
+            Ok(()) => match fs::rename(&tmp, path) {
+                Ok(()) => return Ok(()),
+                Err(e) => last_err = e.to_string(),
+            },
+            Err(e) => {
+                last_err = e.to_string();
+                break;
+            }
+        }
+        std::thread::sleep(std::time::Duration::from_millis(30 * (attempt + 1)));
+    }
+    let _ = fs::remove_file(&tmp);
+    Err(format!("cannot write {}: {last_err}", path.display()))
+}
+
+pub fn parse(text: &str) -> Result<Stylesheet, String> {
+    let newline = if text.contains("\r\n") { "\r\n" } else { "\n" }.to_string();
+    let ends_with_newline = text.ends_with('\n');
+    let lines: Vec<String> = text.lines().map(str::to_string).collect();
+
+    let root_start = lines
+        .iter()
+        .position(|l| l.trim() == ":root {")
+        .ok_or("could not locate :root block")?;
+    let root_end = lines[root_start..]
+        .iter()
+        .position(|l| l.trim() == "}")
+        .map(|p| p + root_start)
+        .ok_or("could not locate end of :root block")?;
+    if !lines[root_start..=root_end]
+        .iter()
+        .any(|l| l.contains("/*colors*/"))
+    {
+        return Err("could not locate /*colors*/ marker".to_string());
+    }
+
+    let mut regions: Vec<Region> = Vec::new();
+    for (idx, line) in lines.iter().enumerate().take(root_end).skip(root_start) {
+        if let Some((name, marked)) = parse_header(line) {
+            if name.eq_ignore_ascii_case("colors") {
+                continue;
+            }
+            regions.push(Region {
+                name,
+                header_idx: idx,
+                marked_active: marked,
+                vars: Vec::new(),
+            });
+        } else if let Some(region) = regions.last_mut() {
+            if is_var_line(line) {
+                region.vars.push(idx);
+            }
+        }
+    }
+    if regions.is_empty() {
+        return Err("no theme blocks found".to_string());
+    }
+
+    Ok(Stylesheet {
+        lines,
+        newline,
+        ends_with_newline,
+        regions,
+    })
+}
+
+/// `/* Name */` or `/* Name - active */` -> (name, marked_active).
+///
+/// Only name-like inners qualify (ASCII letters/digits/spaces/hyphen after an
+/// optional `- active` suffix). Declaration lines (`--acrylic: ...`) and prose
+/// annotations (`1% acrylic`, `festival red`) must never become regions: one
+/// stray single-line comment inside a block used to split it into fake themes
+/// and silently corrupt every later switch. Non-matching comments are simply
+/// not headers; multi-line comments never match either side of this pattern.
+pub fn parse_header(line: &str) -> Option<(String, bool)> {
+    let t = line.trim();
+    let inner = t.strip_prefix("/*")?.strip_suffix("*/")?.trim();
+    if inner.is_empty() {
+        return None;
+    }
+    let lower = inner.to_lowercase();
+    let active = lower.ends_with("- active");
+    let name = if active {
+        inner[..inner.len() - "- active".len()].trim()
+    } else {
+        inner
+    };
+    let name_ok = !name.is_empty()
+        && name.chars().any(|c| c.is_ascii_alphabetic())
+        && name
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric() || c == ' ' || c == '-');
+    if !name_ok {
+        return None;
+    }
+    Some((name.to_string(), active))
+}
+
+/// A CSS variable declaration, optionally wrapped in a `/* */` comment.
+pub fn is_var_line(line: &str) -> bool {
+    let mut t = line.trim_start();
+    if let Some(rest) = t.strip_prefix("/*") {
+        t = rest.trim_start();
+    }
+    let Some(rest) = t.strip_prefix("--") else {
+        return false;
+    };
+    rest.chars()
+        .next()
+        .is_some_and(|c| c.is_ascii_alphabetic())
+        && t.contains(':')
+}
+
+impl Stylesheet {
+    /// (name, active) for every theme block, in file order.
+    pub fn themes(&self) -> Vec<(String, bool)> {
+        self.regions
+            .iter()
+            .map(|r| {
+                let bare = r
+                    .vars
+                    .first()
+                    .is_some_and(|&v| !self.lines[v].trim_start().starts_with("/*"));
+                (r.name.clone(), r.marked_active || bare)
+            })
+            .collect()
+    }
+
+    /// `--name: value` pairs of one theme block (names lowercased, no dashes).
+    pub fn theme_vars(&self, theme: &str) -> std::collections::HashMap<String, String> {
+        let mut map = std::collections::HashMap::new();
+        if let Some(region) = self.regions.iter().find(|r| r.name.eq_ignore_ascii_case(theme.trim())) {
+            for &v in &region.vars {
+                let line = self.lines[v].trim();
+                let line = line.strip_prefix("/*").unwrap_or(line).trim_start();
+                let line = line.strip_suffix("*/").unwrap_or(line).trim_end();
+                if let Some((k, rest)) = line.split_once(':') {
+                    let k = k.trim().trim_start_matches("--").to_lowercase();
+                    let val = rest.trim().trim_end_matches(';').trim().to_string();
+                    if !k.is_empty() && !val.is_empty() {
+                        map.insert(k, val);
+                    }
+                }
+            }
+        }
+        map
+    }
+
+    pub fn active_name(&self) -> Option<String> {
+        for r in &self.regions {
+            let bare = r
+                .vars
+                .first()
+                .is_some_and(|&v| !self.lines[v].trim_start().starts_with("/*"));
+            if r.marked_active || bare {
+                return Some(r.name.clone());
+            }
+        }
+        None
+    }
+
+    pub fn available(&self) -> String {
+        self.regions
+            .iter()
+            .map(|r| r.name.as_str())
+            .collect::<Vec<_>>()
+            .join(", ")
+    }
+
+    /// Activate `name` (case-insensitive); returns the canonical name.
+    pub fn set(&mut self, name: &str) -> Result<String, String> {
+        let want = name.trim();
+        let target = self
+            .regions
+            .iter()
+            .position(|r| r.name.eq_ignore_ascii_case(want))
+            .ok_or_else(|| format!("unknown theme '{want}'. Available: {}", self.available()))?;
+        for i in 0..self.regions.len() {
+            let (first, last, header_idx, activate) = {
+                let r = &self.regions[i];
+                if r.vars.is_empty() {
+                    continue;
+                }
+                (
+                    r.vars[0],
+                    r.vars[r.vars.len() - 1],
+                    r.header_idx,
+                    i == target,
+                )
+            };
+            if activate {
+                uncomment_first(&mut self.lines, first);
+                uncomment_last(&mut self.lines, last);
+                mark_header(&mut self.lines, header_idx, true);
+            } else {
+                comment_first(&mut self.lines, first);
+                comment_last(&mut self.lines, last);
+                mark_header(&mut self.lines, header_idx, false);
+            }
+            // Keep the cached flag in step with the line we just rewrote.
+            // Otherwise active_name() still reports the previously active
+            // theme after a switch, which silently breaks a second step() or
+            // set() inside the same process.
+            self.regions[i].marked_active = activate;
+        }
+        Ok(self.regions[target].name.clone())
+    }
+
+    /// Move one step through the file order (wraps around).
+    pub fn step(&mut self, delta: isize) -> Result<String, String> {
+        let current = self.active_name().unwrap_or_default();
+        let mut idx = self
+            .regions
+            .iter()
+            .position(|r| r.name == current)
+            .unwrap_or(0) as isize;
+        let n = self.regions.len() as isize;
+        idx = (idx + delta).rem_euclid(n);
+        let name = self.regions[idx as usize].name.clone();
+        self.set(&name)
+    }
+
+    pub fn write(&self, path: &Path) -> Result<(), String> {
+        let mut text = self.lines.join(&self.newline);
+        if self.ends_with_newline {
+            text.push_str(&self.newline);
+        }
+        write_atomic(path, text.as_bytes())
+    }
+}
+
+/// `    /* --x: ...` -> `    --x: ...` (idempotent).
+fn uncomment_first(lines: &mut [String], idx: usize) {
+    let line = &lines[idx];
+    let indent_len = line.len() - line.trim_start().len();
+    let (indent, rest) = line.split_at(indent_len);
+    if let Some(after) = rest.strip_prefix("/*") {
+        lines[idx] = format!("{indent}{}", after.trim_start());
+    }
+}
+
+/// `    --x: ... */` -> `    --x: ...` (idempotent).
+fn uncomment_last(lines: &mut [String], idx: usize) {
+    let line = &lines[idx];
+    if let Some(pos) = line.rfind("*/") {
+        lines[idx] = line[..pos].trim_end().to_string();
+    }
+}
+
+/// `    --x: ...` -> `    /* --x: ...` (idempotent).
+fn comment_first(lines: &mut [String], idx: usize) {
+    if lines[idx].trim_start().starts_with("/*") {
+        return;
+    }
+    let line = &lines[idx];
+    let indent_len = line.len() - line.trim_start().len();
+    let (indent, rest) = line.split_at(indent_len);
+    lines[idx] = format!("{indent}/* {rest}");
+}
+
+/// `    --x: ...` -> `    --x: ... */` (idempotent).
+fn comment_last(lines: &mut [String], idx: usize) {
+    if lines[idx].trim_end().ends_with("*/") {
+        return;
+    }
+    lines[idx] = format!("{} */", lines[idx].trim_end());
+}
+
+/// Toggle the `- active` suffix on a `/* Name */` header (idempotent).
+fn mark_header(lines: &mut [String], idx: usize, active: bool) {
+    let line = &lines[idx];
+    let Some(pos) = line.rfind("*/") else {
+        return;
+    };
+    let head = line[..pos].trim_end();
+    let already = head.to_lowercase().ends_with("- active");
+    if active && !already {
+        lines[idx] = format!("{head} - active */");
+    } else if !active && already {
+        let stripped = head[..head.len() - "- active".len()].trim_end();
+        lines[idx] = format!("{stripped} */");
+    }
+}
+
+/// Parsed colour, straight (non-premultiplied) RGBA in 0..=255.
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub struct Rgba {
+    pub r: u8,
+    pub g: u8,
+    pub b: u8,
+    pub a: u8,
+}
+
+impl Rgba {
+    pub const fn rgb(r: u8, g: u8, b: u8) -> Self {
+        Rgba { r, g, b, a: 255 }
+    }
+    /// Compose this over `under`, returning an opaque colour.
+    pub fn over(self, under: Rgba) -> Rgba {
+        if self.a == 255 {
+            return self;
+        }
+        let a = self.a as u32;
+        let ia = 255 - a;
+        Rgba {
+            r: ((self.r as u32 * a + under.r as u32 * ia) / 255) as u8,
+            g: ((self.g as u32 * a + under.g as u32 * ia) / 255) as u8,
+            b: ((self.b as u32 * a + under.b as u32 * ia) / 255) as u8,
+            a: 255,
+        }
+    }
+}
+
+/// Parse a CSS colour: `#rgb`, `#rrggbb`, `#rrggbbaa`, `rgb(...)`, `rgba(...)`.
+/// Returns `None` for anything else (gradients, `var()`, `none`, ...).
+pub fn parse_color(value: &str) -> Option<Rgba> {
+    let v = value.trim().to_ascii_lowercase();
+    if let Some(hex) = v.strip_prefix('#') {
+        let h: Vec<u8> = hex
+            .chars()
+            .filter(|c| c.is_ascii_hexdigit())
+            .map(|c| c.to_digit(16).unwrap() as u8)
+            .collect();
+        return match h.len() {
+            3 => Some(Rgba::rgb(h[0] * 17, h[1] * 17, h[2] * 17)),
+            6 => Some(Rgba::rgb(h[0] * 16 + h[1], h[2] * 16 + h[3], h[4] * 16 + h[5])),
+            8 => Some(Rgba {
+                r: h[0] * 16 + h[1],
+                g: h[2] * 16 + h[3],
+                b: h[4] * 16 + h[5],
+                a: h[6] * 16 + h[7],
+            }),
+            _ => None,
+        };
+    }
+    let (fn_name, inner) = if let Some(inner) = v.strip_prefix("rgba(") {
+        ("rgba", inner)
+    } else {
+        let inner = v.strip_prefix("rgb(")?;
+        ("rgb", inner)
+    };
+    let inner = inner.strip_suffix(')')?;
+    let parts: Vec<&str> = inner
+        .split(|c: char| c == ',' || c.is_whitespace())
+        .filter(|s| !s.is_empty() && *s != "/")
+        .collect();
+    if parts.len() < 3 {
+        return None;
+    }
+    let comp = |s: &str| -> Option<u8> {
+        if let Some(p) = s.strip_suffix('%') {
+            let v: f64 = p.trim().parse().ok()?;
+            Some((v / 100.0 * 255.0).round().clamp(0.0, 255.0) as u8)
+        } else {
+            let v: f64 = s.trim().parse().ok()?;
+            Some(v.round().clamp(0.0, 255.0) as u8)
+        }
+    };
+    let r = comp(parts[0])?;
+    let g = comp(parts[1])?;
+    let b = comp(parts[2])?;
+    let a = match parts.get(3) {
+        None => 255,
+        Some(s) => {
+            if let Some(p) = s.strip_suffix('%') {
+                let v: f64 = p.trim().parse().ok()?;
+                (v / 100.0 * 255.0).round().clamp(0.0, 255.0) as u8
+            } else {
+                let v: f64 = s.trim().parse().ok()?;
+                (v * 255.0).round().clamp(0.0, 255.0) as u8
+            }
+        }
+    };
+    let _ = fn_name;
+    Some(Rgba { r, g, b, a })
+}
+
+/// Extract the declaration map of the active theme block.
+///
+/// Returns a flat `name -> raw value` list (values are raw CSS text, not
+/// resolved) for the active block only.
+pub fn active_theme_vars(css: &str) -> Vec<(String, String)> {
+    // The active block is bare: it begins with its own header comment and runs
+    // until the next `/* ... */` comment, which is where the next (wrapped)
+    // theme block starts. Mirrors the picker's regex so both agree.
+    let re_start = " - active */";
+    let Some(start) = css.find(re_start) else {
+        return parse_decls(whole_root(css).unwrap_or(css));
+    };
+    // Begin at the opening of that header comment.
+    let head = css[..start].rfind("/*").unwrap_or(0);
+    let tail = &css[start + re_start.len()..];
+    let end = tail.find("/*").unwrap_or(tail.len());
+    parse_decls(&css[head..start + re_start.len() + end])
+}
+
+/// Read a variable that is declared at the *document* level, not in the active
+/// theme block.
+///
+/// `--system-font` is one of these. It sits in `:root` above the theme blocks
+/// because it is a machine-level choice — "which font is installed here" — not
+/// a property of a palette, and the stylesheet says so explicitly with a
+/// "MANUAL FONT SWITCH" comment listing the families to choose from. Looking
+/// for it with [`active_theme_vars`] therefore always fails, and the panels
+/// silently fell back to Segoe UI while the bar drew in FiraCode: the exact
+/// mismatch this function exists to close.
+///
+/// So this searches the whole stylesheet, ignoring comments, and takes the
+/// *last* declaration — which is how a browser resolves a repeated custom
+/// property in the same scope. The comment block above `:root` lists three
+/// candidate families as documentation; ignoring comments is what stops that
+/// documentation being mistaken for the live setting.
+pub fn global_var(css: &str, name: &str) -> Option<String> {
+    // Strip comments first. Without this the "MANUAL FONT SWITCH" block, which
+    // mentions every family in turn, wins over the real declaration below it.
+    let mut stripped = String::with_capacity(css.len());
+    let mut rest = css;
+    while let Some(open) = rest.find("/*") {
+        stripped.push_str(&rest[..open]);
+        match rest[open..].find("*/") {
+            Some(close) => rest = &rest[open + close + 2..],
+            None => {
+                rest = "";
+                break;
+            }
+        }
+    }
+    stripped.push_str(rest);
+
+    let key = format!("--{name}");
+    let mut found = None;
+    for line in stripped.lines() {
+        let line = line.trim();
+        let Some(rest) = line.strip_prefix(&key) else { continue };
+        // Require the exact property, so `--system-font-fallback` is not
+        // mistaken for `--system-font`.
+        let Some(rest) = rest.trim_start().strip_prefix(':') else { continue };
+        let value = rest.trim_end().trim_end_matches(';').trim();
+        if !value.is_empty() {
+            found = Some(value.to_string());
+        }
+    }
+    found
+}
+
+/// Fall back to the whole file when no active marker is present.
+fn whole_root(css: &str) -> Option<&str> {
+    css.find(":root").map(|i| &css[i..])
+}
+
+
+/// Force every pixel of a top-down 32-bit BGRA DIB to full alpha.
+///
+/// GDI drawing (`FillRect`, `DrawText`, `FrameRect`) writes only the
+/// three colour bytes and leaves the fourth untouched, so a freshly
+/// created DIB section has an alpha of 0 everywhere. Handing that to
+/// `UpdateLayeredWindow` with `AC_SRC_ALPHA` renders the window fully
+/// transparent — the panel is created, positioned and invisible.
+///
+/// The windows that use this draw an opaque panel, so setting alpha to
+/// 255 is correct. Call it after the GDI work and before
+/// `UpdateLayeredWindow`.
+///
+/// `bits` is the DIB pixel pointer, `w`x`h` pixels, 4 bytes each.
+///
+/// # Safety
+///
+/// When `bits` is non-null and `w > 0` and `h > 0`, it must point to at
+/// least `w * h * 4` writable bytes — the pixel buffer of a top-down 32-bit
+/// BGRA DIB. A null pointer or a degenerate size is accepted and ignored,
+/// because `CreateDIBSection` failing mid-paint is exactly when a caller
+/// reaches for this.
+pub unsafe fn force_opaque_alpha(bits: *mut u8, w: i32, h: i32) {
+    if bits.is_null() || w <= 0 || h <= 0 {
+        return;
+    }
+    for y in 0..h {
+        let row = unsafe { bits.offset((y as isize) * (w as isize) * 4) };
+        let mut i = 0isize;
+        while i < w as isize * 4 {
+            unsafe { *row.offset(i + 3) = 255 };
+            i += 4;
+        }
+    }
+}
+
+/// Pull `--name: value;` pairs out of a chunk of CSS.
+fn parse_decls(chunk: &str) -> Vec<(String, String)> {
+    let mut out = Vec::new();
+    let bytes: Vec<char> = chunk.chars().collect();
+    let mut i = 0;
+    while i < bytes.len() {
+        // Find the next "--".
+        if bytes[i] != '-' || i + 1 >= bytes.len() || bytes[i + 1] != '-' {
+            i += 1;
+            continue;
+        }
+        let start = i;
+        let mut j = i + 2;
+        while j < bytes.len()
+            && (bytes[j].is_ascii_alphanumeric() || bytes[j] == '-')
+        {
+            j += 1;
+        }
+        let name: String = bytes[start..j].iter().collect();
+        // Expect ':' then the value up to ';'.
+        while j < bytes.len() && bytes[j].is_whitespace() {
+            j += 1;
+        }
+        if j < bytes.len() && bytes[j] == ':' {
+            j += 1;
+            let vs = j;
+            while j < bytes.len() && bytes[j] != ';' && bytes[j] != '\n' {
+                j += 1;
+            }
+            let value: String = bytes[vs..j].iter().collect();
+            let value = value.trim().to_string();
+            if !name.is_empty() && !value.is_empty() {
+                out.push((name, value));
+            }
+        }
+        i = j.max(i + 1);
+    }
+    out
+}
+
+/// Read whether frosted glass is enabled on the YASB bar islands via CSS.
+pub fn is_frosted(_config_path: &Path, styles_path: &Path) -> bool {
+    if let Ok(content) = fs::read_to_string(styles_path) {
+        let mut in_adaptive = false;
+        for line in content.lines() {
+            let trimmed = line.trim();
+            if trimmed.starts_with(".yasb-bar.adaptive") && trimmed.contains('{') {
+                in_adaptive = true;
+                continue;
+            }
+            if in_adaptive {
+                if trimmed.starts_with("background-color:") {
+                    return trimmed.contains("var(--glassfrost)");
+                }
+                if trimmed == "}" {
+                    in_adaptive = false;
+                }
+            }
+        }
+    }
+    false
+}
+
+/// Set the frosted glass property bounded strictly to the YASB islands via CSS.
+///
+/// Keeps `.yasb-bar` transparent and keeps config.yaml `blur_effect: enabled: false`
+/// so Windows DWM never blurs rectangular unreserved gaps. Frosted glass is driven
+/// strictly via CSS by toggling `.yasb-bar.adaptive` between `var(--glassfrost)` and `var(--glassmist)`.
+pub fn set_frosted(config_path: &Path, styles_path: &Path, enable: bool) -> Result<(), String> {
+    // 1. Ensure config.yaml keeps blur_effect disabled so Windows DWM doesn't blur
+    // the rectangular window gaps across the whole display.
+    if config_path.is_file() {
+        let raw = fs::read(config_path).map_err(|e| format!("cannot read config: {e}"))?;
+        let text = String::from_utf8(raw).map_err(|e| format!("UTF-8 error: {e}"))?;
+        let newline = if text.contains("\r\n") { "\r\n" } else { "\n" };
+        let ends_with_newline = text.ends_with('\n');
+        let mut lines: Vec<String> = text.lines().map(str::to_string).collect();
+
+        let mut in_blur = false;
+        let mut changed = false;
+        for line in lines.iter_mut() {
+            let trimmed = line.trim();
+            if trimmed.starts_with("blur_effect:") {
+                in_blur = true;
+                continue;
+            }
+            if in_blur {
+                if trimmed.starts_with("enabled:") {
+                    let indent = &line[..line.len() - line.trim_start().len()];
+                    if trimmed != "enabled: false" {
+                        *line = format!("{indent}enabled: false");
+                        changed = true;
+                    }
+                    break;
+                }
+                if !trimmed.is_empty() && !line.starts_with("    ") && !line.starts_with("\t\t") {
+                    in_blur = false;
+                }
+            }
+        }
+        if changed {
+            let mut out = lines.join(newline);
+            if ends_with_newline {
+                out.push_str(newline);
+            }
+            write_atomic(config_path, out.as_bytes())?;
+        }
+    }
+
+    // 2. Rewrite styles.css:
+    // .yasb-bar must stay transparent (bounding frosted glass to islands).
+    // .yasb-bar.adaptive toggles between var(--glassfrost) and var(--glassmist).
+    if styles_path.is_file() {
+        let raw = fs::read(styles_path).map_err(|e| format!("cannot read styles: {e}"))?;
+        let text = String::from_utf8(raw).map_err(|e| format!("UTF-8 error: {e}"))?;
+        let newline = if text.contains("\r\n") { "\r\n" } else { "\n" };
+        let ends_with_newline = text.ends_with('\n');
+        let mut lines: Vec<String> = text.lines().map(str::to_string).collect();
+
+        let mut in_yasb_bar = false;
+        let mut in_adaptive = false;
+        let mut changed = false;
+
+        for line in lines.iter_mut() {
+            let trimmed = line.trim().to_string();
+            let is_close = trimmed == "}";
+            if trimmed == ".yasb-bar {" {
+                in_yasb_bar = true;
+                continue;
+            }
+            if in_yasb_bar {
+                if trimmed.starts_with("background-color:") {
+                    let indent_len = line.len() - line.trim_start().len();
+                    let indent = line[..indent_len].to_string();
+                    if !trimmed.contains("transparent") {
+                        *line = format!("{indent}background-color: transparent;");
+                        changed = true;
+                    }
+                }
+                if is_close {
+                    in_yasb_bar = false;
+                }
+            }
+
+            if trimmed.starts_with(".yasb-bar.adaptive") && trimmed.contains('{') {
+                in_adaptive = true;
+                continue;
+            }
+            if in_adaptive {
+                if trimmed.starts_with("background-color:") {
+                    let indent_len = line.len() - line.trim_start().len();
+                    let indent = line[..indent_len].to_string();
+                    let target_color = if enable { "var(--glassfrost);" } else { "var(--glassmist);" };
+                    *line = format!("{indent}background-color: {target_color}");
+                    changed = true;
+                }
+                if is_close {
+                    in_adaptive = false;
+                }
+            }
+        }
+
+        if changed {
+            let mut out = lines.join(newline);
+            if ends_with_newline {
+                out.push_str(newline);
+            }
+            write_atomic(styles_path, out.as_bytes())?;
+        }
+    }
+
+    #[cfg(windows)]
+    {
+        use std::os::windows::process::CommandExt;
+        let _ = std::process::Command::new("yasbc")
+            .arg("reload")
+            .creation_flags(0x0800_0000)
+            .spawn();
+    }
+
+    Ok(())
+}
+
+/// Toggle the frosted glass property on the YASB bar. Returns the new state.
+pub fn toggle_frosted(config_path: &Path, styles_path: &Path) -> Result<bool, String> {
+    let current = is_frosted(config_path, styles_path);
+    let new_state = !current;
+    set_frosted(config_path, styles_path, new_state)?;
+    Ok(new_state)
+}
+
+pub fn default_styles_path() -> PathBuf {
+    if let Ok(exe) = std::env::current_exe() {
+        if let Some(dir) = exe.parent() {
+            let next_to_exe = dir.join("styles.css");
+            if next_to_exe.is_file() {
+                return next_to_exe;
+            }
+        }
+    }
+    let home = std::env::var("USERPROFILE").unwrap_or_else(|_| ".".to_string());
+    Path::new(&home).join(".config").join("yasb").join("styles.css")
+}
+
+pub fn default_config_path() -> PathBuf {
+    if let Ok(exe) = std::env::current_exe() {
+        if let Some(dir) = exe.parent() {
+            let next_to_exe = dir.join("config.yaml");
+            if next_to_exe.is_file() {
+                return next_to_exe;
+            }
+        }
+    }
+    let home = std::env::var("USERPROFILE").unwrap_or_else(|_| ".".to_string());
+    Path::new(&home).join(".config").join("yasb").join("config.yaml")
+}
+
+#[cfg(test)]
+#[path = "tests.rs"]
+mod tests;
+
+pub mod motifs;

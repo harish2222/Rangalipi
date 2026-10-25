@@ -179,8 +179,8 @@
     --runner: none; */
 
     /* Rangalipi Ember Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -219,9 +219,9 @@
     --rosewater: #8A563E;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -289,8 +289,8 @@
     --runner: none; */
 
     /* Rangalipi Mossfern Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -329,9 +329,9 @@
     --rosewater: #7A5E32;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -386,7 +386,7 @@
     --yasb-icon-fg: #F1DFE3;
     --glass: rgba(29, 16, 21, 0.01);
     --glassmenu: rgba(29, 16, 21, 0.50);
-    --glassfrost: rgba(29, 16, 21, 0.01);
+    --glassfrost: rgba(29, 16, 21, 0.40);
     --glassmist: rgba(255, 255, 255, 0.08);
     --hairline: rgba(241, 223, 227, 0.16);
     --text-faint: rgba(241, 223, 227, 0.45);
@@ -400,8 +400,8 @@
     --runner: none;
 
     /* Rangalipi Wine Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -440,9 +440,9 @@
     --rosewater: #8A4A3E;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -510,8 +510,8 @@
     --runner: none; */
 
     /* Rangalipi Dune Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -550,9 +550,9 @@
     --rosewater: #86523C;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -620,8 +620,8 @@
     --runner: none; */
 
     /* Rangalipi Matcha Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -660,9 +660,9 @@
     --rosewater: #7A5834;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -730,8 +730,8 @@
     --runner: none; */
 
     /* Rangalipi Espresso Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -770,9 +770,9 @@
     --rosewater: #804E38;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -840,8 +840,8 @@
     --runner: none; */
 
     /* Rangalipi Noir Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -880,9 +880,9 @@
     --rosewater: #844438;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -950,8 +950,8 @@
     --runner: none; */
 
     /* Rangalipi Aubergine Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -990,9 +990,9 @@
     --rosewater: #7E4642;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -1060,8 +1060,8 @@
     --runner: none; */
 
     /* Rangalipi Clay Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -1100,9 +1100,9 @@
     --rosewater: #7E4836;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -1170,8 +1170,8 @@
     --runner: none; */
 
     /* Rangalipi Olive Light */
-    /* --acrylic: rgba(255, 255, 255, 0.80);
-    --acrylic-hover: rgba(255, 255, 255, 0.92);
+    /* --acrylic: rgba(255, 255, 255, 0.50);
+    --acrylic-hover: rgba(255, 255, 255, 0.65);
     --tile: rgba(255, 255, 255, 0.45);
     --background: #FFFFFF;
     --background2: #F7F8FA;
@@ -1210,9 +1210,9 @@
     --rosewater: #745232;
     --text-muted: #53565A;
     --yasb-icon-fg: #101820;
-    --glass: rgba(255, 255, 255, 0.62);
-    --glassmenu: rgba(255, 255, 255, 0.78);
-    --glassfrost: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.50);
+    --glassmenu: rgba(255, 255, 255, 0.50);
+    --glassfrost: rgba(255, 255, 255, 0.50);
     --glassmist: rgba(255, 255, 255, 0.15);
     --hairline: rgba(16, 24, 32, 0.16);
     --text-faint: rgba(16, 24, 32, 0.48);
@@ -1254,14 +1254,14 @@
     padding: 0;
 }
 .yasb-bar.adaptive {
-    background-color: var(--glassmist);
+    background-color: var(--glassfrost);
     border: none;
     -qproperty-railheight: 0;
     -qproperty-islandradius: 12;
     -qproperty-grouppadding: 6px;
     -qproperty-islands: true;
     -qproperty-edgeradius: 0;
-    -qproperty-borderwidth: 1;
+    -qproperty-borderwidth: 2;
     -qproperty-bordercolor: var(--frame);
 }
 .container-left,
@@ -1560,7 +1560,7 @@
     margin: 0 3px;
 }
 .saka-widget .label {
-    font-family: var(--system-font);
+    font-family: "GohuFont 11 Nerd Font Mono", "GohuFont 14 Nerd Font Mono", "GohuFont 11 Nerd Font", var(--system-font);
     font-size: var(--fontSize);
     line-height: var(--barLineHeight);
     font-weight: var(--fontWeight);
@@ -2066,9 +2066,14 @@
 
 /* Active Windows Title */
 .active-window-widget .icon {
-    padding-right: 4px;
-    padding-bottom: 0;
+    padding: 0 4px;
     color: var(--overlay1);
+}
+.active-window-widget .label {
+    display: none;
+    max-width: 0px;
+    font-size: 0px;
+    color: transparent;
 }
 
 
@@ -2112,12 +2117,24 @@
     padding-right: 8px;
     background-color: transparent;
     border: none;
-    border-bottom: 3px solid var(--accent);
     border-radius: 0;
-    color: var(--accent);
+    color: var(--text);
     font-weight: var(--fontWeight);
     padding-top: 3px;
     padding-bottom: 2px;
+} 
+
+/* Float override completely eliminated */
+.komorebi-workspaces .float-override {
+    max-width: 0px;
+    max-height: 0px;
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    font-size: 1px;
+    color: transparent;
 } 
 
 
@@ -3334,8 +3351,10 @@ QSlider::handle:horizontal:hover {
     padding: 0 4px 2px 4px;
 }
 .komorebi-stack .window .label {
-    font-size: 12px;
-    color: var(--subtext);
+    display: none;
+    max-width: 0px;
+    font-size: 0px;
+    color: transparent;
 }
 .komorebi-stack .window .icon {
     padding: 0;
@@ -3349,8 +3368,10 @@ QSlider::handle:horizontal:hover {
     padding-bottom: 2px;
 }
 .komorebi-stack .window.active .label {
-    color: var(--text);
-    font-weight: var(--fontWeight);
+    display: none;
+    max-width: 0px;
+    font-size: 0px;
+    color: transparent;
 }
 /* Alpha metrics - one tabular Nerd voice: icons + digits share JetBrainsMono
    so live numbers never jitter the bar width. Higher specificity wins. */
@@ -3864,14 +3885,42 @@ QSlider::handle:horizontal:hover {
 .yasb-bar .volume-widget .widget-container,
 .yasb-bar .battery-widget .widget-container,
 .yasb-bar .media-widget .widget-container { padding: 0 5px; }
-.yasb-bar .alpha-group .grouper-button,
-.yasb-bar .omega-group .grouper-button { padding: 0 6px; }
 
-/* Expanded grouper rows: single divider line, minimal air */
+/* Grouper lateral spacing: streamlined padding across alpha (stats) and omega (controls) */
+.yasb-bar .alpha-group .grouper-button,
+.yasb-bar .omega-group .grouper-button {
+    padding: 0 3px;
+}
+
+.alpha-group .container,
+.omega-group .container {
+    padding: 0;
+    margin: 0;
+}
+
 .omega-group .container .widget-container,
-.alpha-group .container .widget-container {
-    padding: 0 2px 0 6px;
-    margin-left: 1px;
+.alpha-group .container .widget-container,
+.yasb-bar .alpha-group .container .widget-container,
+.yasb-bar .omega-group .container .widget-container {
+    padding: 0 2px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.alpha-group .container .widget-container .label,
+.omega-group .container .widget-container .label,
+.alpha-group .container .widget-container .label.alt,
+.omega-group .container .widget-container .label.alt {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.alpha-group .container .widget-container .icon,
+.omega-group .container .widget-container .icon {
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    margin: 0;
 }
 
 /* Sys-stat icons: fixed 25px across cpu/gpu/memory/disk/traffic */
@@ -3887,18 +3936,20 @@ QSlider::handle:horizontal:hover {
     color: var(--accent);
 }
 
-/* Alpha + systray: extra-tight (below the standard tiers) */
-.yasb-bar .alpha-group .grouper-button { padding: 0 4px; }
-.yasb-bar .alpha-group .container .widget-container {
-    padding: 0 1px 0 4px;
-    margin-left: 0;
-}
 .yasb-bar .systray-widget { margin: 0; }
 .yasb-bar .systray-widget .widget-container { padding: 0 1px; }
 
-/* Stat cluster baseline: icons and labels share one baseline */
-.alpha-group .container .widget-container .icon,
-.alpha-group .container .widget-container .label { padding-bottom: 1px; }
+/* Keybind widget */
+.keybind-widget .widget-container .icon,
+.keybind-widget .widget-container .label {
+    color: var(--sapphire);
+    font-size: 16px;
+    padding: 0 3px;
+}
+.keybind-widget .widget-container:hover .icon,
+.keybind-widget .widget-container:hover .label {
+    color: var(--text);
+}
 
 /* Frames stay Madhubani double */
 

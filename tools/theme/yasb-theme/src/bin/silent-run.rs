@@ -3,7 +3,7 @@
 //! GlazeWM `shell-exec` gives every console child (komorebic) its own flashing
 //! conhost window. Routing through here (`shell-exec silent-run komorebic …`)
 //! spawns it with CREATE_NO_WINDOW, so hotkeys act with zero flash.
-//! Lives on PATH (scoop shims dir) so bare `silent-run` resolves everywhere.
+//! Lives on PATH (scoop shims dir or ~/.local/bin) so bare `silent-run` resolves everywhere.
 #![windows_subsystem = "windows"]
 
 use std::os::windows::process::CommandExt;

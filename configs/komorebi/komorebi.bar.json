@@ -1,0 +1,138 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
+  "app_specific_configuration_path": "C:\\Users\\haris\\.config\\komorebi\\applications.json",
+  "animation": {
+    "enabled": true,
+    "fps": 144,
+    "duration": 150,
+    "style": "EaseOutExpo",
+    "ghost_movement": false
+  },
+  "border": true,
+  "border_colours": {
+    "monocle": "#D8A854",
+    "stack": "#BE8FD8",
+    "unfocused": "#4A2E38",
+    "single": "#C04E68",
+    "float": "#D8A854"
+  },
+  "border_implementation": "Windows",
+  "border_offset": 0,
+  "border_style": "System",
+  "border_width": 2,
+  "cross_monitor_move_behaviour": "Insert",
+  "default_container_padding": 0,
+  "default_workspace_padding": 1,
+  "float_override": true,
+  "floating_layer_behaviour": "Float",
+  "float_rule_placement": "Center",
+  "floating_layer_placement": "Center",
+  "global_work_area_offset": {
+    "bottom": 0,
+    "right": 0,
+    "top": 0,
+    "left": 0
+  },
+  "mouse_follows_focus": false,
+  "stackbar": {
+    "height": 0,
+    "mode": "Always",
+    "label": "Process",
+    "tabs": {
+      "background": "#ffffff",
+      "width": 0,
+      "focused_text": "#ffffff",
+      "unfocused_text": "#ffffff",
+      "font_size": 0,
+      "font_family": "Segoe UI"
+    }
+  },
+  "transparency": false,
+  "transparency_alpha": 220,
+  "unmanaged_window_operation_behaviour": "NoOp",
+  "window_container_behaviour": "Create",
+  "window_hiding_behaviour": "Cloak",
+  "monitors": [
+    {
+      "workspaces": [
+        { "name": "1", "layout": "BSP" },
+        { "name": "2", "layout": "BSP" },
+        { "name": "3", "layout": "BSP" },
+        { "name": "4", "layout": "BSP" },
+        { "name": "5", "layout": "BSP" },
+        { "name": "6", "layout": "BSP" },
+        { "name": "7", "layout": "BSP" },
+        { "name": "8", "layout": "BSP" },
+        { "name": "9", "layout": "BSP" }
+      ]
+    },
+    {
+      "workspaces": [
+        { "name": "1", "layout": "BSP" },
+        { "name": "2", "layout": "BSP" },
+        { "name": "3", "layout": "BSP" },
+        { "name": "4", "layout": "BSP" },
+        { "name": "5", "layout": "BSP" },
+        { "name": "6", "layout": "BSP" },
+        { "name": "7", "layout": "BSP" },
+        { "name": "8", "layout": "BSP" },
+        { "name": "9", "layout": "BSP" }
+      ]
+    },
+    {
+      "workspaces": [
+        { "name": "1", "layout": "BSP" },
+        { "name": "2", "layout": "BSP" },
+        { "name": "3", "layout": "BSP" },
+        { "name": "4", "layout": "BSP" },
+        { "name": "5", "layout": "BSP" },
+        { "name": "6", "layout": "BSP" },
+        { "name": "7", "layout": "BSP" },
+        { "name": "8", "layout": "BSP" },
+        { "name": "9", "layout": "BSP" }
+      ]
+    }
+  ],
+  "ignore_rules": [
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "yasb.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "glazewm.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "glazewm-watcher.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "zebar.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "saka-popup.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "palette-picker.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "keybind.exe"
+    },
+    {
+      "kind": "Exe",
+      "matching_strategy": "Equals",
+      "id": "komorebi-sync.exe"
+    }
+  ]
+}

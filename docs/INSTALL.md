@@ -1,59 +1,136 @@
-# Rangalipi — Install & Run
+# Rangalipi — Complete Installation & Replication Guide
 
-Tested on YASB v2.0.7, Komorebi 0.1.41, GlazeWM 3.10.1, PowerShell 7.
+This guide walks you through replicating the complete Rangalipi desktop environment: Komorebi tiling window manager + GlazeWM hotkey layer + YASB bar with 22 hand-crafted themes and native Apple HIG Win32 companion widgets.
 
-## 1. Fonts (required)
+Tested on Windows 11 / Windows 10, PowerShell 7, YASB v2.0.7, Komorebi 0.1.41, GlazeWM 3.10.1.
 
-Without these, every bar icon renders as tofu boxes:
+---
+
+## 1. Prerequisites
+
+### A. Recommended Package Manager (Scoop)
+
+If you do not have Scoop installed:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm get.scoop.sh | iex
+```
+
+### B. Core Window Managers & Bar
+
+Install the core binaries:
+
+```powershell
+scoop install yasb komorebi glazewm
+```
+
+Optional spectrum visualizer: install `cava` from [github.com/karlstav/cava/releases](https://github.com/karlstav/cava/releases).
+
+### C. Required Fonts
+
+Without Nerd Fonts, bar icons and widget glyphs will render as empty boxes:
 
 ```powershell
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/FiraCode-NF nerd-fonts/FiraCode-NF-Mono
 ```
 
-`Segoe Fluent Icons` ships with Windows 11 — nothing to install.
-Close and reopen Windows Terminal after installing so the fonts register.
+> **Note**: Close and reopen your terminal after installing fonts so Windows registers them.
 
-## 2. Bar files
+---
 
-```powershell
-Copy-Item config.yaml, styles.css "$env:USERPROFILE\.config\yasb\" -Force
-```
+## 2. One-Shot Turnkey Replication
 
-Restart YASB (or wait for auto-reload). The four `--*-font` vars at the
-top of `styles.css` already point at `FiraCode Nerd Font Mono`; swap the
-comment block to JetBrainsMono if you prefer it.
+All companion tools (`yasb-theme`, `silent-run`, `palette-picker`, `saka`, `saka-popup`, `keybind`, `pomodoro`, `komorebi-sync`, `screen-shot`) are written in **pure Rust** with zero Python runtime or build dependencies.
 
-## 3. Companion tools (optional)
-
-The bar works without them. They power the shuffle (palette) button:
+1. Clone the Rangalipi repository:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\setup\yasb-setup.ps1
+git clone https://github.com/harish2222/Rangalipi.git C:\Users\$env:USERNAME\Rangalipi
+cd C:\Users\$env:USERNAME\Rangalipi
 ```
 
-This installs missing toolchains (Rust, Python Qt6, PyInstaller) and builds
-`yasb-theme.exe` (22-theme engine, dark + light), `palette-picker.exe`
-(palette browser) and `silent-run.exe` (flash-free launcher).
-Re-running is safe. Folk-motif SVGs (`motif-*.svg`, `runner-*.svg`)
-must sit next to `styles.css` — copy them over too if you use the artwork.
+2. Run the one-shot setup script:
 
-## 4. Switching themes
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools\setup\yasb-setup.ps1
+```
 
-- Left-click shuffle: visual browser (type to filter, arrows + Enter).
-- Right-click shuffle: next theme. Middle-click: current theme name.
-- Terminal: `yasb-theme.exe list|current|set <name>|next|prev`.
+### What `yasb-setup.ps1` Does Automatically:
+1. **Backs up** existing files in `~/.config/yasb`, `~/.glzr/glazewm`, and `~/.config/komorebi` with timestamped `.bak` extensions (never overwrites destructively).
+2. **Installs Rust** via winget if `cargo` is not yet on your system.
+3. **Compiles all companion tools** using `cargo build --workspace --release` in a single pass.
+4. **Deploys the `silent-run.exe` shim** to eliminate console window flashing during hotkey execution.
+5. **Adapts configuration paths** dynamically to match your current Windows user profile (`config.yaml`, `styles.css` mandala URLs, and Komorebi/GlazeWM configs).
+6. **Deploys high-resolution mandala artwork** and theme styles.
+7. **Verifies the entire chain** with automated headless smoke tests.
+8. **Registers the `yt` shell helper** inside your PowerShell profile.
 
-New terminals need the `yt` shortcut first:
-`powershell -ExecutionPolicy Bypass -File tools\theme\yasb-theme-shell.ps1`
-(dot-source it from your `$PROFILE` to keep it).
+---
 
-## 5. Troubleshooting
+## 3. Launching the Environment
 
-| Symptom | Fix |
+1. **Start the Bar**:
+   Run `yasb` or launch it from the Start Menu / Startup folder.
+2. **Start the Window Managers**:
+   Start Komorebi and GlazeWM. Hotkeys and window tiling will be immediately active.
+3. **Verify Theme CLI**:
+   Open a new PowerShell terminal and run:
+   ```powershell
+   yt list
+   yt current
+   yt set "Rangalipi Dune Dark"
+   ```
+
+---
+
+## 4. Desktop Controls & Keybindings
+
+| Keybinding | Action |
 |---|---|
-| Boxes instead of icons | Fonts not installed/registered — redo step 1, restart terminal + YASB |
-| Picker shows nothing | Rebuild: `tools\picker\palette-picker-build.ps1`, kill stuck `palette-picker` processes first |
-| Theme won't switch | `yasb-theme.exe current` must print a name; if `unknown theme`, the styles.css header lost its `- active` suffix |
-| Wallpaper gallery empty | Point `image_path` in `config.yaml` at a folder that exists |
-| Bar screenshot | Right-click bar → Take Screenshot → `Pictures\YASB_Screenshots` |
+| **Win + K** | Open Apple HIG Keybindings Cheatsheet |
+| **Alt + h/j/k/l** | Focus left / down / up / right window |
+| **Alt + Shift + h/j/k/l** | Move window left / down / up / right |
+| **Alt + Enter** | Launch terminal |
+| **Alt + Shift + b** / **Alt + z** | Launch browser |
+| **Alt + o** | Launch editor |
+| **Alt + q** | Close focused window |
+| **Alt + f** | Toggle maximize |
+| **Alt + Shift + f** | Toggle monocle layout |
+| **Alt + r** | Enter resize mode |
+| **Alt + Shift + r** | Reload GlazeWM & Komorebi configurations |
+
+---
+
+## 5. Companion Widgets Guide
+
+### 🌸 Vedic Panchangam (`saka` & `saka-popup`)
+- **Trigger**: Left-click the Saka widget in the bar.
+- **Hero Moons**: Displays both a 3D rotating planetary moon and an authentic telescopic night sky moon with real selenographic maria (*Mare Imbrium*, *Procellarum*, *Serenitatis*) and ray craters (*Tycho*, *Copernicus*).
+- **Controls**:
+  - `Tab`: Toggle between English and Telugu scripts.
+  - `M`: Cycle layout modes (**Portrait** $\rightarrow$ **Landscape** $\rightarrow$ **Compact glance**).
+  - `Esc`: Close panel.
+
+### 🎨 Palette Browser (`palette-picker`)
+- **Trigger**: Left-click the Palette icon in the bar control group.
+- **Controls**: Type to fuzzy-filter themes across 22 options, use Arrow keys or mouse to navigate, `Enter` to apply instantly with zero restart.
+
+### ⌨️ Keybindings Cheatsheet (`keybind`)
+- **Trigger**: `Win + K` or left-click keyboard icon in the bar control group.
+- **Controls**: Filter hotkeys by category chips (Focus, Move, Layout, Workspaces, Apps, System) or live search.
+
+### ⏳ Focus Timer (`pomodoro`)
+- **Trigger**: Click pomodoro widget in bar to start, pause, or reset focus sessions.
+
+---
+
+## 6. Troubleshooting
+
+| Symptom | Cause | Solution |
+|---|---|---|
+| Glyphs appear as squares | Missing Nerd Fonts | Install JetBrainsMono NF: `scoop install nerd-fonts/JetBrainsMono-NF` and restart terminal |
+| Hotkeys flash black windows | `silent-run.exe` not on PATH | Ensure `~/scoop/shims` or `~/.local/bin` is in your User PATH |
+| Custom popups don't appear | Single-instance lock or missing build | Run `tools\setup\yasb-setup.ps1` to rebuild and run `--smoke` tests |
+| Wallpapers don't change | Directory path missing | Configure `image_path` in `~/.config/yasb/config.yaml` to point to your wallpaper folder |
